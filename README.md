@@ -9,10 +9,9 @@ Chainlens provides a robust and intuitive platform combining user-friendly explo
 - **Position:** Consuming 
 - **Access:** 3rd-Party 
 
-## Tags
+## Tags:
 
-- Blockchain
-- Smart Contracts
+ - Blockchain, Smart Contracts
 
 ## Timestamps
 
@@ -25,15 +24,22 @@ Chainlens provides a robust and intuitive platform combining user-friendly explo
 Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
 
 **Human URL:** [https://www.chainlens.com/](https://www.chainlens.com/)
-r
 
-#### Tags
 
-- API
+#### Tags:
+
+ - Blockchain, NFTs, Cryptocurrencies
 
 #### Properties
 
 - [Documentation](https://www.chainlens.com/)
+- [OpenAPI](properties/chainlens-openapi.yml)
+
+## Common Properties
+
+- [Plans](https://www.chainlens.com/plans)
+- [Blog](https://www.chainlens.com/blog)
+- [SignUp](https://www.chainlens.com/free-sign-up)
 
 ## Maintainers
 
