@@ -5,7 +5,9 @@ apis:
   - aid: chainlens:chainlens
     name: Chainlens
     tags:
-      - API
+      - Blockchain
+      - NFTs
+      - Cryptocurrencies
     humanURL: https://www.chainlens.com/
     properties:
       - url: https://www.chainlens.com/
