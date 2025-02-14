@@ -10,6 +10,8 @@ apis:
     properties:
       - url: https://www.chainlens.com/
         type: Documentation
+      - type: OpenAPI
+        url: properties/chainlens-openapi.yml
     description: >-
       Chainlens provides a robust and intuitive platform combining user-friendly
       exploration with powerful analytics and advanced features. Whether
