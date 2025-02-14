@@ -1,0 +1,3892 @@
+openapi: 3.0.1
+info:
+  title: Chainlens API (11297108109)
+  description: Chainlens blockchain explorer public API
+  version: master
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/
+paths:
+  /transactions:
+    get:
+      tags:
+        - transaction-controller
+      summary: Retrieve transactions by address or block.
+      operationId: findTransactions
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindTransactionsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestTransactionModel'
+  /transactions/{transactionHash}:
+    get:
+      tags:
+        - transaction-controller
+      summary: Retrieve a transaction by its hash.
+      operationId: getTransaction
+      parameters:
+        - name: transactionHash
+          in: path
+          description: The hash identifying the transaction.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+  /transactions/{transactionHash}/internal-transactions:
+    get:
+      tags:
+        - internal-transactions-controller
+      summary: Retrieve all internal transactions for this transaction.
+      operationId: getInternalsByTx
+      parameters:
+        - name: transactionHash
+          in: path
+          description: >-
+            The transaction hash identifying the transaction that contains the
+            events.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindInternalTransactionsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestInternalTransactionModel'
+  /transactions/{transactionHash}/events:
+    get:
+      tags:
+        - transaction-events-controller
+      summary: Retrieve all events for this transaction.
+      operationId: getTransactionEvents
+      parameters:
+        - name: transactionHash
+          in: path
+          description: >-
+            The transaction hash identifying the transaction that contains the
+            events.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/TransactionEventsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EventsModel'
+  /tokens:
+    get:
+      tags:
+        - token-controller
+      summary: Retrieve token contracts.
+      operationId: findTokens
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindTokensQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListTokenModel'
+  /tokens/{addressHash}:
+    get:
+      tags:
+        - token-controller
+      summary: Retrieve a token by its address hash.
+      operationId: getToken
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenModel'
+  /tokens/{addressHash}/{tokenId}:
+    get:
+      tags:
+        - token-controller
+      summary: Retrieve token contracts by tokenId.
+      operationId: findTokensByTokenId
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+        - name: tokenId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenModel'
+  /tokens/{addressHash}/transactions:
+    get:
+      tags:
+        - token-transactions-controller
+      summary: Retrieve token transactions by token address hash.
+      operationId: findContractTransactions
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindAddressTransactionsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestTransactionModel'
+  /tokens/{addressHash}/holders:
+    get:
+      tags:
+        - token-holders-controller
+      summary: Retrieve a list of token holders by token contract address hash.
+      operationId: getTokenHolders
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindTokenBalanceQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenBalancesModel'
+  /tokens/{addressHash}/events:
+    get:
+      tags:
+        - token-events-controller
+      summary: Retrieve all token events using token address.
+      operationId: getTokenEvents
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/TransactionEventsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EventsModel'
+  /tokens/{addressHash}/erc777/transfers:
+    get:
+      tags:
+        - erc-777-transfers-controller
+      summary: Retrieve transfers of an ERC777 Token.
+      operationId: findERC777Transfers
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindERC777TransfersQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestERC777TransfersModel'
+  /tokens/{addressHash}/erc721/transfers:
+    get:
+      tags:
+        - erc-721-transfers-controller
+      summary: Retrieve transfers of an ERC721 Token.
+      operationId: findERC721Transfers
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindERC721TransfersQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestERC721TransfersModel'
+  /tokens/{addressHash}/erc721/transfers/{tokenId}:
+    get:
+      tags:
+        - erc-721-transfers-controller
+      summary: Retrieve transfers of an ERC721 Token.
+      operationId: findERC721Transfers_1
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: tokenId
+          in: path
+          description: The token id identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindERC721TransfersQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestERC721TransfersModel'
+  /tokens/{addressHash}/erc223/transfers:
+    get:
+      tags:
+        - erc-223-transfers-controller
+      summary: Retrieve transfers of an ERC223 Token.
+      operationId: findERC20Transfers
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindERC223TransfersQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestERC223TransfersModel'
+  /tokens/{addressHash}/erc20/transfers:
+    get:
+      tags:
+        - erc-20-transfers-controller
+      summary: Retrieve transfers of an ERC20 Token.
+      operationId: findERC20Transfers_1
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindERC20TransfersQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestERC20TransfersModel'
+  /tokens/{addressHash}/erc1155/transfers:
+    get:
+      tags:
+        - erc-1155-transfers-controller
+      summary: Retrieve transfers of an ERC1155 Token.
+      operationId: findERC1155Transfers
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindERC1155TransfersQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestERC1155TransfersModel'
+  /tokens/{addressHash}/erc1155/transfers/{tokenId}:
+    get:
+      tags:
+        - erc-1155-transfers-controller
+      summary: Retrieve transfers of an ERC1155 Token.
+      operationId: findERC1155Transfers_1
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: tokenId
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindERC1155TransfersQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestERC1155TransfersModel'
+  /token/{addressHash}:
+    get:
+      tags:
+        - eip-3091-controller
+      operationId: getToken_1
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token type.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenModel'
+  /token-type/{addressHash}:
+    get:
+      tags:
+        - eip-3091-controller
+      operationId: getTokenType
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token type.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AddressResponse'
+  /search/:
+    get:
+      tags:
+        - search-controller
+      summary: Retrieve blocks, transactions, accounts by hash.
+      operationId: search
+      parameters:
+        - name: query
+          in: query
+          description: The search query string.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListSearchResultModel'
+  /search:
+    get:
+      tags:
+        - search-controller
+      summary: Retrieve blocks, transactions, accounts by hash.
+      operationId: search_1
+      parameters:
+        - name: query
+          in: query
+          description: The search query string.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListSearchResultModel'
+  /rwas:
+    get:
+      tags:
+        - rwa-controller
+      summary: Retrieve ERC3643 tokens.
+      operationId: findTokens_1
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindTokensQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListTokenModel'
+  /rwas/{addressHash}:
+    get:
+      tags:
+        - rwa-controller
+      summary: Retrieve a ERC3643 by its address hash.
+      operationId: getToken_2
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenModel'
+  /rwas/{addressHash}/{tokenId}/metadata:
+    get:
+      tags:
+        - rwa-controller
+      summary: Retrieve token metadata for a given token contract address and token id.
+      operationId: getTokenMetadata
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+        - name: tokenId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MetadataImageLink'
+  /rwas/{addressHash}/holders:
+    get:
+      tags:
+        - rwa-controller
+      summary: Retrieve a list of token holders by token contract address hash.
+      operationId: getTokenHolders_1
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindTokenBalanceQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenBalancesModel'
+  /rwas/{addressHash}/erc3643/transfers:
+    get:
+      tags:
+        - rwa-controller
+      summary: Retrieve transfers of an ERC3643 Token.
+      operationId: findERC3643Transfers
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindERC3643TransfersQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestERC3643TransfersModel'
+  /node/details:
+    get:
+      tags:
+        - node-controller
+      summary: Node details.
+      operationId: details
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/NodeInfoModel'
+  /nfts:
+    get:
+      tags:
+        - nft-controller
+      summary: Retrieve NFTs.
+      operationId: findTokens_2
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindTokensQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListTokenModel'
+  /nfts/{addressHash}:
+    get:
+      tags:
+        - nft-controller
+      summary: Retrieve a NFT by its address hash.
+      operationId: getToken_3
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenModel'
+  /nfts/{addressHash}/{tokenId}:
+    get:
+      tags:
+        - nft-controller
+      summary: Retrieve NFT contracts by tokenId.
+      operationId: findTokensByTokenId_1
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+        - name: tokenId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenModel'
+  /nfts/{addressHash}/{tokenId}/metadata:
+    get:
+      tags:
+        - nft-controller
+      summary: Retrieve token metadata for a given token contract address and token id.
+      operationId: getTokenMetadata_1
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+        - name: tokenId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MetadataImageLink'
+  /nfts/{addressHash}/holders:
+    get:
+      tags:
+        - nft-controller
+      summary: Retrieve a list of token holders by token contract address hash.
+      operationId: getTokenHolders_2
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindTokenBalanceQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenBalancesModel'
+  /nfts/{addressHash}/erc721/transfers:
+    get:
+      tags:
+        - nft-controller
+      summary: Retrieve transfers of an ERC721 Token.
+      operationId: findERC721Transfers_2
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindERC721TransfersQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestERC721TransfersModel'
+  /nfts/{addressHash}/erc1155/transfers:
+    get:
+      tags:
+        - nft-controller
+      summary: Retrieve transfers of an ERC1155 Token.
+      operationId: findERC1155Transfers_2
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the token.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindERC1155TransfersQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestERC1155TransfersModel'
+  /nfts/{addressHash}/collections:
+    get:
+      tags:
+        - nft-controller
+      summary: Retrieve all NFTs with Metadata.
+      operationId: findNftCollections
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindCollectionQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListCollectionItemModel'
+  /metadata/{swarmHash}:
+    get:
+      tags:
+        - metadata-controller
+      summary: Retrieve metadata.
+      operationId: getMetadata
+      parameters:
+        - name: swarmHash
+          in: path
+          description: The swarm hash of the metadata.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MetadataModel'
+  /metadata/{fileId}/contracts:
+    get:
+      tags:
+        - metadata-controller
+      summary: list contracts by swarmhash
+      operationId: findContractsBySwarmHash
+      parameters:
+        - name: fileId
+          in: path
+          description: The file id of the metadata.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindContractsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestContractModel'
+  /mappings:
+    get:
+      tags:
+        - account-mapping-controller
+      summary: Retrieve Accounts
+      operationId: findAccounts
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindAccountMappingQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestAccountMappingModel'
+  /mappings/{id}:
+    get:
+      tags:
+        - account-mapping-controller
+      operationId: getAccount
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccountMappingModel'
+  /internal-transactions:
+    get:
+      tags:
+        - internal-transactions-controller
+      summary: Retrieve internal transactions by address.
+      operationId: findTransactions_1
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindInternalTransactionsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestInternalTransactionModel'
+  /gas/price:
+    get:
+      tags:
+        - gas-oracle-controller
+      summary: Gas price oracle.
+      operationId: gasPriceInfo
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GasPriceModel'
+  /events:
+    get:
+      tags:
+        - events-controller
+      summary: Retrieve all events.
+      operationId: getEvents
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/TransactionEventsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EventsModel'
+  /download/abi/{contractAddress}:
+    get:
+      tags:
+        - download-abi-controller
+      summary: Download ABI for a verified contract
+      operationId: downloadAbi
+      parameters:
+        - name: contractAddress
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+  /dashboard/transactions/totals:
+    get:
+      tags:
+        - dashboard-transactions-totals-controller
+      summary: Retrieve total number of different transactions types
+      operationId: getTotals
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DashboardTotalsModel'
+  /dashboard/transactions/totals/{period}:
+    get:
+      tags:
+        - dashboard-transactions-totals-controller
+      summary: Retrieve total number of different transactions types
+      operationId: getTotals_1
+      parameters:
+        - name: period
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - Nanos
+              - Micros
+              - Millis
+              - Seconds
+              - Minutes
+              - Hours
+              - HalfDays
+              - Days
+              - Weeks
+              - Months
+              - Years
+              - Decades
+              - Centuries
+              - Millennia
+              - Eras
+              - Forever
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DashboardTimeseriesTotalsModel'
+  /dashboard/totals:
+    get:
+      tags:
+        - dashboard-totals-controller
+      summary: Retrieve total number of Contracts, Tokens and Transactions.
+      operationId: getDashboardTotals
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DashboardTotalsModel'
+  /dashboard/tokens/totals:
+    get:
+      tags:
+        - dashboard-tokens-totals-controller
+      summary: Retrieve total number of different token types
+      operationId: getTokenTotals
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DashboardTotalsModel'
+  /contracts:
+    get:
+      tags:
+        - contract-controller
+      summary: Retrieve contracts.
+      operationId: findContracts
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindContractsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestContractModel'
+  /contracts/{addressHash}:
+    get:
+      tags:
+        - contract-controller
+      summary: Retrieve a contract by its address hash.
+      operationId: getContract
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ContractModel'
+  /contracts/{addressHash}/transactions:
+    get:
+      tags:
+        - contract-transactions-controller
+      summary: Retrieve contract transactions by its address hash.
+      operationId: findContractTransactions_1
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindAddressTransactionsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestTransactionModel'
+  /contracts/{addressHash}/internal-transactions:
+    get:
+      tags:
+        - contract-internal-transactions-controller
+      summary: Retrieve contract internal transactions by its address hash.
+      operationId: findContractTransactions_2
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindInternalTransactionsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestInternalTransactionModel'
+  /contracts/{addressHash}/events:
+    get:
+      tags:
+        - contract-events-controller
+      summary: Retrieve all events for this contract.
+      operationId: getContractEvents
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/TransactionEventsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EventsModel'
+  /contracts/{addressHash}/bytecode:
+    get:
+      tags:
+        - contract-bytecode-controller
+      summary: Retrieves bytecodes for a deployed contract.
+      operationId: getContractBytecode
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the contract.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BytecodeModel'
+  /content-type/get:
+    get:
+      tags:
+        - media-type-controller
+      operationId: getContentType
+      parameters:
+        - name: url
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /configuration/frontend:
+    get:
+      tags:
+        - configuration-controller
+      summary: Chainlens frontend configuration.
+      operationId: frontendConfiguration
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ChainlensConfigurationModel'
+  /collections/recommended:
+    get:
+      tags:
+        - projects-controller
+      summary: Get a list of all recommended collections
+      operationId: getRecommendedTokensByProjects
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectModel'
+  /blocks:
+    get:
+      tags:
+        - block-controller
+      summary: Retrieve blocks.
+      operationId: findBlocks
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindBlocksQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestBlockModel'
+  /blocks/{blockHash}:
+    get:
+      tags:
+        - block-controller
+      summary: Retrieve a block by its hash or height.
+      operationId: getBlock
+      parameters:
+        - name: blockHash
+          in: path
+          description: The hash or height identifying the block.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+  /blocks/{blockHash}/transactions:
+    get:
+      tags:
+        - block-transactions-controller
+      summary: Retrieve all transactions for this block.
+      operationId: getBlockTransactions
+      parameters:
+        - name: blockHash
+          in: path
+          description: The address hash or height identifying the block.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindTransactionsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestTransactionModel'
+  /address/{addressHash}:
+    get:
+      tags:
+        - eip-3091-controller
+      operationId: getAddress
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the address type.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /address-type/{addressHash}:
+    get:
+      tags:
+        - eip-3091-controller
+      operationId: getAddressType
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the address type.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AddressResponse'
+  /accounts:
+    get:
+      tags:
+        - account-controller
+      summary: Retrieve all accounts.
+      operationId: getAccounts
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindAccountsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestAccountModel'
+  /accounts/{addressHash}:
+    get:
+      tags:
+        - account-controller
+      summary: Retrieve an account by its address hash.
+      operationId: getAccount_1
+      parameters:
+        - name: addressHash
+          in: path
+          description: The address hash identifying the account.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccountModel'
+  /accounts/{addressHash}/transactions:
+    get:
+      tags:
+        - account-transactions-controller
+      summary: Retrieve a transactions for an account.
+      operationId: findAccountTransactions
+      parameters:
+        - name: addressHash
+          in: path
+          description: The account address.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindAddressTransactionsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestTransactionModel'
+  /accounts/{addressHash}/tokens:
+    get:
+      tags:
+        - account-tokens-controller
+      summary: Retrieve token holdings by account.
+      operationId: findAccountTokens
+      parameters:
+        - name: addressHash
+          in: path
+          description: The account address.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindAccountTokenHoldingsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenBalancesModel'
+  /accounts/{addressHash}/nfts:
+    get:
+      tags:
+        - account-tokens-controller
+      summary: Retrieve NFT items by account.
+      operationId: findAccountNFTs
+      parameters:
+        - name: addressHash
+          in: path
+          description: The account address.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindCollectionItemsHoldingsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CollectionItemsModel'
+  /accounts/{addressHash}/collection/{tokenAddress}:
+    get:
+      tags:
+        - account-tokens-controller
+      summary: Retrieve a non-fungible item holdings for an account.
+      operationId: findAccountCollectionItems
+      parameters:
+        - name: addressHash
+          in: path
+          description: The account address.
+          required: true
+          schema:
+            type: string
+        - name: tokenAddress
+          in: path
+          description: The NFT contract address.
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/FindCollectionItemsHoldingsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CollectionItemsModel'
+  /tx/{transactionHash}:
+    get:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a transaction by its hash.
+      operationId: getTransaction_1
+      parameters:
+        - name: transactionHash
+          in: path
+          description: The hash identifying the transaction.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+    put:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a transaction by its hash.
+      operationId: getTransaction_4
+      parameters:
+        - name: transactionHash
+          in: path
+          description: The hash identifying the transaction.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+    post:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a transaction by its hash.
+      operationId: getTransaction_3
+      parameters:
+        - name: transactionHash
+          in: path
+          description: The hash identifying the transaction.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+    delete:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a transaction by its hash.
+      operationId: getTransaction_6
+      parameters:
+        - name: transactionHash
+          in: path
+          description: The hash identifying the transaction.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+    options:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a transaction by its hash.
+      operationId: getTransaction_7
+      parameters:
+        - name: transactionHash
+          in: path
+          description: The hash identifying the transaction.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+    head:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a transaction by its hash.
+      operationId: getTransaction_2
+      parameters:
+        - name: transactionHash
+          in: path
+          description: The hash identifying the transaction.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+    patch:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a transaction by its hash.
+      operationId: getTransaction_5
+      parameters:
+        - name: transactionHash
+          in: path
+          description: The hash identifying the transaction.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+  /block/{blockHash}:
+    get:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a block by its hash or height.
+      operationId: getBlock_1
+      parameters:
+        - name: blockHash
+          in: path
+          description: The hash or height identifying the block.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+    put:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a block by its hash or height.
+      operationId: getBlock_4
+      parameters:
+        - name: blockHash
+          in: path
+          description: The hash or height identifying the block.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+    post:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a block by its hash or height.
+      operationId: getBlock_3
+      parameters:
+        - name: blockHash
+          in: path
+          description: The hash or height identifying the block.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+    delete:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a block by its hash or height.
+      operationId: getBlock_6
+      parameters:
+        - name: blockHash
+          in: path
+          description: The hash or height identifying the block.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+    options:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a block by its hash or height.
+      operationId: getBlock_7
+      parameters:
+        - name: blockHash
+          in: path
+          description: The hash or height identifying the block.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+    head:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a block by its hash or height.
+      operationId: getBlock_2
+      parameters:
+        - name: blockHash
+          in: path
+          description: The hash or height identifying the block.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+    patch:
+      tags:
+        - eip-3091-controller
+      summary: Retrieve a block by its hash or height.
+      operationId: getBlock_5
+      parameters:
+        - name: blockHash
+          in: path
+          description: The hash or height identifying the block.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+components:
+  schemas:
+    FindTransactionsQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - blockNumber
+            - timestampISO
+            - transactionType
+            - functionName
+            - direction
+            - ethValue
+        filter:
+          type: string
+    AddressInfo:
+      required:
+        - address
+        - isContract
+        - isProxy
+        - isVerified
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+            - Partial
+            - Full
+        contractType:
+          type: string
+          enum:
+            - contract
+            - nft
+            - token
+    FunctionMeta:
+      required:
+        - functionName
+        - params
+        - stateMutability
+        - type
+      type: object
+      properties:
+        functionName:
+          type: string
+        stateMutability:
+          type: string
+        type:
+          type: string
+        params:
+          type: array
+          items:
+            $ref: '#/components/schemas/FunctionParameterModel'
+    FunctionParameterModel:
+      required:
+        - name
+        - type
+        - value
+      type: object
+      properties:
+        value:
+          type: object
+        name:
+          type: string
+        type:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    LatestTransactionModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionRowModel'
+    Link:
+      required:
+        - display
+        - href
+        - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    PagingModel:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+        - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        totalElements:
+          type: integer
+          format: int64
+    TransactionRowModel:
+      required:
+        - direction
+        - ethValue
+        - from
+        - fromAddressInfo
+        - fromLinks
+        - hash
+        - isPrivate
+        - timestampISO
+        - to
+        - toAddressInfo
+        - toLinks
+        - transactionType
+        - value
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        value:
+          type: integer
+        ethValue:
+          type: number
+        isPrivate:
+          type: boolean
+        timestampISO:
+          type: string
+        transactionType:
+          type: string
+          enum:
+            - Transfer
+            - ContractCreation
+            - ContractCall
+        status:
+          type: string
+        revertReason:
+          type: string
+        functionMeta:
+          $ref: '#/components/schemas/FunctionMeta'
+        direction:
+          type: string
+          enum:
+            - In
+            - Out
+            - Self
+            - Unknown
+        isInternalToAccount:
+          type: boolean
+    Log:
+      type: object
+      properties:
+        removed:
+          type: boolean
+        logIndex:
+          type: integer
+        transactionIndex:
+          type: integer
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+        address:
+          type: string
+        data:
+          type: string
+        type:
+          type: string
+        topics:
+          type: array
+          items:
+            type: string
+        logIndexRaw:
+          type: string
+        transactionIndexRaw:
+          type: string
+        blockNumberRaw:
+          type: string
+    TransactionModel:
+      required:
+        - blockHash
+        - blockNumber
+        - cumulativeGasUsed
+        - ethValue
+        - from
+        - fromLinks
+        - gas
+        - gasPrice
+        - gasUsed
+        - hash
+        - input
+        - isPrivate
+        - logs
+        - logsBloom
+        - r
+        - s
+        - timestampISO
+        - to
+        - toLinks
+        - transactionIndex
+        - transactionType
+        - v
+        - value
+        - verifiedTimestampISO
+      type: object
+      properties:
+        hash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        transactionIndex:
+          type: integer
+          format: int64
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        value:
+          type: integer
+        ethValue:
+          type: number
+        gasPrice:
+          type: integer
+        gas:
+          type: integer
+        gasUsed:
+          type: integer
+        cumulativeGasUsed:
+          type: integer
+        input:
+          type: string
+        r:
+          type: string
+        s:
+          type: string
+        v:
+          type: integer
+          format: int64
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Log'
+        logsBloom:
+          type: string
+        status:
+          type: string
+        revertReason:
+          type: string
+        timestampISO:
+          type: string
+        verifiedTimestampISO:
+          type: string
+        isPrivate:
+          type: boolean
+        transactionType:
+          type: string
+          enum:
+            - Transfer
+            - ContractCreation
+            - ContractCall
+        functionMeta:
+          $ref: '#/components/schemas/FunctionMeta'
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+    FindInternalTransactionsQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - blockNumber
+            - timestampISO
+            - parentHash
+            - parentFrom
+            - parentTo
+            - transactionType
+            - from
+            - to
+            - direction
+        filter:
+          type: string
+    InternalTransactionRowModel:
+      required:
+        - blockNumber
+        - direction
+        - ethValue
+        - from
+        - fromAddressInfo
+        - fromLinks
+        - id
+        - input
+        - parentHash
+        - timestampISO
+        - to
+        - toAddressInfo
+        - toLinks
+        - transactionType
+        - value
+      type: object
+      properties:
+        parentHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        id:
+          type: string
+        from:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        value:
+          type: integer
+        ethValue:
+          type: number
+        timestampISO:
+          type: string
+        input:
+          type: string
+        transactionType:
+          type: string
+          enum:
+            - ContractCreation
+            - ContractCall
+            - Suicide
+            - Other
+        direction:
+          type: string
+          enum:
+            - In
+            - Out
+            - Self
+            - Unknown
+        functionMeta:
+          $ref: '#/components/schemas/FunctionMeta'
+    LatestInternalTransactionModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/InternalTransactionRowModel'
+    TransactionEventsQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - timestampISO
+            - eventName
+            - logIndex
+            - transactionIndex
+            - paramName
+            - paramValue
+            - paramType
+        filter:
+          type: string
+    EventParameters:
+      required:
+        - name
+        - type
+        - value
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        type:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    EventsModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionEventModel'
+    TransactionEventModel:
+      required:
+        - address
+        - addressLinks
+        - blockNumber
+        - eventName
+        - from
+        - fromAddressInfo
+        - fromLinks
+        - input
+        - links
+        - parameters
+        - timestampISO
+        - to
+        - toAddressInfo
+        - toLinks
+        - transactionHash
+      type: object
+      properties:
+        blockNumber:
+          type: integer
+          format: int64
+        transactionHash:
+          type: string
+        to:
+          type: string
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        from:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        address:
+          type: string
+        addressLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        timestampISO:
+          type: string
+        eventName:
+          type: string
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventParameters'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        input:
+          type: string
+    FindTokensQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+        - tokenType
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - lastActivity
+            - transactionCount
+            - totalTokenCount
+            - holdersCount
+            - totalSupply
+            - contractType
+            - verified
+        filter:
+          type: string
+        tokenType:
+          type: string
+          enum:
+            - NFT
+            - RWA
+            - TOKEN
+            - DEFAULT
+    Attribute:
+      required:
+        - traitType
+        - value
+      type: object
+      properties:
+        traitType:
+          type: string
+        value:
+          type: string
+    CollectionMetadataModel:
+      required:
+        - attributes
+      type: object
+      properties:
+        name:
+          type: string
+        collectionName:
+          type: string
+        artistAddress:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        externalUrl:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        resolvedImageUrl:
+          type: string
+        metadataUrl:
+          type: string
+        tokenId:
+          type: string
+    ListTokenModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenModel'
+    MarketDataModel:
+      required:
+        - fdv
+        - market_cap
+        - market_change_24h_percent
+        - price_eth
+        - price_usd
+        - total_circulating_supply
+        - total_volume_24h
+      type: object
+      properties:
+        fdv:
+          type: number
+        market_cap:
+          type: number
+        total_volume_24h:
+          type: number
+        total_circulating_supply:
+          type: number
+        price_usd:
+          type: number
+        price_eth:
+          type: number
+        market_change_24h_percent:
+          type: number
+        image:
+          type: string
+    ProjectModel:
+      required:
+        - address
+        - isActive
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+            - CONTRACT
+            - DAPP
+        socialMedia:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialLink'
+        isActive:
+          type: boolean
+        coverImage:
+          type: string
+        website:
+          type: string
+    SocialLink:
+      required:
+        - name
+        - url
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+    TokenModel:
+      required:
+        - address
+        - contractType
+        - lastExecutedTimestampISO
+        - transactionCount
+        - verified
+      type: object
+      properties:
+        address:
+          type: string
+        addressLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        name:
+          type: string
+        symbol:
+          type: string
+        decimals:
+          type: integer
+          format: int32
+        totalSupply:
+          type: number
+        contractType:
+          type: string
+        transactionCount:
+          type: integer
+          format: int64
+        lastExecutedTimestampISO:
+          type: string
+        coverImage:
+          type: string
+        holdersCount:
+          type: integer
+          format: int64
+        tokenCount:
+          type: integer
+          format: int64
+        metadata:
+          $ref: '#/components/schemas/CollectionMetadataModel'
+        metadataUrl:
+          type: string
+        originalAssetLink:
+          type: string
+        verified:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+            - Partial
+            - Full
+        project:
+          $ref: '#/components/schemas/ProjectModel'
+        marketData:
+          $ref: '#/components/schemas/MarketDataModel'
+    FindAddressTransactionsQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - blockNumber
+            - timestampISO
+            - transactionType
+            - functionName
+            - direction
+            - ethValue
+        filter:
+          type: string
+    FindTokenBalanceQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - lastUpdated
+            - holderAddress
+            - amount
+        filter:
+          type: string
+    TokenBalancesByHolderRowModel:
+      required:
+        - balances
+        - holderAddress
+        - holderAddressInfo
+        - holderAddressLinks
+      type: object
+      properties:
+        holderAddress:
+          type: string
+        holderAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        holderAddressLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenBalancesRowModel'
+    TokenBalancesMetaData:
+      required:
+        - tokens
+      type: object
+      properties:
+        tokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenModel'
+    TokenBalancesModel:
+      required:
+        - data
+        - metadata
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenBalancesByHolderRowModel'
+        metadata:
+          $ref: '#/components/schemas/TokenBalancesMetaData'
+    TokenBalancesRowModel:
+      required:
+        - amount
+        - count
+        - lastUpdated
+        - quantity
+        - tokenAddress
+        - tokenType
+      type: object
+      properties:
+        tokenAddress:
+          type: string
+        tokenType:
+          type: string
+          enum:
+            - Custom
+            - ERC20
+            - ERC223
+            - ERC721
+            - ERC777
+            - ERC1155
+            - ERC3643
+            - ERC1167Proxy
+            - ERC1822Proxy
+            - ERC1967Proxy
+            - ERC2535Proxy
+        holderAddress:
+          type: string
+        holderAddressLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        tokenIds:
+          type: array
+          items:
+            type: string
+        amount:
+          type: string
+        count:
+          type: string
+        symbol:
+          type: string
+        name:
+          type: string
+        quantity:
+          type: number
+        lastUpdated:
+          type: integer
+          format: int64
+    FindERC777TransfersQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - timestampISO
+            - functionName
+        filter:
+          type: string
+    ERC777TransactionRowModel:
+      required:
+        - amount
+        - amountRaw
+        - from
+        - fromLinks
+        - hash
+        - timestampISO
+        - to
+        - toLinks
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        amount:
+          type: string
+        amountRaw:
+          type: number
+        timestampISO:
+          type: string
+    LatestERC777TransfersModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC777TransactionRowModel'
+    FindERC721TransfersQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - timestampISO
+            - functionName
+        filter:
+          type: string
+    ERC721TransactionRowModel:
+      required:
+        - from
+        - fromLinks
+        - hash
+        - timestampISO
+        - to
+        - toLinks
+        - tokenId
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        tokenId:
+          type: string
+        timestampISO:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+    LatestERC721TransfersModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC721TransactionRowModel'
+    FindERC223TransfersQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - timestampISO
+            - functionName
+        filter:
+          type: string
+    ERC223TransactionRowModel:
+      required:
+        - from
+        - fromLinks
+        - hash
+        - quantity
+        - quantityRaw
+        - timestampISO
+        - to
+        - toLinks
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        timestampISO:
+          type: string
+        quantity:
+          type: string
+        quantityRaw:
+          type: number
+    LatestERC223TransfersModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC223TransactionRowModel'
+    FindERC20TransfersQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - timestampISO
+            - functionName
+        filter:
+          type: string
+    ERC20TransactionRowModel:
+      required:
+        - from
+        - fromLinks
+        - hash
+        - quantity
+        - quantityRaw
+        - timestampISO
+        - to
+        - toLinks
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        timestampISO:
+          type: string
+        quantity:
+          type: string
+        quantityRaw:
+          type: number
+    LatestERC20TransfersModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC20TransactionRowModel'
+    FindERC1155TransfersQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - timestampISO
+            - functionName
+        filter:
+          type: string
+    ERC1155TransactionRowModel:
+      required:
+        - amount
+        - from
+        - fromLinks
+        - hash
+        - timestampISO
+        - to
+        - toLinks
+        - tokenId
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        tokenId:
+          type: string
+        amount:
+          type: string
+        timestampISO:
+          type: string
+    LatestERC1155TransfersModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC1155TransactionRowModel'
+    AddressResponse:
+      required:
+        - addressType
+      type: object
+      properties:
+        addressType:
+          type: string
+          enum:
+            - EOA
+            - CONTRACT
+            - TOKEN
+            - NFT
+    ListSearchResultModel:
+      required:
+        - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchRecommendation'
+    SearchRecommendation:
+      required:
+        - link
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+        link:
+          $ref: '#/components/schemas/Link'
+    MetadataImageLink:
+      type: object
+      properties:
+        url:
+          type: string
+    FindERC3643TransfersQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - timestampISO
+            - functionName
+        filter:
+          type: string
+    ERC3643TransactionRowModel:
+      required:
+        - from
+        - fromLinks
+        - hash
+        - quantity
+        - quantityRaw
+        - timestampISO
+        - to
+        - toLinks
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        timestampISO:
+          type: string
+        quantity:
+          type: string
+        quantityRaw:
+          type: number
+    LatestERC3643TransfersModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC3643TransactionRowModel'
+    NodeInfoModel:
+      required:
+        - address
+        - enode
+        - id
+        - name
+        - peerCount
+        - peers
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        enode:
+          type: string
+        address:
+          type: string
+        peerCount:
+          type: integer
+          format: int32
+        peers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PeersModel'
+    PeersModel:
+      required:
+        - address
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+    FindCollectionQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - lastUpdated
+            - isThumbnailRetrieved
+            - metadata
+        filter:
+          type: string
+    CollectionItemModel:
+      required:
+        - address
+        - tokenId
+      type: object
+      properties:
+        address:
+          type: string
+        tokenId:
+          type: string
+        tokenUri:
+          type: string
+        collectionName:
+          type: string
+        collectionDescription:
+          type: string
+        image:
+          type: string
+        externalUrl:
+          type: string
+        artistAddress:
+          type: string
+        name:
+          type: string
+        resolvedImageUrl:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+    ListCollectionItemModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionItemModel'
+    MetadataModel:
+      required:
+        - contractCount
+        - fileId
+        - name
+      type: object
+      properties:
+        fileId:
+          type: string
+        name:
+          type: string
+        contractCount:
+          type: integer
+          format: int64
+    FindContractsQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - created
+            - lastExecuted
+            - transactionCount
+            - contractType
+            - verified
+        filter:
+          type: string
+    ContractRowModel:
+      required:
+        - address
+        - contractAddressInfo
+        - contractCreator
+        - contractCreatorInfo
+        - contractType
+        - createdTimestampISO
+        - createdTransaction
+        - lastExecutedTimestampISO
+        - lastExecutedTransaction
+        - links
+        - transactionCount
+        - verified
+      type: object
+      properties:
+        address:
+          type: string
+        contractAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        contractCreator:
+          type: string
+        contractCreatorInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        createdTimestampISO:
+          type: string
+        createdTransaction:
+          type: string
+        lastExecutedTimestampISO:
+          type: string
+        lastExecutedTransaction:
+          type: string
+        transactionCount:
+          type: integer
+          format: int64
+        contractType:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        verified:
+          type: boolean
+        contractName:
+          type: string
+        verifiedStatus:
+          type: string
+          enum:
+            - Partial
+            - Full
+    LatestContractModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContractRowModel'
+    FindAccountMappingQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - address
+            - label
+        filter:
+          type: string
+    AccountMappingModel:
+      required:
+        - address
+        - label
+      type: object
+      properties:
+        address:
+          type: string
+        label:
+          type: string
+    LatestAccountMappingModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountMappingModel'
+    GasPriceModel:
+      required:
+        - gasPrice
+        - high
+        - safeLow
+      type: object
+      properties:
+        gasPrice:
+          type: number
+        safeLow:
+          type: number
+        high:
+          type: number
+    DashboardTotalsModel:
+      required:
+        - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TotalModel'
+    TotalModel:
+      required:
+        - name
+        - total
+      type: object
+      properties:
+        name:
+          type: string
+        total:
+          type: integer
+          format: int64
+    DashboardTimeseriesTotalsModel:
+      required:
+        - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TotalModel'
+    ContractModel:
+      required:
+        - balance
+        - contractAddress
+        - contractAddressInfo
+        - contractCreator
+        - contractCreatorInfo
+        - contractType
+        - createdBlockHash
+        - createdBlockNumber
+        - createdTimestampISO
+        - createdTransactionHash
+        - ethBalance
+        - fileId
+        - isPrivate
+        - links
+        - proxyImplAddresses
+        - transactionCount
+        - verified
+      type: object
+      properties:
+        contractAddress:
+          type: string
+        contractAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        contractCreator:
+          type: string
+        contractCreatorInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        fileId:
+          type: string
+        isPrivate:
+          type: boolean
+        createdTimestampISO:
+          type: string
+        createdTransactionHash:
+          type: string
+        createdBlockHash:
+          type: string
+        createdBlockNumber:
+          type: integer
+          format: int64
+        balance:
+          type: integer
+        ethBalance:
+          type: number
+        transactionCount:
+          type: integer
+          format: int64
+        contractType:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        verified:
+          type: boolean
+        contractName:
+          type: string
+        verifiedStatus:
+          type: string
+          enum:
+            - Partial
+            - Full
+        proxyImplAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressInfo'
+    BytecodeModel:
+      required:
+        - creationData
+        - deployedCode
+      type: object
+      properties:
+        deployedCode:
+          type: string
+        creationData:
+          type: string
+    ChainlensConfigurationModel:
+      required:
+        - logoUrl
+      type: object
+      properties:
+        logoUrl:
+          type: string
+    FindBlocksQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - number
+            - timestampISO
+            - transactionCount
+        filter:
+          type: string
+    BlockRowModel:
+      required:
+        - hash
+        - number
+        - timestampISO
+        - transactionCount
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int64
+        hash:
+          type: string
+        timestampISO:
+          type: string
+        transactionCount:
+          type: integer
+          format: int32
+    LatestBlockModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockRowModel'
+    BlockModel:
+      required:
+        - dateVerified
+        - difficulty
+        - extraData
+        - gasLimit
+        - gasUsed
+        - hash
+        - logsBloom
+        - miner
+        - number
+        - parentHash
+        - receiptRoot
+        - sha3Uncles
+        - size
+        - stateRoot
+        - timestampISO
+        - timestampVerifiedISO
+        - totalDifficulty
+        - transactionCount
+        - transactionsRoot
+        - uncles
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int64
+        hash:
+          type: string
+        parentHash:
+          type: string
+        sha3Uncles:
+          type: string
+        logsBloom:
+          type: string
+        transactionsRoot:
+          type: string
+        stateRoot:
+          type: string
+        receiptRoot:
+          type: string
+        miner:
+          type: string
+        mixHash:
+          type: string
+        difficulty:
+          type: integer
+        totalDifficulty:
+          type: integer
+        extraData:
+          type: string
+        size:
+          type: integer
+        gasLimit:
+          type: integer
+        gasUsed:
+          type: integer
+        transactionCount:
+          type: integer
+          format: int32
+        uncles:
+          type: array
+          items:
+            type: string
+        dateVerified:
+          type: integer
+          format: int64
+        timestampISO:
+          type: string
+        timestampVerifiedISO:
+          type: string
+    FindAccountsQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - transactionCount
+            - balance
+            - tokenCount
+            - nftCount
+            - timestampISO
+        filter:
+          type: string
+    AccountModel:
+      required:
+        - address
+        - balance
+        - balanceInDecimal
+        - ethBalance
+        - transactionCount
+        - transactions
+      type: object
+      properties:
+        address:
+          type: string
+        balance:
+          type: integer
+        ethBalance:
+          type: number
+        transactions:
+          type: integer
+          format: int64
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        tokenCount:
+          type: integer
+          format: int64
+        nftCount:
+          type: integer
+          format: int64
+        transactionCount:
+          type: integer
+          format: int64
+        balanceInDecimal:
+          type: number
+        addressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+    LatestAccountModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountModel'
+    FindAccountTokenHoldingsQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - lastUpdated
+            - holderAddress
+            - amount
+        filter:
+          type: string
+    FindCollectionItemsHoldingsQuery:
+      required:
+        - direction
+        - page
+        - size
+        - sort
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+            - ASC
+            - DESC
+        sort:
+          type: string
+          enum:
+            - lastUpdated
+            - holderAddress
+            - amount
+        filter:
+          type: string
+    CollectionItem:
+      required:
+        - amount
+        - holderAddress
+        - tokenAddress
+        - tokenId
+      type: object
+      properties:
+        holderAddress:
+          type: string
+        tokenAddress:
+          type: string
+        tokenId:
+          type: string
+        collection:
+          $ref: '#/components/schemas/TokenModel'
+        amount:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/CollectionMetadataModel'
+    CollectionItemsModel:
+      required:
+        - data
+        - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionItem'
