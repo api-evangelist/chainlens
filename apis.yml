@@ -1,13 +1,29 @@
 aid: chainlens
 url: >-
-  https://raw.githubusercontent.com/api-search/chainlens/refs/heads/main/apis.yml
+  https://raw.githubusercontent.com/api-evangelist/chainlens/refs/heads/main/apis.yml
+name: Chainlens
+tags:
+  - Blockchain
+  - Smart Contracts
+  - NFTs
+  - Cryptocurrencies
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+created: '2024-11-07'
+modified: '2026-03-16'
+position: Consumer
+description: >-
+  Chainlens provides a robust and intuitive platform combining user-friendly
+  exploration with powerful analytics and advanced features. Whether monitoring
+  real-time blockchain transactions, verifying smart contracts, or tracking
+  NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
 apis:
   - aid: chainlens:chainlens
-    name: Chainlens
+    name: Chainlens API
     tags:
       - Blockchain
       - NFTs
-      - Cryptocurrencies
     humanURL: https://www.chainlens.com/
     properties:
       - url: https://www.chainlens.com/
@@ -15,40 +31,18 @@ apis:
       - url: properties/chainlens-openapi.yml
         type: OpenAPI
     description: >-
-      Chainlens provides a robust and intuitive platform combining user-friendly
-      exploration with powerful analytics and advanced features. Whether
-      monitoring real-time blockchain transactions, verifying smart contracts,
-      or tracking NFTs, Chainlens ensures you have all the necessary tools at
-      your fingertips.
-name: Chainlens
-tags:
-  - Blockchain
-  - Smart Contracts
-type: Contract
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-access: 3rd-Party
-created: '2024-11-07T00:00:00.000Z'
-modified: '2025-02-13'
-position: Consuming
-description: >-
-  Chainlens provides a robust and intuitive platform combining user-friendly
-  exploration with powerful analytics and advanced features. Whether monitoring
-  real-time blockchain transactions, verifying smart contracts, or tracking
-  NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+      Chainlens provides blockchain exploration with powerful analytics
+      for monitoring transactions, smart contracts, and NFTs.
+common:
+  - type: Website
+    url: https://www.chainlens.com/
+  - type: Sign Up
+    url: https://www.chainlens.com/free-sign-up
+  - type: Blog
+    url: https://www.chainlens.com/blog
+  - type: Pricing
+    url: https://www.chainlens.com/plans
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
-common:
-  - name: Chainlens Blockchain Explorer Hosted Plans
-    description: 'null'
-    url: https://www.chainlens.com/plans
-    type: Plans
-  - name: Chainlens Blockchain Explorer Blog
-    description: 'null'
-    url: https://www.chainlens.com/blog
-    type: Blog
-  - name: Chainlens Token Explorer Free Developer Plan
-    description: 'null'
-    url: https://www.chainlens.com/free-sign-up
-    type: SignUp
