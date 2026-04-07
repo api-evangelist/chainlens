@@ -4,9 +4,9 @@ url: >-
 name: Chainlens
 tags:
   - Blockchain
-  - Smart Contracts
-  - NFTs
   - Cryptocurrencies
+  - NFTs
+  - Smart Contracts
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
