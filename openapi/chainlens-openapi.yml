@@ -16,7 +16,7 @@ paths:
     get:
       tags:
         - transaction-controller
-      summary: Retrieve transactions by address or block.
+      summary: Chainlens Retrieve transactions by address or block.
       operationId: findTransactions
       parameters:
         - name: query
@@ -35,7 +35,7 @@ paths:
     get:
       tags:
         - transaction-controller
-      summary: Retrieve a transaction by its hash.
+      summary: Chainlens Retrieve a transaction by its hash.
       operationId: getTransaction
       parameters:
         - name: transactionHash
@@ -55,7 +55,7 @@ paths:
     get:
       tags:
         - internal-transactions-controller
-      summary: Retrieve all internal transactions for this transaction.
+      summary: Chainlens Retrieve all internal transactions for this transaction.
       operationId: getInternalsByTx
       parameters:
         - name: transactionHash
@@ -82,7 +82,7 @@ paths:
     get:
       tags:
         - transaction-events-controller
-      summary: Retrieve all events for this transaction.
+      summary: Chainlens Retrieve all events for this transaction.
       operationId: getTransactionEvents
       parameters:
         - name: transactionHash
@@ -109,7 +109,7 @@ paths:
     get:
       tags:
         - token-controller
-      summary: Retrieve token contracts.
+      summary: Chainlens Retrieve token contracts.
       operationId: findTokens
       parameters:
         - name: query
@@ -128,7 +128,7 @@ paths:
     get:
       tags:
         - token-controller
-      summary: Retrieve a token by its address hash.
+      summary: Chainlens Retrieve a token by its address hash.
       operationId: getToken
       parameters:
         - name: addressHash
@@ -148,7 +148,7 @@ paths:
     get:
       tags:
         - token-controller
-      summary: Retrieve token contracts by tokenId.
+      summary: Chainlens Retrieve token contracts by tokenId.
       operationId: findTokensByTokenId
       parameters:
         - name: addressHash
@@ -173,7 +173,7 @@ paths:
     get:
       tags:
         - token-transactions-controller
-      summary: Retrieve token transactions by token address hash.
+      summary: Chainlens Retrieve token transactions by token address hash.
       operationId: findContractTransactions
       parameters:
         - name: addressHash
@@ -198,7 +198,7 @@ paths:
     get:
       tags:
         - token-holders-controller
-      summary: Retrieve a list of token holders by token contract address hash.
+      summary: Chainlens Retrieve a list of token holders by token contract address hash.
       operationId: getTokenHolders
       parameters:
         - name: addressHash
@@ -223,7 +223,7 @@ paths:
     get:
       tags:
         - token-events-controller
-      summary: Retrieve all token events using token address.
+      summary: Chainlens Retrieve all token events using token address.
       operationId: getTokenEvents
       parameters:
         - name: addressHash
@@ -248,7 +248,7 @@ paths:
     get:
       tags:
         - erc-777-transfers-controller
-      summary: Retrieve transfers of an ERC777 Token.
+      summary: Chainlens Retrieve transfers of an ERC777 Token.
       operationId: findERC777Transfers
       parameters:
         - name: addressHash
@@ -273,7 +273,7 @@ paths:
     get:
       tags:
         - erc-721-transfers-controller
-      summary: Retrieve transfers of an ERC721 Token.
+      summary: Chainlens Retrieve transfers of an ERC721 Token.
       operationId: findERC721Transfers
       parameters:
         - name: addressHash
@@ -298,7 +298,7 @@ paths:
     get:
       tags:
         - erc-721-transfers-controller
-      summary: Retrieve transfers of an ERC721 Token.
+      summary: Chainlens Retrieve transfers of an ERC721 Token.
       operationId: findERC721Transfers_1
       parameters:
         - name: addressHash
@@ -329,7 +329,7 @@ paths:
     get:
       tags:
         - erc-223-transfers-controller
-      summary: Retrieve transfers of an ERC223 Token.
+      summary: Chainlens Retrieve transfers of an ERC223 Token.
       operationId: findERC20Transfers
       parameters:
         - name: addressHash
@@ -354,7 +354,7 @@ paths:
     get:
       tags:
         - erc-20-transfers-controller
-      summary: Retrieve transfers of an ERC20 Token.
+      summary: Chainlens Retrieve transfers of an ERC20 Token.
       operationId: findERC20Transfers_1
       parameters:
         - name: addressHash
@@ -379,7 +379,7 @@ paths:
     get:
       tags:
         - erc-1155-transfers-controller
-      summary: Retrieve transfers of an ERC1155 Token.
+      summary: Chainlens Retrieve transfers of an ERC1155 Token.
       operationId: findERC1155Transfers
       parameters:
         - name: addressHash
@@ -404,7 +404,7 @@ paths:
     get:
       tags:
         - erc-1155-transfers-controller
-      summary: Retrieve transfers of an ERC1155 Token.
+      summary: Chainlens Retrieve transfers of an ERC1155 Token.
       operationId: findERC1155Transfers_1
       parameters:
         - name: addressHash
@@ -473,7 +473,7 @@ paths:
     get:
       tags:
         - search-controller
-      summary: Retrieve blocks, transactions, accounts by hash.
+      summary: Chainlens Retrieve blocks, transactions, accounts by hash.
       operationId: search
       parameters:
         - name: query
@@ -493,7 +493,7 @@ paths:
     get:
       tags:
         - search-controller
-      summary: Retrieve blocks, transactions, accounts by hash.
+      summary: Chainlens Retrieve blocks, transactions, accounts by hash.
       operationId: search_1
       parameters:
         - name: query
@@ -513,7 +513,7 @@ paths:
     get:
       tags:
         - rwa-controller
-      summary: Retrieve ERC3643 tokens.
+      summary: Chainlens Retrieve ERC3643 tokens.
       operationId: findTokens_1
       parameters:
         - name: query
@@ -532,7 +532,7 @@ paths:
     get:
       tags:
         - rwa-controller
-      summary: Retrieve a ERC3643 by its address hash.
+      summary: Chainlens Retrieve a ERC3643 by its address hash.
       operationId: getToken_2
       parameters:
         - name: addressHash
@@ -552,7 +552,7 @@ paths:
     get:
       tags:
         - rwa-controller
-      summary: Retrieve token metadata for a given token contract address and token id.
+      summary: Chainlens Retrieve token metadata for a given token contract address and token id.
       operationId: getTokenMetadata
       parameters:
         - name: addressHash
@@ -577,7 +577,7 @@ paths:
     get:
       tags:
         - rwa-controller
-      summary: Retrieve a list of token holders by token contract address hash.
+      summary: Chainlens Retrieve a list of token holders by token contract address hash.
       operationId: getTokenHolders_1
       parameters:
         - name: addressHash
@@ -602,7 +602,7 @@ paths:
     get:
       tags:
         - rwa-controller
-      summary: Retrieve transfers of an ERC3643 Token.
+      summary: Chainlens Retrieve transfers of an ERC3643 Token.
       operationId: findERC3643Transfers
       parameters:
         - name: addressHash
@@ -627,7 +627,7 @@ paths:
     get:
       tags:
         - node-controller
-      summary: Node details.
+      summary: Chainlens Node details.
       operationId: details
       responses:
         '200':
@@ -640,7 +640,7 @@ paths:
     get:
       tags:
         - nft-controller
-      summary: Retrieve NFTs.
+      summary: Chainlens Retrieve NFTs.
       operationId: findTokens_2
       parameters:
         - name: query
@@ -659,7 +659,7 @@ paths:
     get:
       tags:
         - nft-controller
-      summary: Retrieve a NFT by its address hash.
+      summary: Chainlens Retrieve a NFT by its address hash.
       operationId: getToken_3
       parameters:
         - name: addressHash
@@ -679,7 +679,7 @@ paths:
     get:
       tags:
         - nft-controller
-      summary: Retrieve NFT contracts by tokenId.
+      summary: Chainlens Retrieve NFT contracts by tokenId.
       operationId: findTokensByTokenId_1
       parameters:
         - name: addressHash
@@ -704,7 +704,7 @@ paths:
     get:
       tags:
         - nft-controller
-      summary: Retrieve token metadata for a given token contract address and token id.
+      summary: Chainlens Retrieve token metadata for a given token contract address and token id.
       operationId: getTokenMetadata_1
       parameters:
         - name: addressHash
@@ -729,7 +729,7 @@ paths:
     get:
       tags:
         - nft-controller
-      summary: Retrieve a list of token holders by token contract address hash.
+      summary: Chainlens Retrieve a list of token holders by token contract address hash.
       operationId: getTokenHolders_2
       parameters:
         - name: addressHash
@@ -754,7 +754,7 @@ paths:
     get:
       tags:
         - nft-controller
-      summary: Retrieve transfers of an ERC721 Token.
+      summary: Chainlens Retrieve transfers of an ERC721 Token.
       operationId: findERC721Transfers_2
       parameters:
         - name: addressHash
@@ -779,7 +779,7 @@ paths:
     get:
       tags:
         - nft-controller
-      summary: Retrieve transfers of an ERC1155 Token.
+      summary: Chainlens Retrieve transfers of an ERC1155 Token.
       operationId: findERC1155Transfers_2
       parameters:
         - name: addressHash
@@ -804,7 +804,7 @@ paths:
     get:
       tags:
         - nft-controller
-      summary: Retrieve all NFTs with Metadata.
+      summary: Chainlens Retrieve all NFTs with Metadata.
       operationId: findNftCollections
       parameters:
         - name: addressHash
@@ -829,7 +829,7 @@ paths:
     get:
       tags:
         - metadata-controller
-      summary: Retrieve metadata.
+      summary: Chainlens Retrieve metadata.
       operationId: getMetadata
       parameters:
         - name: swarmHash
@@ -849,7 +849,7 @@ paths:
     get:
       tags:
         - metadata-controller
-      summary: list contracts by swarmhash
+      summary: Chainlens list contracts by swarmhash
       operationId: findContractsBySwarmHash
       parameters:
         - name: fileId
@@ -874,7 +874,7 @@ paths:
     get:
       tags:
         - account-mapping-controller
-      summary: Retrieve Accounts
+      summary: Chainlens Retrieve Accounts
       operationId: findAccounts
       parameters:
         - name: query
@@ -911,7 +911,7 @@ paths:
     get:
       tags:
         - internal-transactions-controller
-      summary: Retrieve internal transactions by address.
+      summary: Chainlens Retrieve internal transactions by address.
       operationId: findTransactions_1
       parameters:
         - name: query
@@ -930,7 +930,7 @@ paths:
     get:
       tags:
         - gas-oracle-controller
-      summary: Gas price oracle.
+      summary: Chainlens Gas price oracle.
       operationId: gasPriceInfo
       responses:
         '200':
@@ -943,7 +943,7 @@ paths:
     get:
       tags:
         - events-controller
-      summary: Retrieve all events.
+      summary: Chainlens Retrieve all events.
       operationId: getEvents
       parameters:
         - name: query
@@ -962,7 +962,7 @@ paths:
     get:
       tags:
         - download-abi-controller
-      summary: Download ABI for a verified contract
+      summary: Chainlens Download ABI for a verified contract
       operationId: downloadAbi
       parameters:
         - name: contractAddress
@@ -982,7 +982,7 @@ paths:
     get:
       tags:
         - dashboard-transactions-totals-controller
-      summary: Retrieve total number of different transactions types
+      summary: Chainlens Retrieve total number of different transactions types
       operationId: getTotals
       responses:
         '200':
@@ -995,7 +995,7 @@ paths:
     get:
       tags:
         - dashboard-transactions-totals-controller
-      summary: Retrieve total number of different transactions types
+      summary: Chainlens Retrieve total number of different transactions types
       operationId: getTotals_1
       parameters:
         - name: period
@@ -1043,7 +1043,7 @@ paths:
     get:
       tags:
         - dashboard-totals-controller
-      summary: Retrieve total number of Contracts, Tokens and Transactions.
+      summary: Chainlens Retrieve total number of Contracts, Tokens and Transactions.
       operationId: getDashboardTotals
       responses:
         '200':
@@ -1056,7 +1056,7 @@ paths:
     get:
       tags:
         - dashboard-tokens-totals-controller
-      summary: Retrieve total number of different token types
+      summary: Chainlens Retrieve total number of different token types
       operationId: getTokenTotals
       responses:
         '200':
@@ -1069,7 +1069,7 @@ paths:
     get:
       tags:
         - contract-controller
-      summary: Retrieve contracts.
+      summary: Chainlens Retrieve contracts.
       operationId: findContracts
       parameters:
         - name: query
@@ -1088,7 +1088,7 @@ paths:
     get:
       tags:
         - contract-controller
-      summary: Retrieve a contract by its address hash.
+      summary: Chainlens Retrieve a contract by its address hash.
       operationId: getContract
       parameters:
         - name: addressHash
@@ -1108,7 +1108,7 @@ paths:
     get:
       tags:
         - contract-transactions-controller
-      summary: Retrieve contract transactions by its address hash.
+      summary: Chainlens Retrieve contract transactions by its address hash.
       operationId: findContractTransactions_1
       parameters:
         - name: addressHash
@@ -1133,7 +1133,7 @@ paths:
     get:
       tags:
         - contract-internal-transactions-controller
-      summary: Retrieve contract internal transactions by its address hash.
+      summary: Chainlens Retrieve contract internal transactions by its address hash.
       operationId: findContractTransactions_2
       parameters:
         - name: addressHash
@@ -1158,7 +1158,7 @@ paths:
     get:
       tags:
         - contract-events-controller
-      summary: Retrieve all events for this contract.
+      summary: Chainlens Retrieve all events for this contract.
       operationId: getContractEvents
       parameters:
         - name: addressHash
@@ -1183,7 +1183,7 @@ paths:
     get:
       tags:
         - contract-bytecode-controller
-      summary: Retrieves bytecodes for a deployed contract.
+      summary: Chainlens Retrieves bytecodes for a deployed contract.
       operationId: getContractBytecode
       parameters:
         - name: addressHash
@@ -1234,7 +1234,7 @@ paths:
     get:
       tags:
         - projects-controller
-      summary: Get a list of all recommended collections
+      summary: Chainlens Get a list of all recommended collections
       operationId: getRecommendedTokensByProjects
       responses:
         '200':
@@ -1249,7 +1249,7 @@ paths:
     get:
       tags:
         - block-controller
-      summary: Retrieve blocks.
+      summary: Chainlens Retrieve blocks.
       operationId: findBlocks
       parameters:
         - name: query
@@ -1268,7 +1268,7 @@ paths:
     get:
       tags:
         - block-controller
-      summary: Retrieve a block by its hash or height.
+      summary: Chainlens Retrieve a block by its hash or height.
       operationId: getBlock
       parameters:
         - name: blockHash
@@ -1288,7 +1288,7 @@ paths:
     get:
       tags:
         - block-transactions-controller
-      summary: Retrieve all transactions for this block.
+      summary: Chainlens Retrieve all transactions for this block.
       operationId: getBlockTransactions
       parameters:
         - name: blockHash
@@ -1351,7 +1351,7 @@ paths:
     get:
       tags:
         - account-controller
-      summary: Retrieve all accounts.
+      summary: Chainlens Retrieve all accounts.
       operationId: getAccounts
       parameters:
         - name: query
@@ -1370,7 +1370,7 @@ paths:
     get:
       tags:
         - account-controller
-      summary: Retrieve an account by its address hash.
+      summary: Chainlens Retrieve an account by its address hash.
       operationId: getAccount_1
       parameters:
         - name: addressHash
@@ -1390,7 +1390,7 @@ paths:
     get:
       tags:
         - account-transactions-controller
-      summary: Retrieve a transactions for an account.
+      summary: Chainlens Retrieve a transactions for an account.
       operationId: findAccountTransactions
       parameters:
         - name: addressHash
@@ -1415,7 +1415,7 @@ paths:
     get:
       tags:
         - account-tokens-controller
-      summary: Retrieve token holdings by account.
+      summary: Chainlens Retrieve token holdings by account.
       operationId: findAccountTokens
       parameters:
         - name: addressHash
@@ -1440,7 +1440,7 @@ paths:
     get:
       tags:
         - account-tokens-controller
-      summary: Retrieve NFT items by account.
+      summary: Chainlens Retrieve NFT items by account.
       operationId: findAccountNFTs
       parameters:
         - name: addressHash
@@ -1465,7 +1465,7 @@ paths:
     get:
       tags:
         - account-tokens-controller
-      summary: Retrieve a non-fungible item holdings for an account.
+      summary: Chainlens Retrieve a non-fungible item holdings for an account.
       operationId: findAccountCollectionItems
       parameters:
         - name: addressHash
@@ -1496,7 +1496,7 @@ paths:
     get:
       tags:
         - eip-3091-controller
-      summary: Retrieve a transaction by its hash.
+      summary: Chainlens Retrieve a transaction by its hash.
       operationId: getTransaction_1
       parameters:
         - name: transactionHash
@@ -1515,7 +1515,7 @@ paths:
     put:
       tags:
         - eip-3091-controller
-      summary: Retrieve a transaction by its hash.
+      summary: Chainlens Retrieve a transaction by its hash.
       operationId: getTransaction_4
       parameters:
         - name: transactionHash
@@ -1534,7 +1534,7 @@ paths:
     post:
       tags:
         - eip-3091-controller
-      summary: Retrieve a transaction by its hash.
+      summary: Chainlens Retrieve a transaction by its hash.
       operationId: getTransaction_3
       parameters:
         - name: transactionHash
@@ -1553,7 +1553,7 @@ paths:
     delete:
       tags:
         - eip-3091-controller
-      summary: Retrieve a transaction by its hash.
+      summary: Chainlens Retrieve a transaction by its hash.
       operationId: getTransaction_6
       parameters:
         - name: transactionHash
@@ -1572,7 +1572,7 @@ paths:
     options:
       tags:
         - eip-3091-controller
-      summary: Retrieve a transaction by its hash.
+      summary: Chainlens Retrieve a transaction by its hash.
       operationId: getTransaction_7
       parameters:
         - name: transactionHash
@@ -1591,7 +1591,7 @@ paths:
     head:
       tags:
         - eip-3091-controller
-      summary: Retrieve a transaction by its hash.
+      summary: Chainlens Retrieve a transaction by its hash.
       operationId: getTransaction_2
       parameters:
         - name: transactionHash
@@ -1610,7 +1610,7 @@ paths:
     patch:
       tags:
         - eip-3091-controller
-      summary: Retrieve a transaction by its hash.
+      summary: Chainlens Retrieve a transaction by its hash.
       operationId: getTransaction_5
       parameters:
         - name: transactionHash
@@ -1630,7 +1630,7 @@ paths:
     get:
       tags:
         - eip-3091-controller
-      summary: Retrieve a block by its hash or height.
+      summary: Chainlens Retrieve a block by its hash or height.
       operationId: getBlock_1
       parameters:
         - name: blockHash
@@ -1649,7 +1649,7 @@ paths:
     put:
       tags:
         - eip-3091-controller
-      summary: Retrieve a block by its hash or height.
+      summary: Chainlens Retrieve a block by its hash or height.
       operationId: getBlock_4
       parameters:
         - name: blockHash
@@ -1668,7 +1668,7 @@ paths:
     post:
       tags:
         - eip-3091-controller
-      summary: Retrieve a block by its hash or height.
+      summary: Chainlens Retrieve a block by its hash or height.
       operationId: getBlock_3
       parameters:
         - name: blockHash
@@ -1687,7 +1687,7 @@ paths:
     delete:
       tags:
         - eip-3091-controller
-      summary: Retrieve a block by its hash or height.
+      summary: Chainlens Retrieve a block by its hash or height.
       operationId: getBlock_6
       parameters:
         - name: blockHash
@@ -1706,7 +1706,7 @@ paths:
     options:
       tags:
         - eip-3091-controller
-      summary: Retrieve a block by its hash or height.
+      summary: Chainlens Retrieve a block by its hash or height.
       operationId: getBlock_7
       parameters:
         - name: blockHash
@@ -1725,7 +1725,7 @@ paths:
     head:
       tags:
         - eip-3091-controller
-      summary: Retrieve a block by its hash or height.
+      summary: Chainlens Retrieve a block by its hash or height.
       operationId: getBlock_2
       parameters:
         - name: blockHash
@@ -1744,7 +1744,7 @@ paths:
     patch:
       tags:
         - eip-3091-controller
-      summary: Retrieve a block by its hash or height.
+      summary: Chainlens Retrieve a block by its hash or height.
       operationId: getBlock_5
       parameters:
         - name: blockHash
