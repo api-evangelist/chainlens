@@ -1,0 +1,2931 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics
+    and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs,
+    Chainlens ensures you have all the necessary tools at your fingertips.
+  tags:
+  - Chainlens
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens
+    baseUri: https://api.example.com
+    description: Chainlens HTTP API.
+    resources:
+    - name: transactions
+      path: /transactions
+      operations:
+      - name: findtransactions
+        method: GET
+        description: Chainlens Retrieve transactions by address or block.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: transactions-transactionhash
+      path: /transactions/{transactionHash}
+      operations:
+      - name: gettransaction
+        method: GET
+        description: Chainlens Retrieve a transaction by its hash.
+        inputParameters:
+        - name: transactionHash
+          in: path
+          type: string
+          required: true
+          description: The hash identifying the transaction.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: transactions-transactionhash-internal-transactio
+      path: /transactions/{transactionHash}/internal-transactions
+      operations:
+      - name: getinternalsbytx
+        method: GET
+        description: Chainlens Retrieve all internal transactions for this transaction.
+        inputParameters:
+        - name: transactionHash
+          in: path
+          type: string
+          required: true
+          description: The transaction hash identifying the transaction that contains the events.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: transactions-transactionhash-events
+      path: /transactions/{transactionHash}/events
+      operations:
+      - name: gettransactionevents
+        method: GET
+        description: Chainlens Retrieve all events for this transaction.
+        inputParameters:
+        - name: transactionHash
+          in: path
+          type: string
+          required: true
+          description: The transaction hash identifying the transaction that contains the events.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens
+      path: /tokens
+      operations:
+      - name: findtokens
+        method: GET
+        description: Chainlens Retrieve token contracts.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens-addresshash
+      path: /tokens/{addressHash}
+      operations:
+      - name: gettoken
+        method: GET
+        description: Chainlens Retrieve a token by its address hash.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens-addresshash-tokenid
+      path: /tokens/{addressHash}/{tokenId}
+      operations:
+      - name: findtokensbytokenid
+        method: GET
+        description: Chainlens Retrieve token contracts by tokenId.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens-addresshash-transactions
+      path: /tokens/{addressHash}/transactions
+      operations:
+      - name: findcontracttransactions
+        method: GET
+        description: Chainlens Retrieve token transactions by token address hash.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens-addresshash-holders
+      path: /tokens/{addressHash}/holders
+      operations:
+      - name: gettokenholders
+        method: GET
+        description: Chainlens Retrieve a list of token holders by token contract address hash.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens-addresshash-events
+      path: /tokens/{addressHash}/events
+      operations:
+      - name: gettokenevents
+        method: GET
+        description: Chainlens Retrieve all token events using token address.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens-addresshash-erc777-transfers
+      path: /tokens/{addressHash}/erc777/transfers
+      operations:
+      - name: finderc777transfers
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC777 Token.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens-addresshash-erc721-transfers
+      path: /tokens/{addressHash}/erc721/transfers
+      operations:
+      - name: finderc721transfers
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC721 Token.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens-addresshash-erc721-transfers-tokenid
+      path: /tokens/{addressHash}/erc721/transfers/{tokenId}
+      operations:
+      - name: finderc721transfers-1
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC721 Token.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+          description: The token id identifying the token.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens-addresshash-erc223-transfers
+      path: /tokens/{addressHash}/erc223/transfers
+      operations:
+      - name: finderc20transfers
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC223 Token.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens-addresshash-erc20-transfers
+      path: /tokens/{addressHash}/erc20/transfers
+      operations:
+      - name: finderc20transfers-1
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC20 Token.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens-addresshash-erc1155-transfers
+      path: /tokens/{addressHash}/erc1155/transfers
+      operations:
+      - name: finderc1155transfers
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC1155 Token.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tokens-addresshash-erc1155-transfers-tokenid
+      path: /tokens/{addressHash}/erc1155/transfers/{tokenId}
+      operations:
+      - name: finderc1155transfers-1
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC1155 Token.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: token-addresshash
+      path: /token/{addressHash}
+      operations:
+      - name: gettoken-1
+        method: GET
+        description: GET /token/{addressHash}
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token type.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: token-type-addresshash
+      path: /token-type/{addressHash}
+      operations:
+      - name: gettokentype
+        method: GET
+        description: GET /token-type/{addressHash}
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token type.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: search
+      path: /search/
+      operations:
+      - name: search
+        method: GET
+        description: Chainlens Retrieve blocks, transactions, accounts by hash.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+          description: The search query string.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: search
+      path: /search
+      operations:
+      - name: search-1
+        method: GET
+        description: Chainlens Retrieve blocks, transactions, accounts by hash.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+          description: The search query string.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: rwas
+      path: /rwas
+      operations:
+      - name: findtokens-1
+        method: GET
+        description: Chainlens Retrieve ERC3643 tokens.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: rwas-addresshash
+      path: /rwas/{addressHash}
+      operations:
+      - name: gettoken-2
+        method: GET
+        description: Chainlens Retrieve a ERC3643 by its address hash.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: rwas-addresshash-tokenid-metadata
+      path: /rwas/{addressHash}/{tokenId}/metadata
+      operations:
+      - name: gettokenmetadata
+        method: GET
+        description: Chainlens Retrieve token metadata for a given token contract address and token id.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: rwas-addresshash-holders
+      path: /rwas/{addressHash}/holders
+      operations:
+      - name: gettokenholders-1
+        method: GET
+        description: Chainlens Retrieve a list of token holders by token contract address hash.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: rwas-addresshash-erc3643-transfers
+      path: /rwas/{addressHash}/erc3643/transfers
+      operations:
+      - name: finderc3643transfers
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC3643 Token.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: node-details
+      path: /node/details
+      operations:
+      - name: details
+        method: GET
+        description: Chainlens Node details.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: nfts
+      path: /nfts
+      operations:
+      - name: findtokens-2
+        method: GET
+        description: Chainlens Retrieve NFTs.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: nfts-addresshash
+      path: /nfts/{addressHash}
+      operations:
+      - name: gettoken-3
+        method: GET
+        description: Chainlens Retrieve a NFT by its address hash.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: nfts-addresshash-tokenid
+      path: /nfts/{addressHash}/{tokenId}
+      operations:
+      - name: findtokensbytokenid-1
+        method: GET
+        description: Chainlens Retrieve NFT contracts by tokenId.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: nfts-addresshash-tokenid-metadata
+      path: /nfts/{addressHash}/{tokenId}/metadata
+      operations:
+      - name: gettokenmetadata-1
+        method: GET
+        description: Chainlens Retrieve token metadata for a given token contract address and token id.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: nfts-addresshash-holders
+      path: /nfts/{addressHash}/holders
+      operations:
+      - name: gettokenholders-2
+        method: GET
+        description: Chainlens Retrieve a list of token holders by token contract address hash.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: nfts-addresshash-erc721-transfers
+      path: /nfts/{addressHash}/erc721/transfers
+      operations:
+      - name: finderc721transfers-2
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC721 Token.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: nfts-addresshash-erc1155-transfers
+      path: /nfts/{addressHash}/erc1155/transfers
+      operations:
+      - name: finderc1155transfers-2
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC1155 Token.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the token.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: nfts-addresshash-collections
+      path: /nfts/{addressHash}/collections
+      operations:
+      - name: findnftcollections
+        method: GET
+        description: Chainlens Retrieve all NFTs with Metadata.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: metadata-swarmhash
+      path: /metadata/{swarmHash}
+      operations:
+      - name: getmetadata
+        method: GET
+        description: Chainlens Retrieve metadata.
+        inputParameters:
+        - name: swarmHash
+          in: path
+          type: string
+          required: true
+          description: The swarm hash of the metadata.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: metadata-fileid-contracts
+      path: /metadata/{fileId}/contracts
+      operations:
+      - name: findcontractsbyswarmhash
+        method: GET
+        description: Chainlens list contracts by swarmhash
+        inputParameters:
+        - name: fileId
+          in: path
+          type: string
+          required: true
+          description: The file id of the metadata.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: mappings
+      path: /mappings
+      operations:
+      - name: findaccounts
+        method: GET
+        description: Chainlens Retrieve Accounts
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: mappings-id
+      path: /mappings/{id}
+      operations:
+      - name: getaccount
+        method: GET
+        description: GET /mappings/{id}
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: internal-transactions
+      path: /internal-transactions
+      operations:
+      - name: findtransactions-1
+        method: GET
+        description: Chainlens Retrieve internal transactions by address.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: gas-price
+      path: /gas/price
+      operations:
+      - name: gaspriceinfo
+        method: GET
+        description: Chainlens Gas price oracle.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: events
+      path: /events
+      operations:
+      - name: getevents
+        method: GET
+        description: Chainlens Retrieve all events.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: download-abi-contractaddress
+      path: /download/abi/{contractAddress}
+      operations:
+      - name: downloadabi
+        method: GET
+        description: Chainlens Download ABI for a verified contract
+        inputParameters:
+        - name: contractAddress
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: dashboard-transactions-totals
+      path: /dashboard/transactions/totals
+      operations:
+      - name: gettotals
+        method: GET
+        description: Chainlens Retrieve total number of different transactions types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: dashboard-transactions-totals-period
+      path: /dashboard/transactions/totals/{period}
+      operations:
+      - name: gettotals-1
+        method: GET
+        description: Chainlens Retrieve total number of different transactions types
+        inputParameters:
+        - name: period
+          in: path
+          type: string
+          required: true
+        - name: from
+          in: query
+          type: integer
+        - name: to
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: dashboard-totals
+      path: /dashboard/totals
+      operations:
+      - name: getdashboardtotals
+        method: GET
+        description: Chainlens Retrieve total number of Contracts, Tokens and Transactions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: dashboard-tokens-totals
+      path: /dashboard/tokens/totals
+      operations:
+      - name: gettokentotals
+        method: GET
+        description: Chainlens Retrieve total number of different token types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contracts
+      path: /contracts
+      operations:
+      - name: findcontracts
+        method: GET
+        description: Chainlens Retrieve contracts.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contracts-addresshash
+      path: /contracts/{addressHash}
+      operations:
+      - name: getcontract
+        method: GET
+        description: Chainlens Retrieve a contract by its address hash.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contracts-addresshash-transactions
+      path: /contracts/{addressHash}/transactions
+      operations:
+      - name: findcontracttransactions-1
+        method: GET
+        description: Chainlens Retrieve contract transactions by its address hash.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contracts-addresshash-internal-transactions
+      path: /contracts/{addressHash}/internal-transactions
+      operations:
+      - name: findcontracttransactions-2
+        method: GET
+        description: Chainlens Retrieve contract internal transactions by its address hash.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contracts-addresshash-events
+      path: /contracts/{addressHash}/events
+      operations:
+      - name: getcontractevents
+        method: GET
+        description: Chainlens Retrieve all events for this contract.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: contracts-addresshash-bytecode
+      path: /contracts/{addressHash}/bytecode
+      operations:
+      - name: getcontractbytecode
+        method: GET
+        description: Chainlens Retrieves bytecodes for a deployed contract.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the contract.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: content-type-get
+      path: /content-type/get
+      operations:
+      - name: getcontenttype
+        method: GET
+        description: GET /content-type/get
+        inputParameters:
+        - name: url
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: configuration-frontend
+      path: /configuration/frontend
+      operations:
+      - name: frontendconfiguration
+        method: GET
+        description: Chainlens frontend configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: collections-recommended
+      path: /collections/recommended
+      operations:
+      - name: getrecommendedtokensbyprojects
+        method: GET
+        description: Chainlens Get a list of all recommended collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: blocks
+      path: /blocks
+      operations:
+      - name: findblocks
+        method: GET
+        description: Chainlens Retrieve blocks.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: blocks-blockhash
+      path: /blocks/{blockHash}
+      operations:
+      - name: getblock
+        method: GET
+        description: Chainlens Retrieve a block by its hash or height.
+        inputParameters:
+        - name: blockHash
+          in: path
+          type: string
+          required: true
+          description: The hash or height identifying the block.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: blocks-blockhash-transactions
+      path: /blocks/{blockHash}/transactions
+      operations:
+      - name: getblocktransactions
+        method: GET
+        description: Chainlens Retrieve all transactions for this block.
+        inputParameters:
+        - name: blockHash
+          in: path
+          type: string
+          required: true
+          description: The address hash or height identifying the block.
+        - name: query
+          in: query
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: address-addresshash
+      path: /address/{addressHash}
+      operations:
+      - name: getaddress
+        method: GET
+        description: GET /address/{addressHash}
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          required: true
+          description: The address hash identifying the address type.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: chainlens-rest
+    description: REST adapter for Chainlens.
+    resources:
+    - path: /transactions
+      name: findtransactions
+      operations:
+      - method: GET
+        name: findtransactions
+        description: Chainlens Retrieve transactions by address or block.
+        call: chainlens.findtransactions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /transactions/{transactionHash}
+      name: gettransaction
+      operations:
+      - method: GET
+        name: gettransaction
+        description: Chainlens Retrieve a transaction by its hash.
+        call: chainlens.gettransaction
+        with:
+          transactionHash: rest.transactionHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /transactions/{transactionHash}/internal-transactions
+      name: getinternalsbytx
+      operations:
+      - method: GET
+        name: getinternalsbytx
+        description: Chainlens Retrieve all internal transactions for this transaction.
+        call: chainlens.getinternalsbytx
+        with:
+          transactionHash: rest.transactionHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /transactions/{transactionHash}/events
+      name: gettransactionevents
+      operations:
+      - method: GET
+        name: gettransactionevents
+        description: Chainlens Retrieve all events for this transaction.
+        call: chainlens.gettransactionevents
+        with:
+          transactionHash: rest.transactionHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens
+      name: findtokens
+      operations:
+      - method: GET
+        name: findtokens
+        description: Chainlens Retrieve token contracts.
+        call: chainlens.findtokens
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens/{addressHash}
+      name: gettoken
+      operations:
+      - method: GET
+        name: gettoken
+        description: Chainlens Retrieve a token by its address hash.
+        call: chainlens.gettoken
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens/{addressHash}/{tokenId}
+      name: findtokensbytokenid
+      operations:
+      - method: GET
+        name: findtokensbytokenid
+        description: Chainlens Retrieve token contracts by tokenId.
+        call: chainlens.findtokensbytokenid
+        with:
+          addressHash: rest.addressHash
+          tokenId: rest.tokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens/{addressHash}/transactions
+      name: findcontracttransactions
+      operations:
+      - method: GET
+        name: findcontracttransactions
+        description: Chainlens Retrieve token transactions by token address hash.
+        call: chainlens.findcontracttransactions
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens/{addressHash}/holders
+      name: gettokenholders
+      operations:
+      - method: GET
+        name: gettokenholders
+        description: Chainlens Retrieve a list of token holders by token contract address hash.
+        call: chainlens.gettokenholders
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens/{addressHash}/events
+      name: gettokenevents
+      operations:
+      - method: GET
+        name: gettokenevents
+        description: Chainlens Retrieve all token events using token address.
+        call: chainlens.gettokenevents
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens/{addressHash}/erc777/transfers
+      name: finderc777transfers
+      operations:
+      - method: GET
+        name: finderc777transfers
+        description: Chainlens Retrieve transfers of an ERC777 Token.
+        call: chainlens.finderc777transfers
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens/{addressHash}/erc721/transfers
+      name: finderc721transfers
+      operations:
+      - method: GET
+        name: finderc721transfers
+        description: Chainlens Retrieve transfers of an ERC721 Token.
+        call: chainlens.finderc721transfers
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens/{addressHash}/erc721/transfers/{tokenId}
+      name: finderc721transfers-1
+      operations:
+      - method: GET
+        name: finderc721transfers-1
+        description: Chainlens Retrieve transfers of an ERC721 Token.
+        call: chainlens.finderc721transfers-1
+        with:
+          addressHash: rest.addressHash
+          tokenId: rest.tokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens/{addressHash}/erc223/transfers
+      name: finderc20transfers
+      operations:
+      - method: GET
+        name: finderc20transfers
+        description: Chainlens Retrieve transfers of an ERC223 Token.
+        call: chainlens.finderc20transfers
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens/{addressHash}/erc20/transfers
+      name: finderc20transfers-1
+      operations:
+      - method: GET
+        name: finderc20transfers-1
+        description: Chainlens Retrieve transfers of an ERC20 Token.
+        call: chainlens.finderc20transfers-1
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens/{addressHash}/erc1155/transfers
+      name: finderc1155transfers
+      operations:
+      - method: GET
+        name: finderc1155transfers
+        description: Chainlens Retrieve transfers of an ERC1155 Token.
+        call: chainlens.finderc1155transfers
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /tokens/{addressHash}/erc1155/transfers/{tokenId}
+      name: finderc1155transfers-1
+      operations:
+      - method: GET
+        name: finderc1155transfers-1
+        description: Chainlens Retrieve transfers of an ERC1155 Token.
+        call: chainlens.finderc1155transfers-1
+        with:
+          addressHash: rest.addressHash
+          tokenId: rest.tokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /token/{addressHash}
+      name: gettoken-1
+      operations:
+      - method: GET
+        name: gettoken-1
+        description: GET /token/{addressHash}
+        call: chainlens.gettoken-1
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /token-type/{addressHash}
+      name: gettokentype
+      operations:
+      - method: GET
+        name: gettokentype
+        description: GET /token-type/{addressHash}
+        call: chainlens.gettokentype
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /search/
+      name: search
+      operations:
+      - method: GET
+        name: search
+        description: Chainlens Retrieve blocks, transactions, accounts by hash.
+        call: chainlens.search
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /search
+      name: search-1
+      operations:
+      - method: GET
+        name: search-1
+        description: Chainlens Retrieve blocks, transactions, accounts by hash.
+        call: chainlens.search-1
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /rwas
+      name: findtokens-1
+      operations:
+      - method: GET
+        name: findtokens-1
+        description: Chainlens Retrieve ERC3643 tokens.
+        call: chainlens.findtokens-1
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /rwas/{addressHash}
+      name: gettoken-2
+      operations:
+      - method: GET
+        name: gettoken-2
+        description: Chainlens Retrieve a ERC3643 by its address hash.
+        call: chainlens.gettoken-2
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /rwas/{addressHash}/{tokenId}/metadata
+      name: gettokenmetadata
+      operations:
+      - method: GET
+        name: gettokenmetadata
+        description: Chainlens Retrieve token metadata for a given token contract address and token id.
+        call: chainlens.gettokenmetadata
+        with:
+          addressHash: rest.addressHash
+          tokenId: rest.tokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /rwas/{addressHash}/holders
+      name: gettokenholders-1
+      operations:
+      - method: GET
+        name: gettokenholders-1
+        description: Chainlens Retrieve a list of token holders by token contract address hash.
+        call: chainlens.gettokenholders-1
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /rwas/{addressHash}/erc3643/transfers
+      name: finderc3643transfers
+      operations:
+      - method: GET
+        name: finderc3643transfers
+        description: Chainlens Retrieve transfers of an ERC3643 Token.
+        call: chainlens.finderc3643transfers
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /node/details
+      name: details
+      operations:
+      - method: GET
+        name: details
+        description: Chainlens Node details.
+        call: chainlens.details
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /nfts
+      name: findtokens-2
+      operations:
+      - method: GET
+        name: findtokens-2
+        description: Chainlens Retrieve NFTs.
+        call: chainlens.findtokens-2
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /nfts/{addressHash}
+      name: gettoken-3
+      operations:
+      - method: GET
+        name: gettoken-3
+        description: Chainlens Retrieve a NFT by its address hash.
+        call: chainlens.gettoken-3
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /nfts/{addressHash}/{tokenId}
+      name: findtokensbytokenid-1
+      operations:
+      - method: GET
+        name: findtokensbytokenid-1
+        description: Chainlens Retrieve NFT contracts by tokenId.
+        call: chainlens.findtokensbytokenid-1
+        with:
+          addressHash: rest.addressHash
+          tokenId: rest.tokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /nfts/{addressHash}/{tokenId}/metadata
+      name: gettokenmetadata-1
+      operations:
+      - method: GET
+        name: gettokenmetadata-1
+        description: Chainlens Retrieve token metadata for a given token contract address and token id.
+        call: chainlens.gettokenmetadata-1
+        with:
+          addressHash: rest.addressHash
+          tokenId: rest.tokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /nfts/{addressHash}/holders
+      name: gettokenholders-2
+      operations:
+      - method: GET
+        name: gettokenholders-2
+        description: Chainlens Retrieve a list of token holders by token contract address hash.
+        call: chainlens.gettokenholders-2
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /nfts/{addressHash}/erc721/transfers
+      name: finderc721transfers-2
+      operations:
+      - method: GET
+        name: finderc721transfers-2
+        description: Chainlens Retrieve transfers of an ERC721 Token.
+        call: chainlens.finderc721transfers-2
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /nfts/{addressHash}/erc1155/transfers
+      name: finderc1155transfers-2
+      operations:
+      - method: GET
+        name: finderc1155transfers-2
+        description: Chainlens Retrieve transfers of an ERC1155 Token.
+        call: chainlens.finderc1155transfers-2
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /nfts/{addressHash}/collections
+      name: findnftcollections
+      operations:
+      - method: GET
+        name: findnftcollections
+        description: Chainlens Retrieve all NFTs with Metadata.
+        call: chainlens.findnftcollections
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /metadata/{swarmHash}
+      name: getmetadata
+      operations:
+      - method: GET
+        name: getmetadata
+        description: Chainlens Retrieve metadata.
+        call: chainlens.getmetadata
+        with:
+          swarmHash: rest.swarmHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /metadata/{fileId}/contracts
+      name: findcontractsbyswarmhash
+      operations:
+      - method: GET
+        name: findcontractsbyswarmhash
+        description: Chainlens list contracts by swarmhash
+        call: chainlens.findcontractsbyswarmhash
+        with:
+          fileId: rest.fileId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /mappings
+      name: findaccounts
+      operations:
+      - method: GET
+        name: findaccounts
+        description: Chainlens Retrieve Accounts
+        call: chainlens.findaccounts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /mappings/{id}
+      name: getaccount
+      operations:
+      - method: GET
+        name: getaccount
+        description: GET /mappings/{id}
+        call: chainlens.getaccount
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /internal-transactions
+      name: findtransactions-1
+      operations:
+      - method: GET
+        name: findtransactions-1
+        description: Chainlens Retrieve internal transactions by address.
+        call: chainlens.findtransactions-1
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /gas/price
+      name: gaspriceinfo
+      operations:
+      - method: GET
+        name: gaspriceinfo
+        description: Chainlens Gas price oracle.
+        call: chainlens.gaspriceinfo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /events
+      name: getevents
+      operations:
+      - method: GET
+        name: getevents
+        description: Chainlens Retrieve all events.
+        call: chainlens.getevents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /download/abi/{contractAddress}
+      name: downloadabi
+      operations:
+      - method: GET
+        name: downloadabi
+        description: Chainlens Download ABI for a verified contract
+        call: chainlens.downloadabi
+        with:
+          contractAddress: rest.contractAddress
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /dashboard/transactions/totals
+      name: gettotals
+      operations:
+      - method: GET
+        name: gettotals
+        description: Chainlens Retrieve total number of different transactions types
+        call: chainlens.gettotals
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /dashboard/transactions/totals/{period}
+      name: gettotals-1
+      operations:
+      - method: GET
+        name: gettotals-1
+        description: Chainlens Retrieve total number of different transactions types
+        call: chainlens.gettotals-1
+        with:
+          period: rest.period
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /dashboard/totals
+      name: getdashboardtotals
+      operations:
+      - method: GET
+        name: getdashboardtotals
+        description: Chainlens Retrieve total number of Contracts, Tokens and Transactions.
+        call: chainlens.getdashboardtotals
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /dashboard/tokens/totals
+      name: gettokentotals
+      operations:
+      - method: GET
+        name: gettokentotals
+        description: Chainlens Retrieve total number of different token types
+        call: chainlens.gettokentotals
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /contracts
+      name: findcontracts
+      operations:
+      - method: GET
+        name: findcontracts
+        description: Chainlens Retrieve contracts.
+        call: chainlens.findcontracts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /contracts/{addressHash}
+      name: getcontract
+      operations:
+      - method: GET
+        name: getcontract
+        description: Chainlens Retrieve a contract by its address hash.
+        call: chainlens.getcontract
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /contracts/{addressHash}/transactions
+      name: findcontracttransactions-1
+      operations:
+      - method: GET
+        name: findcontracttransactions-1
+        description: Chainlens Retrieve contract transactions by its address hash.
+        call: chainlens.findcontracttransactions-1
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /contracts/{addressHash}/internal-transactions
+      name: findcontracttransactions-2
+      operations:
+      - method: GET
+        name: findcontracttransactions-2
+        description: Chainlens Retrieve contract internal transactions by its address hash.
+        call: chainlens.findcontracttransactions-2
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /contracts/{addressHash}/events
+      name: getcontractevents
+      operations:
+      - method: GET
+        name: getcontractevents
+        description: Chainlens Retrieve all events for this contract.
+        call: chainlens.getcontractevents
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /contracts/{addressHash}/bytecode
+      name: getcontractbytecode
+      operations:
+      - method: GET
+        name: getcontractbytecode
+        description: Chainlens Retrieves bytecodes for a deployed contract.
+        call: chainlens.getcontractbytecode
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /content-type/get
+      name: getcontenttype
+      operations:
+      - method: GET
+        name: getcontenttype
+        description: GET /content-type/get
+        call: chainlens.getcontenttype
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /configuration/frontend
+      name: frontendconfiguration
+      operations:
+      - method: GET
+        name: frontendconfiguration
+        description: Chainlens frontend configuration.
+        call: chainlens.frontendconfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /collections/recommended
+      name: getrecommendedtokensbyprojects
+      operations:
+      - method: GET
+        name: getrecommendedtokensbyprojects
+        description: Chainlens Get a list of all recommended collections
+        call: chainlens.getrecommendedtokensbyprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /blocks
+      name: findblocks
+      operations:
+      - method: GET
+        name: findblocks
+        description: Chainlens Retrieve blocks.
+        call: chainlens.findblocks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /blocks/{blockHash}
+      name: getblock
+      operations:
+      - method: GET
+        name: getblock
+        description: Chainlens Retrieve a block by its hash or height.
+        call: chainlens.getblock
+        with:
+          blockHash: rest.blockHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /blocks/{blockHash}/transactions
+      name: getblocktransactions
+      operations:
+      - method: GET
+        name: getblocktransactions
+        description: Chainlens Retrieve all transactions for this block.
+        call: chainlens.getblocktransactions
+        with:
+          blockHash: rest.blockHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /address/{addressHash}
+      name: getaddress
+      operations:
+      - method: GET
+        name: getaddress
+        description: GET /address/{addressHash}
+        call: chainlens.getaddress
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: chainlens-mcp
+    transport: http
+    description: MCP adapter for Chainlens for AI agent use.
+    tools:
+    - name: findtransactions
+      description: Chainlens Retrieve transactions by address or block.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findtransactions
+      with:
+        query: tools.query
+      inputParameters:
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettransaction
+      description: Chainlens Retrieve a transaction by its hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettransaction
+      with:
+        transactionHash: tools.transactionHash
+      inputParameters:
+      - name: transactionHash
+        type: string
+        description: The hash identifying the transaction.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getinternalsbytx
+      description: Chainlens Retrieve all internal transactions for this transaction.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getinternalsbytx
+      with:
+        transactionHash: tools.transactionHash
+        query: tools.query
+      inputParameters:
+      - name: transactionHash
+        type: string
+        description: The transaction hash identifying the transaction that contains the events.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettransactionevents
+      description: Chainlens Retrieve all events for this transaction.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettransactionevents
+      with:
+        transactionHash: tools.transactionHash
+        query: tools.query
+      inputParameters:
+      - name: transactionHash
+        type: string
+        description: The transaction hash identifying the transaction that contains the events.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findtokens
+      description: Chainlens Retrieve token contracts.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findtokens
+      with:
+        query: tools.query
+      inputParameters:
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettoken
+      description: Chainlens Retrieve a token by its address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettoken
+      with:
+        addressHash: tools.addressHash
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findtokensbytokenid
+      description: Chainlens Retrieve token contracts by tokenId.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findtokensbytokenid
+      with:
+        addressHash: tools.addressHash
+        tokenId: tools.tokenId
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      - name: tokenId
+        type: string
+        description: tokenId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findcontracttransactions
+      description: Chainlens Retrieve token transactions by token address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findcontracttransactions
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettokenholders
+      description: Chainlens Retrieve a list of token holders by token contract address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettokenholders
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettokenevents
+      description: Chainlens Retrieve all token events using token address.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettokenevents
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finderc777transfers
+      description: Chainlens Retrieve transfers of an ERC777 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.finderc777transfers
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finderc721transfers
+      description: Chainlens Retrieve transfers of an ERC721 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.finderc721transfers
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finderc721transfers-1
+      description: Chainlens Retrieve transfers of an ERC721 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.finderc721transfers-1
+      with:
+        addressHash: tools.addressHash
+        tokenId: tools.tokenId
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: tokenId
+        type: string
+        description: The token id identifying the token.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finderc20transfers
+      description: Chainlens Retrieve transfers of an ERC223 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.finderc20transfers
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finderc20transfers-1
+      description: Chainlens Retrieve transfers of an ERC20 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.finderc20transfers-1
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finderc1155transfers
+      description: Chainlens Retrieve transfers of an ERC1155 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.finderc1155transfers
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finderc1155transfers-1
+      description: Chainlens Retrieve transfers of an ERC1155 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.finderc1155transfers-1
+      with:
+        addressHash: tools.addressHash
+        tokenId: tools.tokenId
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: tokenId
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettoken-1
+      description: GET /token/{addressHash}
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettoken-1
+      with:
+        addressHash: tools.addressHash
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token type.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettokentype
+      description: GET /token-type/{addressHash}
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettokentype
+      with:
+        addressHash: tools.addressHash
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token type.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search
+      description: Chainlens Retrieve blocks, transactions, accounts by hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.search
+      with:
+        query: tools.query
+      inputParameters:
+      - name: query
+        type: string
+        description: The search query string.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-1
+      description: Chainlens Retrieve blocks, transactions, accounts by hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.search-1
+      with:
+        query: tools.query
+      inputParameters:
+      - name: query
+        type: string
+        description: The search query string.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findtokens-1
+      description: Chainlens Retrieve ERC3643 tokens.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findtokens-1
+      with:
+        query: tools.query
+      inputParameters:
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettoken-2
+      description: Chainlens Retrieve a ERC3643 by its address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettoken-2
+      with:
+        addressHash: tools.addressHash
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettokenmetadata
+      description: Chainlens Retrieve token metadata for a given token contract address and token id.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettokenmetadata
+      with:
+        addressHash: tools.addressHash
+        tokenId: tools.tokenId
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      - name: tokenId
+        type: string
+        description: tokenId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettokenholders-1
+      description: Chainlens Retrieve a list of token holders by token contract address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettokenholders-1
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finderc3643transfers
+      description: Chainlens Retrieve transfers of an ERC3643 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.finderc3643transfers
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: details
+      description: Chainlens Node details.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.details
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findtokens-2
+      description: Chainlens Retrieve NFTs.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findtokens-2
+      with:
+        query: tools.query
+      inputParameters:
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettoken-3
+      description: Chainlens Retrieve a NFT by its address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettoken-3
+      with:
+        addressHash: tools.addressHash
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findtokensbytokenid-1
+      description: Chainlens Retrieve NFT contracts by tokenId.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findtokensbytokenid-1
+      with:
+        addressHash: tools.addressHash
+        tokenId: tools.tokenId
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      - name: tokenId
+        type: string
+        description: tokenId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettokenmetadata-1
+      description: Chainlens Retrieve token metadata for a given token contract address and token id.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettokenmetadata-1
+      with:
+        addressHash: tools.addressHash
+        tokenId: tools.tokenId
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      - name: tokenId
+        type: string
+        description: tokenId
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettokenholders-2
+      description: Chainlens Retrieve a list of token holders by token contract address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettokenholders-2
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finderc721transfers-2
+      description: Chainlens Retrieve transfers of an ERC721 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.finderc721transfers-2
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: finderc1155transfers-2
+      description: Chainlens Retrieve transfers of an ERC1155 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.finderc1155transfers-2
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the token.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findnftcollections
+      description: Chainlens Retrieve all NFTs with Metadata.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findnftcollections
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getmetadata
+      description: Chainlens Retrieve metadata.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getmetadata
+      with:
+        swarmHash: tools.swarmHash
+      inputParameters:
+      - name: swarmHash
+        type: string
+        description: The swarm hash of the metadata.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findcontractsbyswarmhash
+      description: Chainlens list contracts by swarmhash
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findcontractsbyswarmhash
+      with:
+        fileId: tools.fileId
+        query: tools.query
+      inputParameters:
+      - name: fileId
+        type: string
+        description: The file id of the metadata.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findaccounts
+      description: Chainlens Retrieve Accounts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findaccounts
+      with:
+        query: tools.query
+      inputParameters:
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getaccount
+      description: GET /mappings/{id}
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getaccount
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: string
+        description: id
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findtransactions-1
+      description: Chainlens Retrieve internal transactions by address.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findtransactions-1
+      with:
+        query: tools.query
+      inputParameters:
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gaspriceinfo
+      description: Chainlens Gas price oracle.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gaspriceinfo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getevents
+      description: Chainlens Retrieve all events.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getevents
+      with:
+        query: tools.query
+      inputParameters:
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: downloadabi
+      description: Chainlens Download ABI for a verified contract
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.downloadabi
+      with:
+        contractAddress: tools.contractAddress
+      inputParameters:
+      - name: contractAddress
+        type: string
+        description: contractAddress
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettotals
+      description: Chainlens Retrieve total number of different transactions types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettotals
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettotals-1
+      description: Chainlens Retrieve total number of different transactions types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettotals-1
+      with:
+        period: tools.period
+        from: tools.from
+        to: tools.to
+      inputParameters:
+      - name: period
+        type: string
+        description: period
+        required: true
+      - name: from
+        type: integer
+        description: from
+      - name: to
+        type: integer
+        description: to
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getdashboardtotals
+      description: Chainlens Retrieve total number of Contracts, Tokens and Transactions.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getdashboardtotals
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettokentotals
+      description: Chainlens Retrieve total number of different token types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.gettokentotals
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findcontracts
+      description: Chainlens Retrieve contracts.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findcontracts
+      with:
+        query: tools.query
+      inputParameters:
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcontract
+      description: Chainlens Retrieve a contract by its address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getcontract
+      with:
+        addressHash: tools.addressHash
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findcontracttransactions-1
+      description: Chainlens Retrieve contract transactions by its address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findcontracttransactions-1
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findcontracttransactions-2
+      description: Chainlens Retrieve contract internal transactions by its address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findcontracttransactions-2
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcontractevents
+      description: Chainlens Retrieve all events for this contract.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getcontractevents
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcontractbytecode
+      description: Chainlens Retrieves bytecodes for a deployed contract.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getcontractbytecode
+      with:
+        addressHash: tools.addressHash
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the contract.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcontenttype
+      description: GET /content-type/get
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getcontenttype
+      with:
+        url: tools.url
+      inputParameters:
+      - name: url
+        type: string
+        description: url
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: frontendconfiguration
+      description: Chainlens frontend configuration.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.frontendconfiguration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getrecommendedtokensbyprojects
+      description: Chainlens Get a list of all recommended collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getrecommendedtokensbyprojects
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: findblocks
+      description: Chainlens Retrieve blocks.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.findblocks
+      with:
+        query: tools.query
+      inputParameters:
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getblock
+      description: Chainlens Retrieve a block by its hash or height.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getblock
+      with:
+        blockHash: tools.blockHash
+      inputParameters:
+      - name: blockHash
+        type: string
+        description: The hash or height identifying the block.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getblocktransactions
+      description: Chainlens Retrieve all transactions for this block.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getblocktransactions
+      with:
+        blockHash: tools.blockHash
+        query: tools.query
+      inputParameters:
+      - name: blockHash
+        type: string
+        description: The address hash or height identifying the block.
+        required: true
+      - name: query
+        type: string
+        description: query
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getaddress
+      description: GET /address/{addressHash}
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens.getaddress
+      with:
+        addressHash: tools.addressHash
+      inputParameters:
+      - name: addressHash
+        type: string
+        description: The address hash identifying the address type.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
