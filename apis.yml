@@ -1,7 +1,7 @@
 aid: chainlens
 url: https://raw.githubusercontent.com/api-evangelist/chainlens/refs/heads/main/apis.yml
 name: Chainlens
-x-type: company
+kind: company
 tags:
   - Analytics
   - Blockchain
