@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Dashboard-Totals-Controller
+  description: 'Chainlens — Dashboard-Totals-Controller. 1 operations. Lead operation: Chainlens Retrieve total number of
+    Contracts, Tokens and Transactions.. Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Dashboard-Totals-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-dashboard-totals-controller
+    baseUri: ''
+    description: Chainlens — Dashboard-Totals-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: dashboard-totals
+      path: /dashboard/totals
+      operations:
+      - name: getdashboardtotals
+        method: GET
+        description: Chainlens Retrieve total number of Contracts, Tokens and Transactions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: chainlens-dashboard-totals-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Dashboard-Totals-Controller. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/dashboard/totals
+      name: dashboard-totals
+      description: REST surface for dashboard-totals.
+      operations:
+      - method: GET
+        name: getdashboardtotals
+        description: Chainlens Retrieve total number of Contracts, Tokens and Transactions.
+        call: chainlens-dashboard-totals-controller.getdashboardtotals
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-dashboard-totals-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Dashboard-Totals-Controller. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: chainlens-retrieve-total-number-contracts
+      description: Chainlens Retrieve total number of Contracts, Tokens and Transactions.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-dashboard-totals-controller.getdashboardtotals
+      outputParameters:
+      - type: object
+        mapping: $.

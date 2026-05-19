@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Token-Transactions-Controller
+  description: 'Chainlens — Token-Transactions-Controller. 1 operations. Lead operation: Chainlens Retrieve token transactions
+    by token address hash.. Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Token-Transactions-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-token-transactions-controller
+    baseUri: ''
+    description: Chainlens — Token-Transactions-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: tokens-addressHash-transactions
+      path: /tokens/{addressHash}/transactions
+      operations:
+      - name: findcontracttransactions
+        method: GET
+        description: Chainlens Retrieve token transactions by token address hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The address hash identifying the token.
+          required: true
+        - name: query
+          in: query
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-token-transactions-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Token-Transactions-Controller. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/tokens/{addresshash}/transactions
+      name: tokens-addresshash-transactions
+      description: REST surface for tokens-addressHash-transactions.
+      operations:
+      - method: GET
+        name: findcontracttransactions
+        description: Chainlens Retrieve token transactions by token address hash.
+        call: chainlens-token-transactions-controller.findcontracttransactions
+        with:
+          addressHash: rest.addressHash
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-token-transactions-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Token-Transactions-Controller. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: chainlens-retrieve-token-transactions-token
+      description: Chainlens Retrieve token transactions by token address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-token-transactions-controller.findcontracttransactions
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.

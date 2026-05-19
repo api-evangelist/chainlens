@@ -1,0 +1,76 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Download-Abi-Controller
+  description: 'Chainlens — Download-Abi-Controller. 1 operations. Lead operation: Chainlens Download ABI for a verified contract.
+    Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Download-Abi-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-download-abi-controller
+    baseUri: ''
+    description: Chainlens — Download-Abi-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: download-abi-contractAddress
+      path: /download/abi/{contractAddress}
+      operations:
+      - name: downloadabi
+        method: GET
+        description: Chainlens Download ABI for a verified contract
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: contractAddress
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-download-abi-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Download-Abi-Controller. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/download/abi/{contractaddress}
+      name: download-abi-contractaddress
+      description: REST surface for download-abi-contractAddress.
+      operations:
+      - method: GET
+        name: downloadabi
+        description: Chainlens Download ABI for a verified contract
+        call: chainlens-download-abi-controller.downloadabi
+        with:
+          contractAddress: rest.contractAddress
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-download-abi-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Download-Abi-Controller. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: chainlens-download-abi-verified-contract
+      description: Chainlens Download ABI for a verified contract
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-download-abi-controller.downloadabi
+      with:
+        contractAddress: tools.contractAddress
+      outputParameters:
+      - type: object
+        mapping: $.

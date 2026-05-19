@@ -1,0 +1,119 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Search-Controller
+  description: 'Chainlens — Search-Controller. 2 operations. Lead operation: Chainlens Retrieve blocks, transactions, accounts
+    by hash.. Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Search-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-search-controller
+    baseUri: ''
+    description: Chainlens — Search-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: search
+      path: /search
+      operations:
+      - name: search1
+        method: GET
+        description: Chainlens Retrieve blocks, transactions, accounts by hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          description: The search query string.
+          required: true
+    - name: search
+      path: /search/
+      operations:
+      - name: search
+        method: GET
+        description: Chainlens Retrieve blocks, transactions, accounts by hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          description: The search query string.
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-search-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Search-Controller. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/search
+      name: search
+      description: REST surface for search.
+      operations:
+      - method: GET
+        name: search1
+        description: Chainlens Retrieve blocks, transactions, accounts by hash.
+        call: chainlens-search-controller.search1
+        with:
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/search
+      name: search
+      description: REST surface for search.
+      operations:
+      - method: GET
+        name: search
+        description: Chainlens Retrieve blocks, transactions, accounts by hash.
+        call: chainlens-search-controller.search
+        with:
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-search-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Search-Controller. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: chainlens-retrieve-blocks-transactions-accounts
+      description: Chainlens Retrieve blocks, transactions, accounts by hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-search-controller.search1
+      with:
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-blocks-transactions-accounts-2
+      description: Chainlens Retrieve blocks, transactions, accounts by hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-search-controller.search
+      with:
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.

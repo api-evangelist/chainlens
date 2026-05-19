@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Transaction-Events-Controller
+  description: 'Chainlens — Transaction-Events-Controller. 1 operations. Lead operation: Chainlens Retrieve all events for
+    this transaction.. Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Transaction-Events-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-transaction-events-controller
+    baseUri: ''
+    description: Chainlens — Transaction-Events-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: transactions-transactionHash-events
+      path: /transactions/{transactionHash}/events
+      operations:
+      - name: gettransactionevents
+        method: GET
+        description: Chainlens Retrieve all events for this transaction.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionHash
+          in: path
+          type: string
+          description: The transaction hash identifying the transaction that contains the events.
+          required: true
+        - name: query
+          in: query
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-transaction-events-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Transaction-Events-Controller. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/transactions/{transactionhash}/events
+      name: transactions-transactionhash-events
+      description: REST surface for transactions-transactionHash-events.
+      operations:
+      - method: GET
+        name: gettransactionevents
+        description: Chainlens Retrieve all events for this transaction.
+        call: chainlens-transaction-events-controller.gettransactionevents
+        with:
+          transactionHash: rest.transactionHash
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-transaction-events-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Transaction-Events-Controller. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: chainlens-retrieve-all-events-this
+      description: Chainlens Retrieve all events for this transaction.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-transaction-events-controller.gettransactionevents
+      with:
+        transactionHash: tools.transactionHash
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.

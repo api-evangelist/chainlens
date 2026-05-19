@@ -1,0 +1,186 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Account-Tokens-Controller
+  description: 'Chainlens — Account-Tokens-Controller. 3 operations. Lead operation: Chainlens Retrieve a non-fungible item
+    holdings for an account.. Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Account-Tokens-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-account-tokens-controller
+    baseUri: ''
+    description: Chainlens — Account-Tokens-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-addressHash-collection-tokenAddress
+      path: /accounts/{addressHash}/collection/{tokenAddress}
+      operations:
+      - name: findaccountcollectionitems
+        method: GET
+        description: Chainlens Retrieve a non-fungible item holdings for an account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The account address.
+          required: true
+        - name: tokenAddress
+          in: path
+          type: string
+          description: The NFT contract address.
+          required: true
+        - name: query
+          in: query
+          type: string
+          required: true
+    - name: accounts-addressHash-nfts
+      path: /accounts/{addressHash}/nfts
+      operations:
+      - name: findaccountnfts
+        method: GET
+        description: Chainlens Retrieve NFT items by account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The account address.
+          required: true
+        - name: query
+          in: query
+          type: string
+          required: true
+    - name: accounts-addressHash-tokens
+      path: /accounts/{addressHash}/tokens
+      operations:
+      - name: findaccounttokens
+        method: GET
+        description: Chainlens Retrieve token holdings by account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The account address.
+          required: true
+        - name: query
+          in: query
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-account-tokens-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Account-Tokens-Controller. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounts/{addresshash}/collection/{tokenaddress}
+      name: accounts-addresshash-collection-tokenaddress
+      description: REST surface for accounts-addressHash-collection-tokenAddress.
+      operations:
+      - method: GET
+        name: findaccountcollectionitems
+        description: Chainlens Retrieve a non-fungible item holdings for an account.
+        call: chainlens-account-tokens-controller.findaccountcollectionitems
+        with:
+          addressHash: rest.addressHash
+          tokenAddress: rest.tokenAddress
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{addresshash}/nfts
+      name: accounts-addresshash-nfts
+      description: REST surface for accounts-addressHash-nfts.
+      operations:
+      - method: GET
+        name: findaccountnfts
+        description: Chainlens Retrieve NFT items by account.
+        call: chainlens-account-tokens-controller.findaccountnfts
+        with:
+          addressHash: rest.addressHash
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{addresshash}/tokens
+      name: accounts-addresshash-tokens
+      description: REST surface for accounts-addressHash-tokens.
+      operations:
+      - method: GET
+        name: findaccounttokens
+        description: Chainlens Retrieve token holdings by account.
+        call: chainlens-account-tokens-controller.findaccounttokens
+        with:
+          addressHash: rest.addressHash
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-account-tokens-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Account-Tokens-Controller. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: chainlens-retrieve-non-fungible-item
+      description: Chainlens Retrieve a non-fungible item holdings for an account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-account-tokens-controller.findaccountcollectionitems
+      with:
+        addressHash: tools.addressHash
+        tokenAddress: tools.tokenAddress
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-nft-items-account
+      description: Chainlens Retrieve NFT items by account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-account-tokens-controller.findaccountnfts
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-token-holdings-account
+      description: Chainlens Retrieve token holdings by account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-account-tokens-controller.findaccounttokens
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.

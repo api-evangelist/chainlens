@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Token-Events-Controller
+  description: 'Chainlens — Token-Events-Controller. 1 operations. Lead operation: Chainlens Retrieve all token events using
+    token address.. Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Token-Events-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-token-events-controller
+    baseUri: ''
+    description: Chainlens — Token-Events-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: tokens-addressHash-events
+      path: /tokens/{addressHash}/events
+      operations:
+      - name: gettokenevents
+        method: GET
+        description: Chainlens Retrieve all token events using token address.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The address hash identifying the token.
+          required: true
+        - name: query
+          in: query
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-token-events-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Token-Events-Controller. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/tokens/{addresshash}/events
+      name: tokens-addresshash-events
+      description: REST surface for tokens-addressHash-events.
+      operations:
+      - method: GET
+        name: gettokenevents
+        description: Chainlens Retrieve all token events using token address.
+        call: chainlens-token-events-controller.gettokenevents
+        with:
+          addressHash: rest.addressHash
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-token-events-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Token-Events-Controller. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: chainlens-retrieve-all-token-events
+      description: Chainlens Retrieve all token events using token address.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-token-events-controller.gettokenevents
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,138 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Erc-721-Transfers-Controller
+  description: 'Chainlens — Erc-721-Transfers-Controller. 2 operations. Lead operation: Chainlens Retrieve transfers of an
+    ERC721 Token.. Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Erc-721-Transfers-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-erc-721-transfers-controller
+    baseUri: ''
+    description: Chainlens — Erc-721-Transfers-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: tokens-addressHash-erc721-transfers
+      path: /tokens/{addressHash}/erc721/transfers
+      operations:
+      - name: finderc721transfers
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC721 Token.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The address hash identifying the token.
+          required: true
+        - name: query
+          in: query
+          type: string
+          required: true
+    - name: tokens-addressHash-erc721-transfers-tokenId
+      path: /tokens/{addressHash}/erc721/transfers/{tokenId}
+      operations:
+      - name: finderc721transfers1
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC721 Token.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The address hash identifying the token.
+          required: true
+        - name: tokenId
+          in: path
+          type: string
+          description: The token id identifying the token.
+          required: true
+        - name: query
+          in: query
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-erc-721-transfers-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Erc-721-Transfers-Controller. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/tokens/{addresshash}/erc721/transfers
+      name: tokens-addresshash-erc721-transfers
+      description: REST surface for tokens-addressHash-erc721-transfers.
+      operations:
+      - method: GET
+        name: finderc721transfers
+        description: Chainlens Retrieve transfers of an ERC721 Token.
+        call: chainlens-erc-721-transfers-controller.finderc721transfers
+        with:
+          addressHash: rest.addressHash
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tokens/{addresshash}/erc721/transfers/{tokenid}
+      name: tokens-addresshash-erc721-transfers-tokenid
+      description: REST surface for tokens-addressHash-erc721-transfers-tokenId.
+      operations:
+      - method: GET
+        name: finderc721transfers1
+        description: Chainlens Retrieve transfers of an ERC721 Token.
+        call: chainlens-erc-721-transfers-controller.finderc721transfers1
+        with:
+          addressHash: rest.addressHash
+          tokenId: rest.tokenId
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-erc-721-transfers-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Erc-721-Transfers-Controller. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: chainlens-retrieve-transfers-erc721-token
+      description: Chainlens Retrieve transfers of an ERC721 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-erc-721-transfers-controller.finderc721transfers
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-transfers-erc721-token-2
+      description: Chainlens Retrieve transfers of an ERC721 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-erc-721-transfers-controller.finderc721transfers1
+      with:
+        addressHash: tools.addressHash
+        tokenId: tools.tokenId
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,118 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Block-Controller
+  description: 'Chainlens — Block-Controller. 2 operations. Lead operation: Chainlens Retrieve blocks.. Self-contained Naftiko
+    capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Block-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-block-controller
+    baseUri: ''
+    description: Chainlens — Block-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: blocks
+      path: /blocks
+      operations:
+      - name: findblocks
+        method: GET
+        description: Chainlens Retrieve blocks.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+    - name: blocks-blockHash
+      path: /blocks/{blockHash}
+      operations:
+      - name: getblock
+        method: GET
+        description: Chainlens Retrieve a block by its hash or height.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: blockHash
+          in: path
+          type: string
+          description: The hash or height identifying the block.
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-block-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Block-Controller. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/blocks
+      name: blocks
+      description: REST surface for blocks.
+      operations:
+      - method: GET
+        name: findblocks
+        description: Chainlens Retrieve blocks.
+        call: chainlens-block-controller.findblocks
+        with:
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/blocks/{blockhash}
+      name: blocks-blockhash
+      description: REST surface for blocks-blockHash.
+      operations:
+      - method: GET
+        name: getblock
+        description: Chainlens Retrieve a block by its hash or height.
+        call: chainlens-block-controller.getblock
+        with:
+          blockHash: rest.blockHash
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-block-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Block-Controller. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: chainlens-retrieve-blocks
+      description: Chainlens Retrieve blocks.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-block-controller.findblocks
+      with:
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-block-its-hash
+      description: Chainlens Retrieve a block by its hash or height.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-block-controller.getblock
+      with:
+        blockHash: tools.blockHash
+      outputParameters:
+      - type: object
+        mapping: $.

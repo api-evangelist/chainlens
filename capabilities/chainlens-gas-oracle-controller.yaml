@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Gas-Oracle-Controller
+  description: 'Chainlens — Gas-Oracle-Controller. 1 operations. Lead operation: Chainlens Gas price oracle.. Self-contained
+    Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Gas-Oracle-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-gas-oracle-controller
+    baseUri: ''
+    description: Chainlens — Gas-Oracle-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: gas-price
+      path: /gas/price
+      operations:
+      - name: gaspriceinfo
+        method: GET
+        description: Chainlens Gas price oracle.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: chainlens-gas-oracle-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Gas-Oracle-Controller. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/gas/price
+      name: gas-price
+      description: REST surface for gas-price.
+      operations:
+      - method: GET
+        name: gaspriceinfo
+        description: Chainlens Gas price oracle.
+        call: chainlens-gas-oracle-controller.gaspriceinfo
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-gas-oracle-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Gas-Oracle-Controller. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: chainlens-gas-price-oracle
+      description: Chainlens Gas price oracle.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-gas-oracle-controller.gaspriceinfo
+      outputParameters:
+      - type: object
+        mapping: $.

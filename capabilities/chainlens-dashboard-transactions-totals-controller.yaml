@@ -1,0 +1,118 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Dashboard-Transactions-Totals-Controller
+  description: 'Chainlens — Dashboard-Transactions-Totals-Controller. 2 operations. Lead operation: Chainlens Retrieve total
+    number of different transactions types. Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Dashboard-Transactions-Totals-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-dashboard-transactions-totals-controller
+    baseUri: ''
+    description: Chainlens — Dashboard-Transactions-Totals-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: dashboard-transactions-totals
+      path: /dashboard/transactions/totals
+      operations:
+      - name: gettotals
+        method: GET
+        description: Chainlens Retrieve total number of different transactions types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: dashboard-transactions-totals-period
+      path: /dashboard/transactions/totals/{period}
+      operations:
+      - name: gettotals1
+        method: GET
+        description: Chainlens Retrieve total number of different transactions types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: period
+          in: path
+          type: string
+          required: true
+        - name: from
+          in: query
+          type: integer
+        - name: to
+          in: query
+          type: integer
+  exposes:
+  - type: rest
+    namespace: chainlens-dashboard-transactions-totals-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Dashboard-Transactions-Totals-Controller. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/dashboard/transactions/totals
+      name: dashboard-transactions-totals
+      description: REST surface for dashboard-transactions-totals.
+      operations:
+      - method: GET
+        name: gettotals
+        description: Chainlens Retrieve total number of different transactions types
+        call: chainlens-dashboard-transactions-totals-controller.gettotals
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dashboard/transactions/totals/{period}
+      name: dashboard-transactions-totals-period
+      description: REST surface for dashboard-transactions-totals-period.
+      operations:
+      - method: GET
+        name: gettotals1
+        description: Chainlens Retrieve total number of different transactions types
+        call: chainlens-dashboard-transactions-totals-controller.gettotals1
+        with:
+          period: rest.period
+          from: rest.from
+          to: rest.to
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-dashboard-transactions-totals-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Dashboard-Transactions-Totals-Controller. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: chainlens-retrieve-total-number-different
+      description: Chainlens Retrieve total number of different transactions types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-dashboard-transactions-totals-controller.gettotals
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-total-number-different-2
+      description: Chainlens Retrieve total number of different transactions types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-dashboard-transactions-totals-controller.gettotals1
+      with:
+        period: tools.period
+        from: tools.from
+        to: tools.to
+      outputParameters:
+      - type: object
+        mapping: $.

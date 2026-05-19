@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Projects-Controller
+  description: 'Chainlens — Projects-Controller. 1 operations. Lead operation: Chainlens Get a list of all recommended collections.
+    Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Projects-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-projects-controller
+    baseUri: ''
+    description: Chainlens — Projects-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: collections-recommended
+      path: /collections/recommended
+      operations:
+      - name: getrecommendedtokensbyprojects
+        method: GET
+        description: Chainlens Get a list of all recommended collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: chainlens-projects-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Projects-Controller. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/collections/recommended
+      name: collections-recommended
+      description: REST surface for collections-recommended.
+      operations:
+      - method: GET
+        name: getrecommendedtokensbyprojects
+        description: Chainlens Get a list of all recommended collections
+        call: chainlens-projects-controller.getrecommendedtokensbyprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-projects-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Projects-Controller. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: chainlens-get-list-all-recommended
+      description: Chainlens Get a list of all recommended collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-projects-controller.getrecommendedtokensbyprojects
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,76 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Media-Type-Controller
+  description: 'Chainlens — Media-Type-Controller. 1 operations. Lead operation: Media-Type-Controller. Self-contained Naftiko
+    capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Media-Type-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-media-type-controller
+    baseUri: ''
+    description: Chainlens — Media-Type-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: content-type-get
+      path: /content-type/get
+      operations:
+      - name: getcontenttype
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: url
+          in: query
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-media-type-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Media-Type-Controller. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/content-type/get
+      name: content-type-get
+      description: REST surface for content-type-get.
+      operations:
+      - method: GET
+        name: getcontenttype
+        description: getcontenttype
+        call: chainlens-media-type-controller.getcontenttype
+        with:
+          url: rest.url
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-media-type-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Media-Type-Controller. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: getcontenttype
+      description: getcontenttype
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-media-type-controller.getcontenttype
+      with:
+        url: tools.url
+      outputParameters:
+      - type: object
+        mapping: $.

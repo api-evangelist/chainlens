@@ -1,0 +1,262 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Rwa-Controller
+  description: 'Chainlens — Rwa-Controller. 5 operations. Lead operation: Chainlens Retrieve ERC3643 tokens.. Self-contained
+    Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Rwa-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-rwa-controller
+    baseUri: ''
+    description: Chainlens — Rwa-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: rwas
+      path: /rwas
+      operations:
+      - name: findtokens1
+        method: GET
+        description: Chainlens Retrieve ERC3643 tokens.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+    - name: rwas-addressHash
+      path: /rwas/{addressHash}
+      operations:
+      - name: gettoken2
+        method: GET
+        description: Chainlens Retrieve a ERC3643 by its address hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The address hash identifying the contract.
+          required: true
+    - name: rwas-addressHash-erc3643-transfers
+      path: /rwas/{addressHash}/erc3643/transfers
+      operations:
+      - name: finderc3643transfers
+        method: GET
+        description: Chainlens Retrieve transfers of an ERC3643 Token.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The address hash identifying the token.
+          required: true
+        - name: query
+          in: query
+          type: string
+          required: true
+    - name: rwas-addressHash-holders
+      path: /rwas/{addressHash}/holders
+      operations:
+      - name: gettokenholders1
+        method: GET
+        description: Chainlens Retrieve a list of token holders by token contract address hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The address hash identifying the contract.
+          required: true
+        - name: query
+          in: query
+          type: string
+          required: true
+    - name: rwas-addressHash-tokenId-metadata
+      path: /rwas/{addressHash}/{tokenId}/metadata
+      operations:
+      - name: gettokenmetadata
+        method: GET
+        description: Chainlens Retrieve token metadata for a given token contract address and token id.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The address hash identifying the contract.
+          required: true
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-rwa-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Rwa-Controller. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/rwas
+      name: rwas
+      description: REST surface for rwas.
+      operations:
+      - method: GET
+        name: findtokens1
+        description: Chainlens Retrieve ERC3643 tokens.
+        call: chainlens-rwa-controller.findtokens1
+        with:
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rwas/{addresshash}
+      name: rwas-addresshash
+      description: REST surface for rwas-addressHash.
+      operations:
+      - method: GET
+        name: gettoken2
+        description: Chainlens Retrieve a ERC3643 by its address hash.
+        call: chainlens-rwa-controller.gettoken2
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rwas/{addresshash}/erc3643/transfers
+      name: rwas-addresshash-erc3643-transfers
+      description: REST surface for rwas-addressHash-erc3643-transfers.
+      operations:
+      - method: GET
+        name: finderc3643transfers
+        description: Chainlens Retrieve transfers of an ERC3643 Token.
+        call: chainlens-rwa-controller.finderc3643transfers
+        with:
+          addressHash: rest.addressHash
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rwas/{addresshash}/holders
+      name: rwas-addresshash-holders
+      description: REST surface for rwas-addressHash-holders.
+      operations:
+      - method: GET
+        name: gettokenholders1
+        description: Chainlens Retrieve a list of token holders by token contract address hash.
+        call: chainlens-rwa-controller.gettokenholders1
+        with:
+          addressHash: rest.addressHash
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rwas/{addresshash}/{tokenid}/metadata
+      name: rwas-addresshash-tokenid-metadata
+      description: REST surface for rwas-addressHash-tokenId-metadata.
+      operations:
+      - method: GET
+        name: gettokenmetadata
+        description: Chainlens Retrieve token metadata for a given token contract address and token id.
+        call: chainlens-rwa-controller.gettokenmetadata
+        with:
+          addressHash: rest.addressHash
+          tokenId: rest.tokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-rwa-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Rwa-Controller. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: chainlens-retrieve-erc3643-tokens
+      description: Chainlens Retrieve ERC3643 tokens.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-rwa-controller.findtokens1
+      with:
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-erc3643-its-address
+      description: Chainlens Retrieve a ERC3643 by its address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-rwa-controller.gettoken2
+      with:
+        addressHash: tools.addressHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-transfers-erc3643-token
+      description: Chainlens Retrieve transfers of an ERC3643 Token.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-rwa-controller.finderc3643transfers
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-list-token-holders
+      description: Chainlens Retrieve a list of token holders by token contract address hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-rwa-controller.gettokenholders1
+      with:
+        addressHash: tools.addressHash
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-token-metadata-given
+      description: Chainlens Retrieve token metadata for a given token contract address and token id.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-rwa-controller.gettokenmetadata
+      with:
+        addressHash: tools.addressHash
+        tokenId: tools.tokenId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,76 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Events-Controller
+  description: 'Chainlens — Events-Controller. 1 operations. Lead operation: Chainlens Retrieve all events.. Self-contained
+    Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Events-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-events-controller
+    baseUri: ''
+    description: Chainlens — Events-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: events
+      path: /events
+      operations:
+      - name: getevents
+        method: GET
+        description: Chainlens Retrieve all events.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-events-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Events-Controller. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/events
+      name: events
+      description: REST surface for events.
+      operations:
+      - method: GET
+        name: getevents
+        description: Chainlens Retrieve all events.
+        call: chainlens-events-controller.getevents
+        with:
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-events-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Events-Controller. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: chainlens-retrieve-all-events
+      description: Chainlens Retrieve all events.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-events-controller.getevents
+      with:
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.

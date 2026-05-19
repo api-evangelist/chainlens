@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Configuration-Controller
+  description: 'Chainlens — Configuration-Controller. 1 operations. Lead operation: Chainlens frontend configuration.. Self-contained
+    Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Configuration-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-configuration-controller
+    baseUri: ''
+    description: Chainlens — Configuration-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: configuration-frontend
+      path: /configuration/frontend
+      operations:
+      - name: frontendconfiguration
+        method: GET
+        description: Chainlens frontend configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: chainlens-configuration-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Configuration-Controller. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/configuration/frontend
+      name: configuration-frontend
+      description: REST surface for configuration-frontend.
+      operations:
+      - method: GET
+        name: frontendconfiguration
+        description: Chainlens frontend configuration.
+        call: chainlens-configuration-controller.frontendconfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-configuration-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Configuration-Controller. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: chainlens-frontend-configuration
+      description: Chainlens frontend configuration.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-configuration-controller.frontendconfiguration
+      outputParameters:
+      - type: object
+        mapping: $.

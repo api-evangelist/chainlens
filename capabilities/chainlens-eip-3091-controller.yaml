@@ -1,0 +1,707 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Eip-3091-Controller
+  description: 'Chainlens — Eip-3091-Controller. 18 operations. Lead operation: Chainlens Retrieve a block by its hash or
+    height.. Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Eip-3091-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-eip-3091-controller
+    baseUri: ''
+    description: Chainlens — Eip-3091-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: address-type-addressHash
+      path: /address-type/{addressHash}
+      operations:
+      - name: getaddresstype
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The address hash identifying the address type.
+          required: true
+    - name: address-addressHash
+      path: /address/{addressHash}
+      operations:
+      - name: getaddress
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The address hash identifying the address type.
+          required: true
+    - name: block-blockHash
+      path: /block/{blockHash}
+      operations:
+      - name: getblock1
+        method: GET
+        description: Chainlens Retrieve a block by its hash or height.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: blockHash
+          in: path
+          type: string
+          description: The hash or height identifying the block.
+          required: true
+      - name: getblock4
+        method: PUT
+        description: Chainlens Retrieve a block by its hash or height.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: blockHash
+          in: path
+          type: string
+          description: The hash or height identifying the block.
+          required: true
+      - name: getblock3
+        method: POST
+        description: Chainlens Retrieve a block by its hash or height.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: blockHash
+          in: path
+          type: string
+          description: The hash or height identifying the block.
+          required: true
+      - name: getblock6
+        method: DELETE
+        description: Chainlens Retrieve a block by its hash or height.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: blockHash
+          in: path
+          type: string
+          description: The hash or height identifying the block.
+          required: true
+      - name: getblock7
+        method: OPTIONS
+        description: Chainlens Retrieve a block by its hash or height.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: blockHash
+          in: path
+          type: string
+          description: The hash or height identifying the block.
+          required: true
+      - name: getblock2
+        method: HEAD
+        description: Chainlens Retrieve a block by its hash or height.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: blockHash
+          in: path
+          type: string
+          description: The hash or height identifying the block.
+          required: true
+      - name: getblock5
+        method: PATCH
+        description: Chainlens Retrieve a block by its hash or height.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: blockHash
+          in: path
+          type: string
+          description: The hash or height identifying the block.
+          required: true
+    - name: token-type-addressHash
+      path: /token-type/{addressHash}
+      operations:
+      - name: gettokentype
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The address hash identifying the token type.
+          required: true
+    - name: token-addressHash
+      path: /token/{addressHash}
+      operations:
+      - name: gettoken1
+        method: GET
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: addressHash
+          in: path
+          type: string
+          description: The address hash identifying the token type.
+          required: true
+    - name: tx-transactionHash
+      path: /tx/{transactionHash}
+      operations:
+      - name: gettransaction1
+        method: GET
+        description: Chainlens Retrieve a transaction by its hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionHash
+          in: path
+          type: string
+          description: The hash identifying the transaction.
+          required: true
+      - name: gettransaction4
+        method: PUT
+        description: Chainlens Retrieve a transaction by its hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionHash
+          in: path
+          type: string
+          description: The hash identifying the transaction.
+          required: true
+      - name: gettransaction3
+        method: POST
+        description: Chainlens Retrieve a transaction by its hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionHash
+          in: path
+          type: string
+          description: The hash identifying the transaction.
+          required: true
+      - name: gettransaction6
+        method: DELETE
+        description: Chainlens Retrieve a transaction by its hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionHash
+          in: path
+          type: string
+          description: The hash identifying the transaction.
+          required: true
+      - name: gettransaction7
+        method: OPTIONS
+        description: Chainlens Retrieve a transaction by its hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionHash
+          in: path
+          type: string
+          description: The hash identifying the transaction.
+          required: true
+      - name: gettransaction2
+        method: HEAD
+        description: Chainlens Retrieve a transaction by its hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionHash
+          in: path
+          type: string
+          description: The hash identifying the transaction.
+          required: true
+      - name: gettransaction5
+        method: PATCH
+        description: Chainlens Retrieve a transaction by its hash.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionHash
+          in: path
+          type: string
+          description: The hash identifying the transaction.
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-eip-3091-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Eip-3091-Controller. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/address-type/{addresshash}
+      name: address-type-addresshash
+      description: REST surface for address-type-addressHash.
+      operations:
+      - method: GET
+        name: getaddresstype
+        description: getaddresstype
+        call: chainlens-eip-3091-controller.getaddresstype
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/address/{addresshash}
+      name: address-addresshash
+      description: REST surface for address-addressHash.
+      operations:
+      - method: GET
+        name: getaddress
+        description: getaddress
+        call: chainlens-eip-3091-controller.getaddress
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/block/{blockhash}
+      name: block-blockhash
+      description: REST surface for block-blockHash.
+      operations:
+      - method: GET
+        name: getblock1
+        description: Chainlens Retrieve a block by its hash or height.
+        call: chainlens-eip-3091-controller.getblock1
+        with:
+          blockHash: rest.blockHash
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: getblock4
+        description: Chainlens Retrieve a block by its hash or height.
+        call: chainlens-eip-3091-controller.getblock4
+        with:
+          blockHash: rest.blockHash
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: getblock3
+        description: Chainlens Retrieve a block by its hash or height.
+        call: chainlens-eip-3091-controller.getblock3
+        with:
+          blockHash: rest.blockHash
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: getblock6
+        description: Chainlens Retrieve a block by its hash or height.
+        call: chainlens-eip-3091-controller.getblock6
+        with:
+          blockHash: rest.blockHash
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: OPTIONS
+        name: getblock7
+        description: Chainlens Retrieve a block by its hash or height.
+        call: chainlens-eip-3091-controller.getblock7
+        with:
+          blockHash: rest.blockHash
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: HEAD
+        name: getblock2
+        description: Chainlens Retrieve a block by its hash or height.
+        call: chainlens-eip-3091-controller.getblock2
+        with:
+          blockHash: rest.blockHash
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: getblock5
+        description: Chainlens Retrieve a block by its hash or height.
+        call: chainlens-eip-3091-controller.getblock5
+        with:
+          blockHash: rest.blockHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/token-type/{addresshash}
+      name: token-type-addresshash
+      description: REST surface for token-type-addressHash.
+      operations:
+      - method: GET
+        name: gettokentype
+        description: gettokentype
+        call: chainlens-eip-3091-controller.gettokentype
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/token/{addresshash}
+      name: token-addresshash
+      description: REST surface for token-addressHash.
+      operations:
+      - method: GET
+        name: gettoken1
+        description: gettoken1
+        call: chainlens-eip-3091-controller.gettoken1
+        with:
+          addressHash: rest.addressHash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tx/{transactionhash}
+      name: tx-transactionhash
+      description: REST surface for tx-transactionHash.
+      operations:
+      - method: GET
+        name: gettransaction1
+        description: Chainlens Retrieve a transaction by its hash.
+        call: chainlens-eip-3091-controller.gettransaction1
+        with:
+          transactionHash: rest.transactionHash
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: gettransaction4
+        description: Chainlens Retrieve a transaction by its hash.
+        call: chainlens-eip-3091-controller.gettransaction4
+        with:
+          transactionHash: rest.transactionHash
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: gettransaction3
+        description: Chainlens Retrieve a transaction by its hash.
+        call: chainlens-eip-3091-controller.gettransaction3
+        with:
+          transactionHash: rest.transactionHash
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: gettransaction6
+        description: Chainlens Retrieve a transaction by its hash.
+        call: chainlens-eip-3091-controller.gettransaction6
+        with:
+          transactionHash: rest.transactionHash
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: OPTIONS
+        name: gettransaction7
+        description: Chainlens Retrieve a transaction by its hash.
+        call: chainlens-eip-3091-controller.gettransaction7
+        with:
+          transactionHash: rest.transactionHash
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: HEAD
+        name: gettransaction2
+        description: Chainlens Retrieve a transaction by its hash.
+        call: chainlens-eip-3091-controller.gettransaction2
+        with:
+          transactionHash: rest.transactionHash
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: gettransaction5
+        description: Chainlens Retrieve a transaction by its hash.
+        call: chainlens-eip-3091-controller.gettransaction5
+        with:
+          transactionHash: rest.transactionHash
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-eip-3091-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Eip-3091-Controller. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: getaddresstype
+      description: getaddresstype
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-eip-3091-controller.getaddresstype
+      with:
+        addressHash: tools.addressHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getaddress
+      description: getaddress
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-eip-3091-controller.getaddress
+      with:
+        addressHash: tools.addressHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-block-its-hash
+      description: Chainlens Retrieve a block by its hash or height.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-eip-3091-controller.getblock1
+      with:
+        blockHash: tools.blockHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-block-its-hash-2
+      description: Chainlens Retrieve a block by its hash or height.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: chainlens-eip-3091-controller.getblock4
+      with:
+        blockHash: tools.blockHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-block-its-hash-3
+      description: Chainlens Retrieve a block by its hash or height.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: chainlens-eip-3091-controller.getblock3
+      with:
+        blockHash: tools.blockHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-block-its-hash-4
+      description: Chainlens Retrieve a block by its hash or height.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: chainlens-eip-3091-controller.getblock6
+      with:
+        blockHash: tools.blockHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-block-its-hash-5
+      description: Chainlens Retrieve a block by its hash or height.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: chainlens-eip-3091-controller.getblock7
+      with:
+        blockHash: tools.blockHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-block-its-hash-6
+      description: Chainlens Retrieve a block by its hash or height.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: chainlens-eip-3091-controller.getblock2
+      with:
+        blockHash: tools.blockHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-block-its-hash-7
+      description: Chainlens Retrieve a block by its hash or height.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: chainlens-eip-3091-controller.getblock5
+      with:
+        blockHash: tools.blockHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettokentype
+      description: gettokentype
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-eip-3091-controller.gettokentype
+      with:
+        addressHash: tools.addressHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettoken1
+      description: gettoken1
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-eip-3091-controller.gettoken1
+      with:
+        addressHash: tools.addressHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-transaction-its-hash
+      description: Chainlens Retrieve a transaction by its hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-eip-3091-controller.gettransaction1
+      with:
+        transactionHash: tools.transactionHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-transaction-its-hash-2
+      description: Chainlens Retrieve a transaction by its hash.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: chainlens-eip-3091-controller.gettransaction4
+      with:
+        transactionHash: tools.transactionHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-transaction-its-hash-3
+      description: Chainlens Retrieve a transaction by its hash.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: chainlens-eip-3091-controller.gettransaction3
+      with:
+        transactionHash: tools.transactionHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-transaction-its-hash-4
+      description: Chainlens Retrieve a transaction by its hash.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: chainlens-eip-3091-controller.gettransaction6
+      with:
+        transactionHash: tools.transactionHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-transaction-its-hash-5
+      description: Chainlens Retrieve a transaction by its hash.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: chainlens-eip-3091-controller.gettransaction7
+      with:
+        transactionHash: tools.transactionHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-transaction-its-hash-6
+      description: Chainlens Retrieve a transaction by its hash.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: chainlens-eip-3091-controller.gettransaction2
+      with:
+        transactionHash: tools.transactionHash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-transaction-its-hash-7
+      description: Chainlens Retrieve a transaction by its hash.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: chainlens-eip-3091-controller.gettransaction5
+      with:
+        transactionHash: tools.transactionHash
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Internal-Transactions-Controller
+  description: 'Chainlens — Internal-Transactions-Controller. 2 operations. Lead operation: Chainlens Retrieve internal transactions
+    by address.. Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Internal-Transactions-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-internal-transactions-controller
+    baseUri: ''
+    description: Chainlens — Internal-Transactions-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: internal-transactions
+      path: /internal-transactions
+      operations:
+      - name: findtransactions1
+        method: GET
+        description: Chainlens Retrieve internal transactions by address.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+    - name: transactions-transactionHash-internal-transactions
+      path: /transactions/{transactionHash}/internal-transactions
+      operations:
+      - name: getinternalsbytx
+        method: GET
+        description: Chainlens Retrieve all internal transactions for this transaction.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionHash
+          in: path
+          type: string
+          description: The transaction hash identifying the transaction that contains the events.
+          required: true
+        - name: query
+          in: query
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: chainlens-internal-transactions-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Internal-Transactions-Controller. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/internal-transactions
+      name: internal-transactions
+      description: REST surface for internal-transactions.
+      operations:
+      - method: GET
+        name: findtransactions1
+        description: Chainlens Retrieve internal transactions by address.
+        call: chainlens-internal-transactions-controller.findtransactions1
+        with:
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transactions/{transactionhash}/internal-transactions
+      name: transactions-transactionhash-internal-transactions
+      description: REST surface for transactions-transactionHash-internal-transactions.
+      operations:
+      - method: GET
+        name: getinternalsbytx
+        description: Chainlens Retrieve all internal transactions for this transaction.
+        call: chainlens-internal-transactions-controller.getinternalsbytx
+        with:
+          transactionHash: rest.transactionHash
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-internal-transactions-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Internal-Transactions-Controller. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: chainlens-retrieve-internal-transactions-address
+      description: Chainlens Retrieve internal transactions by address.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-internal-transactions-controller.findtransactions1
+      with:
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: chainlens-retrieve-all-internal-transactions
+      description: Chainlens Retrieve all internal transactions for this transaction.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-internal-transactions-controller.getinternalsbytx
+      with:
+        transactionHash: tools.transactionHash
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.

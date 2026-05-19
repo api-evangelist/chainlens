@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Chainlens — Dashboard-Tokens-Totals-Controller
+  description: 'Chainlens — Dashboard-Tokens-Totals-Controller. 1 operations. Lead operation: Chainlens Retrieve total number
+    of different token types. Self-contained Naftiko capability covering one Chainlens business surface.'
+  tags:
+  - Chainlens
+  - Dashboard-Tokens-Totals-Controller
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CHAINLENS_API_KEY: CHAINLENS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chainlens-dashboard-tokens-totals-controller
+    baseUri: ''
+    description: Chainlens — Dashboard-Tokens-Totals-Controller business capability. Self-contained, no shared references.
+    resources:
+    - name: dashboard-tokens-totals
+      path: /dashboard/tokens/totals
+      operations:
+      - name: gettokentotals
+        method: GET
+        description: Chainlens Retrieve total number of different token types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: chainlens-dashboard-tokens-totals-controller-rest
+    port: 8080
+    description: REST adapter for Chainlens — Dashboard-Tokens-Totals-Controller. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/dashboard/tokens/totals
+      name: dashboard-tokens-totals
+      description: REST surface for dashboard-tokens-totals.
+      operations:
+      - method: GET
+        name: gettokentotals
+        description: Chainlens Retrieve total number of different token types
+        call: chainlens-dashboard-tokens-totals-controller.gettokentotals
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chainlens-dashboard-tokens-totals-controller-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Chainlens — Dashboard-Tokens-Totals-Controller. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: chainlens-retrieve-total-number-different
+      description: Chainlens Retrieve total number of different token types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chainlens-dashboard-tokens-totals-controller.gettokentotals
+      outputParameters:
+      - type: object
+        mapping: $.
