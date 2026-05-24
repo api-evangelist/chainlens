@@ -203,6 +203,8 @@ common:
   - name: Team
   - name: Enterprise
   - name: Self-Hosted
+- type: LLMsTxt
+  url: https://docs.chainlens.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
