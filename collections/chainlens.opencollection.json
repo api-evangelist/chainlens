@@ -1,0 +1,1960 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve transactions by address or block.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transactions by address or block."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Internal-Transactions-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve all internal transactions for this transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions/:transactionHash/internal-transactions",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The transaction hash identifying the transaction that contains the events."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve all internal transactions for this transaction."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve internal transactions by address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/internal-transactions",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve internal transactions by address."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transaction-Events-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve all events for this transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions/:transactionHash/events",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The transaction hash identifying the transaction that contains the events."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve all events for this transaction."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Token-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve token contracts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve token contracts."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a token by its address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a token by its address hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve token contracts by tokenId.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/:tokenId",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve token contracts by tokenId."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Token-Transactions-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve token transactions by token address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/transactions",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve token transactions by token address hash."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Token-Holders-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve a list of token holders by token contract address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/holders",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a list of token holders by token contract address hash."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Token-Events-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve all token events using token address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/events",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve all token events using token address."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Erc-777-Transfers-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC777 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/erc777/transfers",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC777 Token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Erc-721-Transfers-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC721 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/erc721/transfers",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC721 Token."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC721 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/erc721/transfers/:tokenId",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "The token id identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC721 Token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Erc-223-Transfers-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC223 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/erc223/transfers",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC223 Token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Erc-20-Transfers-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC20 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/erc20/transfers",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC20 Token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Erc-1155-Transfers-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC1155 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/erc1155/transfers",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC1155 Token."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC1155 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/erc1155/transfers/:tokenId",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC1155 Token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Eip-3091-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getToken_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/token/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token type."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getTokenType",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/token-type/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token type."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAddress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/address/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the address type."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAddressType",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/address-type/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the address type."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve blocks, transactions, accounts by hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search/",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The search query string."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve blocks, transactions, accounts by hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve blocks, transactions, accounts by hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The search query string."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve blocks, transactions, accounts by hash."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rwa-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve ERC3643 tokens.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rwas",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve ERC3643 tokens."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a ERC3643 by its address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rwas/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a ERC3643 by its address hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve token metadata for a given token contract address and token id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rwas/:addressHash/:tokenId/metadata",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve token metadata for a given token contract address and token id."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a list of token holders by token contract address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rwas/:addressHash/holders",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a list of token holders by token contract address hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC3643 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rwas/:addressHash/erc3643/transfers",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC3643 Token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Node-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Node details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/node/details"
+          },
+          "docs": "Chainlens Node details."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Nft-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve NFTs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve NFTs."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a NFT by its address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a NFT by its address hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve NFT contracts by tokenId.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash/:tokenId",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve NFT contracts by tokenId."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve token metadata for a given token contract address and token id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash/:tokenId/metadata",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve token metadata for a given token contract address and token id."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a list of token holders by token contract address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash/holders",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a list of token holders by token contract address hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC721 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash/erc721/transfers",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC721 Token."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC1155 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash/erc1155/transfers",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC1155 Token."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve all NFTs with Metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash/collections",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve all NFTs with Metadata."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metadata/:swarmHash",
+            "params": [
+              {
+                "name": "swarmHash",
+                "value": "",
+                "type": "path",
+                "description": "The swarm hash of the metadata."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve metadata."
+        },
+        {
+          "info": {
+            "name": "Chainlens list contracts by swarmhash",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metadata/:fileId/contracts",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "The file id of the metadata."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens list contracts by swarmhash"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account-Mapping-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/mappings",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve Accounts"
+        },
+        {
+          "info": {
+            "name": "getAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/mappings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gas-Oracle-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Gas price oracle.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/gas/price"
+          },
+          "docs": "Chainlens Gas price oracle."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve all events.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/events",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve all events."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Download-Abi-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Download ABI for a verified contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/download/abi/:contractAddress",
+            "params": [
+              {
+                "name": "contractAddress",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Chainlens Download ABI for a verified contract"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dashboard-Transactions-Totals-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve total number of different transactions types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dashboard/transactions/totals"
+          },
+          "docs": "Chainlens Retrieve total number of different transactions types"
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve total number of different transactions types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dashboard/transactions/totals/:period",
+            "params": [
+              {
+                "name": "period",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve total number of different transactions types"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dashboard-Totals-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve total number of Contracts, Tokens and Transactions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dashboard/totals"
+          },
+          "docs": "Chainlens Retrieve total number of Contracts, Tokens and Transactions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dashboard-Tokens-Totals-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve total number of different token types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dashboard/tokens/totals"
+          },
+          "docs": "Chainlens Retrieve total number of different token types"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contract-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve contracts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contracts",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve contracts."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a contract by its address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contracts/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a contract by its address hash."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contract-Transactions-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve contract transactions by its address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contracts/:addressHash/transactions",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve contract transactions by its address hash."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contract-Internal-Transactions-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve contract internal transactions by its address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contracts/:addressHash/internal-transactions",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve contract internal transactions by its address hash."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contract-Events-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve all events for this contract.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contracts/:addressHash/events",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve all events for this contract."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contract-Bytecode-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieves bytecodes for a deployed contract.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contracts/:addressHash/bytecode",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieves bytecodes for a deployed contract."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Media-Type-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getContentType",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/content-type/get",
+            "params": [
+              {
+                "name": "url",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Configuration-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens frontend configuration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/configuration/frontend"
+          },
+          "docs": "Chainlens frontend configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Projects-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Get a list of all recommended collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/collections/recommended"
+          },
+          "docs": "Chainlens Get a list of all recommended collections"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Block-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve blocks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/blocks",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve blocks."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/blocks/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Block-Transactions-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve all transactions for this block.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/blocks/:blockHash/transactions",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash or height identifying the block."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve all transactions for this block."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve all accounts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/accounts",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve all accounts."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve an account by its address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/accounts/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the account."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve an account by its address hash."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account-Transactions-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transactions for an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/accounts/:addressHash/transactions",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The account address."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transactions for an account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account-Tokens-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve token holdings by account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/accounts/:addressHash/tokens",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The account address."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve token holdings by account."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve NFT items by account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/accounts/:addressHash/nfts",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The account address."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve NFT items by account."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a non-fungible item holdings for an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/accounts/:addressHash/collection/:tokenAddress",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The account address."
+              },
+              {
+                "name": "tokenAddress",
+                "value": "",
+                "type": "path",
+                "description": "The NFT contract address."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a non-fungible item holdings for an account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
