@@ -61,7 +61,7 @@ common:
     url: https://docs.chainlens.com/
   - type: GettingStarted
     url: https://www.chainlens.com/documentation-categories/getting-started
-  - type: SignUp
+  - type: Signup
     url: https://www.chainlens.com/free-sign-up
   - type: Pricing
     url: https://www.chainlens.com/plans
@@ -130,7 +130,7 @@ common:
       - name: Team
       - name: Enterprise
       - name: Self-Hosted
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.chainlens.com/llms.txt
 maintainers:
   - FN: Kin Lane
