@@ -55,6 +55,8 @@ apis:
       the EIP-3091 block explorer route standard, supporting real-time on-chain analytics, wallet inspection, contract
       verification look-up, and reporting pipelines.
 common:
+  - type: AgenticAccess
+    url: agentic-access/chainlens-agentic-access.yml
   - type: DomainSecurity
     url: security/chainlens-domain-security.yml
   - type: Website
