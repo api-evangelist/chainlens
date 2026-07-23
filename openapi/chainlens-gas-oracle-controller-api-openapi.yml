@@ -1,0 +1,39 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Gas-Oracle-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Gas-Oracle-Controller
+paths:
+  /gas/price:
+    get:
+      tags:
+      - Gas-Oracle-Controller
+      summary: Chainlens Gas price oracle.
+      operationId: gasPriceInfo
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GasPriceModel'
+components:
+  schemas:
+    GasPriceModel:
+      required:
+      - gasPrice
+      - high
+      - safeLow
+      type: object
+      properties:
+        gasPrice:
+          type: number
+        safeLow:
+          type: number
+        high:
+          type: number
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

@@ -1,0 +1,126 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Account-Mapping-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Account-Mapping-Controller
+paths:
+  /mappings:
+    get:
+      tags:
+      - Account-Mapping-Controller
+      summary: Chainlens Retrieve Accounts
+      operationId: findAccounts
+      parameters:
+      - name: query
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/FindAccountMappingQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestAccountMappingModel'
+  /mappings/{id}:
+    get:
+      tags:
+      - Account-Mapping-Controller
+      operationId: getAccount
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccountMappingModel'
+components:
+  schemas:
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
+    FindAccountMappingQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - address
+          - label
+        filter:
+          type: string
+    LatestAccountMappingModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountMappingModel'
+    AccountMappingModel:
+      required:
+      - address
+      - label
+      type: object
+      properties:
+        address:
+          type: string
+        label:
+          type: string
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

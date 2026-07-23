@@ -1,0 +1,233 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Metadata-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Metadata-Controller
+paths:
+  /metadata/{swarmHash}:
+    get:
+      tags:
+      - Metadata-Controller
+      summary: Chainlens Retrieve metadata.
+      operationId: getMetadata
+      parameters:
+      - name: swarmHash
+        in: path
+        description: The swarm hash of the metadata.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MetadataModel'
+  /metadata/{fileId}/contracts:
+    get:
+      tags:
+      - Metadata-Controller
+      summary: Chainlens list contracts by swarmhash
+      operationId: findContractsBySwarmHash
+      parameters:
+      - name: fileId
+        in: path
+        description: The file id of the metadata.
+        required: true
+        schema:
+          type: string
+      - name: query
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/FindContractsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestContractModel'
+components:
+  schemas:
+    ContractRowModel:
+      required:
+      - address
+      - contractAddressInfo
+      - contractCreator
+      - contractCreatorInfo
+      - contractType
+      - createdTimestampISO
+      - createdTransaction
+      - lastExecutedTimestampISO
+      - lastExecutedTransaction
+      - links
+      - transactionCount
+      - verified
+      type: object
+      properties:
+        address:
+          type: string
+        contractAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        contractCreator:
+          type: string
+        contractCreatorInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        createdTimestampISO:
+          type: string
+        createdTransaction:
+          type: string
+        lastExecutedTimestampISO:
+          type: string
+        lastExecutedTransaction:
+          type: string
+        transactionCount:
+          type: integer
+          format: int64
+        contractType:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        verified:
+          type: boolean
+        contractName:
+          type: string
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    LatestContractModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContractRowModel'
+    MetadataModel:
+      required:
+      - contractCount
+      - fileId
+      - name
+      type: object
+      properties:
+        fileId:
+          type: string
+        name:
+          type: string
+        contractCount:
+          type: integer
+          format: int64
+    AddressInfo:
+      required:
+      - address
+      - isContract
+      - isProxy
+      - isVerified
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+        contractType:
+          type: string
+          enum:
+          - contract
+          - nft
+          - token
+    FindContractsQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - created
+          - lastExecuted
+          - transactionCount
+          - contractType
+          - verified
+        filter:
+          type: string
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

@@ -1,0 +1,222 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Events-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Events-Controller
+paths:
+  /events:
+    get:
+      tags:
+      - Events-Controller
+      summary: Chainlens Retrieve all events.
+      operationId: getEvents
+      parameters:
+      - name: query
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/TransactionEventsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EventsModel'
+components:
+  schemas:
+    TransactionEventModel:
+      required:
+      - address
+      - addressLinks
+      - blockNumber
+      - eventName
+      - from
+      - fromAddressInfo
+      - fromLinks
+      - input
+      - links
+      - parameters
+      - timestampISO
+      - to
+      - toAddressInfo
+      - toLinks
+      - transactionHash
+      type: object
+      properties:
+        blockNumber:
+          type: integer
+          format: int64
+        transactionHash:
+          type: string
+        to:
+          type: string
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        from:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        address:
+          type: string
+        addressLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        timestampISO:
+          type: string
+        eventName:
+          type: string
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventParameters'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        input:
+          type: string
+    EventsModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionEventModel'
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    EventParameters:
+      required:
+      - name
+      - type
+      - value
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        type:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    TransactionEventsQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - timestampISO
+          - eventName
+          - logIndex
+          - transactionIndex
+          - paramName
+          - paramValue
+          - paramType
+        filter:
+          type: string
+    AddressInfo:
+      required:
+      - address
+      - isContract
+      - isProxy
+      - isVerified
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+        contractType:
+          type: string
+          enum:
+          - contract
+          - nft
+          - token
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

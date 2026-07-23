@@ -1,0 +1,31 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Download-Abi-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Download-Abi-Controller
+paths:
+  /download/abi/{contractAddress}:
+    get:
+      tags:
+      - Download-Abi-Controller
+      summary: Chainlens Download ABI for a verified contract
+      operationId: downloadAbi
+      parameters:
+      - name: contractAddress
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: byte
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

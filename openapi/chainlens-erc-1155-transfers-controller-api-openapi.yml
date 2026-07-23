@@ -1,0 +1,213 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Erc-1155-Transfers-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Erc-1155-Transfers-Controller
+paths:
+  /tokens/{addressHash}/erc1155/transfers:
+    get:
+      tags:
+      - Erc-1155-Transfers-Controller
+      summary: Chainlens Retrieve transfers of an ERC1155 Token.
+      operationId: findERC1155Transfers
+      parameters:
+      - name: addressHash
+        in: path
+        description: The address hash identifying the token.
+        required: true
+        schema:
+          type: string
+      - name: query
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/FindERC1155TransfersQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestERC1155TransfersModel'
+  /tokens/{addressHash}/erc1155/transfers/{tokenId}:
+    get:
+      tags:
+      - Erc-1155-Transfers-Controller
+      summary: Chainlens Retrieve transfers of an ERC1155 Token.
+      operationId: findERC1155Transfers_1
+      parameters:
+      - name: addressHash
+        in: path
+        description: The address hash identifying the token.
+        required: true
+        schema:
+          type: string
+      - name: tokenId
+        in: path
+        description: The address hash identifying the token.
+        required: true
+        schema:
+          type: string
+      - name: query
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/FindERC1155TransfersQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestERC1155TransfersModel'
+components:
+  schemas:
+    ERC1155TransactionRowModel:
+      required:
+      - amount
+      - from
+      - fromLinks
+      - hash
+      - timestampISO
+      - to
+      - toLinks
+      - tokenId
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        tokenId:
+          type: string
+        amount:
+          type: string
+        timestampISO:
+          type: string
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    AddressInfo:
+      required:
+      - address
+      - isContract
+      - isProxy
+      - isVerified
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+        contractType:
+          type: string
+          enum:
+          - contract
+          - nft
+          - token
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
+    FindERC1155TransfersQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - timestampISO
+          - functionName
+        filter:
+          type: string
+    LatestERC1155TransfersModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC1155TransactionRowModel'
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

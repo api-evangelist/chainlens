@@ -1,0 +1,199 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Account-Controller
+paths:
+  /accounts:
+    get:
+      tags:
+      - Account-Controller
+      summary: Chainlens Retrieve all accounts.
+      operationId: getAccounts
+      parameters:
+      - name: query
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/FindAccountsQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestAccountModel'
+  /accounts/{addressHash}:
+    get:
+      tags:
+      - Account-Controller
+      summary: Chainlens Retrieve an account by its address hash.
+      operationId: getAccount_1
+      parameters:
+      - name: addressHash
+        in: path
+        description: The address hash identifying the account.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccountModel'
+components:
+  schemas:
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    FindAccountsQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - transactionCount
+          - balance
+          - tokenCount
+          - nftCount
+          - timestampISO
+        filter:
+          type: string
+    AddressInfo:
+      required:
+      - address
+      - isContract
+      - isProxy
+      - isVerified
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+        contractType:
+          type: string
+          enum:
+          - contract
+          - nft
+          - token
+    LatestAccountModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountModel'
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
+    AccountModel:
+      required:
+      - address
+      - balance
+      - balanceInDecimal
+      - ethBalance
+      - transactionCount
+      - transactions
+      type: object
+      properties:
+        address:
+          type: string
+        balance:
+          type: integer
+        ethBalance:
+          type: number
+        transactions:
+          type: integer
+          format: int64
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        tokenCount:
+          type: integer
+          format: int64
+        nftCount:
+          type: integer
+          format: int64
+        transactionCount:
+          type: integer
+          format: int64
+        balanceInDecimal:
+          type: number
+        addressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

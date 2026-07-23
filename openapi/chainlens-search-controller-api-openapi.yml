@@ -1,0 +1,85 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Search-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Search-Controller
+paths:
+  /search/:
+    get:
+      tags:
+      - Search-Controller
+      summary: Chainlens Retrieve blocks, transactions, accounts by hash.
+      operationId: search
+      parameters:
+      - name: query
+        in: query
+        description: The search query string.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListSearchResultModel'
+  /search:
+    get:
+      tags:
+      - Search-Controller
+      summary: Chainlens Retrieve blocks, transactions, accounts by hash.
+      operationId: search_1
+      parameters:
+      - name: query
+        in: query
+        description: The search query string.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListSearchResultModel'
+components:
+  schemas:
+    SearchRecommendation:
+      required:
+      - link
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+        link:
+          $ref: '#/components/schemas/Link'
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    ListSearchResultModel:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchRecommendation'
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

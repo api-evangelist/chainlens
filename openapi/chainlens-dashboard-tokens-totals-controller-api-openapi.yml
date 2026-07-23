@@ -1,0 +1,46 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Dashboard-Tokens-Totals-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Dashboard-Tokens-Totals-Controller
+paths:
+  /dashboard/tokens/totals:
+    get:
+      tags:
+      - Dashboard-Tokens-Totals-Controller
+      summary: Chainlens Retrieve total number of different token types
+      operationId: getTokenTotals
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DashboardTotalsModel'
+components:
+  schemas:
+    DashboardTotalsModel:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TotalModel'
+    TotalModel:
+      required:
+      - name
+      - total
+      type: object
+      properties:
+        name:
+          type: string
+        total:
+          type: integer
+          format: int64
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

@@ -1,0 +1,804 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Eip-3091-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Eip-3091-Controller
+paths:
+  /token/{addressHash}:
+    get:
+      tags:
+      - Eip-3091-Controller
+      operationId: getToken_1
+      parameters:
+      - name: addressHash
+        in: path
+        description: The address hash identifying the token type.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenModel'
+  /token-type/{addressHash}:
+    get:
+      tags:
+      - Eip-3091-Controller
+      operationId: getTokenType
+      parameters:
+      - name: addressHash
+        in: path
+        description: The address hash identifying the token type.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AddressResponse'
+  /address/{addressHash}:
+    get:
+      tags:
+      - Eip-3091-Controller
+      operationId: getAddress
+      parameters:
+      - name: addressHash
+        in: path
+        description: The address hash identifying the address type.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /address-type/{addressHash}:
+    get:
+      tags:
+      - Eip-3091-Controller
+      operationId: getAddressType
+      parameters:
+      - name: addressHash
+        in: path
+        description: The address hash identifying the address type.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AddressResponse'
+  /tx/{transactionHash}:
+    get:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a transaction by its hash.
+      operationId: getTransaction_1
+      parameters:
+      - name: transactionHash
+        in: path
+        description: The hash identifying the transaction.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+    put:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a transaction by its hash.
+      operationId: getTransaction_4
+      parameters:
+      - name: transactionHash
+        in: path
+        description: The hash identifying the transaction.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+    post:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a transaction by its hash.
+      operationId: getTransaction_3
+      parameters:
+      - name: transactionHash
+        in: path
+        description: The hash identifying the transaction.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+    delete:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a transaction by its hash.
+      operationId: getTransaction_6
+      parameters:
+      - name: transactionHash
+        in: path
+        description: The hash identifying the transaction.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+    options:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a transaction by its hash.
+      operationId: getTransaction_7
+      parameters:
+      - name: transactionHash
+        in: path
+        description: The hash identifying the transaction.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+    head:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a transaction by its hash.
+      operationId: getTransaction_2
+      parameters:
+      - name: transactionHash
+        in: path
+        description: The hash identifying the transaction.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+    patch:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a transaction by its hash.
+      operationId: getTransaction_5
+      parameters:
+      - name: transactionHash
+        in: path
+        description: The hash identifying the transaction.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+  /block/{blockHash}:
+    get:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a block by its hash or height.
+      operationId: getBlock_1
+      parameters:
+      - name: blockHash
+        in: path
+        description: The hash or height identifying the block.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+    put:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a block by its hash or height.
+      operationId: getBlock_4
+      parameters:
+      - name: blockHash
+        in: path
+        description: The hash or height identifying the block.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+    post:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a block by its hash or height.
+      operationId: getBlock_3
+      parameters:
+      - name: blockHash
+        in: path
+        description: The hash or height identifying the block.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+    delete:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a block by its hash or height.
+      operationId: getBlock_6
+      parameters:
+      - name: blockHash
+        in: path
+        description: The hash or height identifying the block.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+    options:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a block by its hash or height.
+      operationId: getBlock_7
+      parameters:
+      - name: blockHash
+        in: path
+        description: The hash or height identifying the block.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+    head:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a block by its hash or height.
+      operationId: getBlock_2
+      parameters:
+      - name: blockHash
+        in: path
+        description: The hash or height identifying the block.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+    patch:
+      tags:
+      - Eip-3091-Controller
+      summary: Chainlens Retrieve a block by its hash or height.
+      operationId: getBlock_5
+      parameters:
+      - name: blockHash
+        in: path
+        description: The hash or height identifying the block.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+components:
+  schemas:
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    FunctionMeta:
+      required:
+      - functionName
+      - params
+      - stateMutability
+      - type
+      type: object
+      properties:
+        functionName:
+          type: string
+        stateMutability:
+          type: string
+        type:
+          type: string
+        params:
+          type: array
+          items:
+            $ref: '#/components/schemas/FunctionParameterModel'
+    Log:
+      type: object
+      properties:
+        removed:
+          type: boolean
+        logIndex:
+          type: integer
+        transactionIndex:
+          type: integer
+        transactionHash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+        address:
+          type: string
+        data:
+          type: string
+        type:
+          type: string
+        topics:
+          type: array
+          items:
+            type: string
+        logIndexRaw:
+          type: string
+        transactionIndexRaw:
+          type: string
+        blockNumberRaw:
+          type: string
+    TokenModel:
+      required:
+      - address
+      - contractType
+      - lastExecutedTimestampISO
+      - transactionCount
+      - verified
+      type: object
+      properties:
+        address:
+          type: string
+        addressLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        name:
+          type: string
+        symbol:
+          type: string
+        decimals:
+          type: integer
+          format: int32
+        totalSupply:
+          type: number
+        contractType:
+          type: string
+        transactionCount:
+          type: integer
+          format: int64
+        lastExecutedTimestampISO:
+          type: string
+        coverImage:
+          type: string
+        holdersCount:
+          type: integer
+          format: int64
+        tokenCount:
+          type: integer
+          format: int64
+        metadata:
+          $ref: '#/components/schemas/CollectionMetadataModel'
+        metadataUrl:
+          type: string
+        originalAssetLink:
+          type: string
+        verified:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+        project:
+          $ref: '#/components/schemas/ProjectModel'
+        marketData:
+          $ref: '#/components/schemas/MarketDataModel'
+    ProjectModel:
+      required:
+      - address
+      - isActive
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - CONTRACT
+          - DAPP
+        socialMedia:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialLink'
+        isActive:
+          type: boolean
+        coverImage:
+          type: string
+        website:
+          type: string
+    FunctionParameterModel:
+      required:
+      - name
+      - type
+      - value
+      type: object
+      properties:
+        value:
+          type: object
+        name:
+          type: string
+        type:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    CollectionMetadataModel:
+      required:
+      - attributes
+      type: object
+      properties:
+        name:
+          type: string
+        collectionName:
+          type: string
+        artistAddress:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        externalUrl:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        resolvedImageUrl:
+          type: string
+        metadataUrl:
+          type: string
+        tokenId:
+          type: string
+    TransactionModel:
+      required:
+      - blockHash
+      - blockNumber
+      - cumulativeGasUsed
+      - ethValue
+      - from
+      - fromLinks
+      - gas
+      - gasPrice
+      - gasUsed
+      - hash
+      - input
+      - isPrivate
+      - logs
+      - logsBloom
+      - r
+      - s
+      - timestampISO
+      - to
+      - toLinks
+      - transactionIndex
+      - transactionType
+      - v
+      - value
+      - verifiedTimestampISO
+      type: object
+      properties:
+        hash:
+          type: string
+        blockHash:
+          type: string
+        blockNumber:
+          type: integer
+          format: int64
+        transactionIndex:
+          type: integer
+          format: int64
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        value:
+          type: integer
+        ethValue:
+          type: number
+        gasPrice:
+          type: integer
+        gas:
+          type: integer
+        gasUsed:
+          type: integer
+        cumulativeGasUsed:
+          type: integer
+        input:
+          type: string
+        r:
+          type: string
+        s:
+          type: string
+        v:
+          type: integer
+          format: int64
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Log'
+        logsBloom:
+          type: string
+        status:
+          type: string
+        revertReason:
+          type: string
+        timestampISO:
+          type: string
+        verifiedTimestampISO:
+          type: string
+        isPrivate:
+          type: boolean
+        transactionType:
+          type: string
+          enum:
+          - Transfer
+          - ContractCreation
+          - ContractCall
+        functionMeta:
+          $ref: '#/components/schemas/FunctionMeta'
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+    SocialLink:
+      required:
+      - name
+      - url
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+    AddressInfo:
+      required:
+      - address
+      - isContract
+      - isProxy
+      - isVerified
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+        contractType:
+          type: string
+          enum:
+          - contract
+          - nft
+          - token
+    MarketDataModel:
+      required:
+      - fdv
+      - market_cap
+      - market_change_24h_percent
+      - price_eth
+      - price_usd
+      - total_circulating_supply
+      - total_volume_24h
+      type: object
+      properties:
+        fdv:
+          type: number
+        market_cap:
+          type: number
+        total_volume_24h:
+          type: number
+        total_circulating_supply:
+          type: number
+        price_usd:
+          type: number
+        price_eth:
+          type: number
+        market_change_24h_percent:
+          type: number
+        image:
+          type: string
+    AddressResponse:
+      required:
+      - addressType
+      type: object
+      properties:
+        addressType:
+          type: string
+          enum:
+          - EOA
+          - CONTRACT
+          - TOKEN
+          - NFT
+    Attribute:
+      required:
+      - traitType
+      - value
+      type: object
+      properties:
+        traitType:
+          type: string
+        value:
+          type: string
+    BlockModel:
+      required:
+      - dateVerified
+      - difficulty
+      - extraData
+      - gasLimit
+      - gasUsed
+      - hash
+      - logsBloom
+      - miner
+      - number
+      - parentHash
+      - receiptRoot
+      - sha3Uncles
+      - size
+      - stateRoot
+      - timestampISO
+      - timestampVerifiedISO
+      - totalDifficulty
+      - transactionCount
+      - transactionsRoot
+      - uncles
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int64
+        hash:
+          type: string
+        parentHash:
+          type: string
+        sha3Uncles:
+          type: string
+        logsBloom:
+          type: string
+        transactionsRoot:
+          type: string
+        stateRoot:
+          type: string
+        receiptRoot:
+          type: string
+        miner:
+          type: string
+        mixHash:
+          type: string
+        difficulty:
+          type: integer
+        totalDifficulty:
+          type: integer
+        extraData:
+          type: string
+        size:
+          type: integer
+        gasLimit:
+          type: integer
+        gasUsed:
+          type: integer
+        transactionCount:
+          type: integer
+          format: int32
+        uncles:
+          type: array
+          items:
+            type: string
+        dateVerified:
+          type: integer
+          format: int64
+        timestampISO:
+          type: string
+        timestampVerifiedISO:
+          type: string
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

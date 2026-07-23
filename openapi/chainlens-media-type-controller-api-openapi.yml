@@ -1,0 +1,29 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Media-Type-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Media-Type-Controller
+paths:
+  /content-type/get:
+    get:
+      tags:
+      - Media-Type-Controller
+      operationId: getContentType
+      parameters:
+      - name: url
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

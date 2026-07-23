@@ -1,0 +1,64 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Node-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Node-Controller
+paths:
+  /node/details:
+    get:
+      tags:
+      - Node-Controller
+      summary: Chainlens Node details.
+      operationId: details
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/NodeInfoModel'
+components:
+  schemas:
+    NodeInfoModel:
+      required:
+      - address
+      - enode
+      - id
+      - name
+      - peerCount
+      - peers
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        enode:
+          type: string
+        address:
+          type: string
+        peerCount:
+          type: integer
+          format: int32
+        peers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PeersModel'
+    PeersModel:
+      required:
+      - address
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

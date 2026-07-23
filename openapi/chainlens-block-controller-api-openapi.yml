@@ -1,0 +1,208 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Block-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Block-Controller
+paths:
+  /blocks:
+    get:
+      tags:
+      - Block-Controller
+      summary: Chainlens Retrieve blocks.
+      operationId: findBlocks
+      parameters:
+      - name: query
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/FindBlocksQuery'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LatestBlockModel'
+  /blocks/{blockHash}:
+    get:
+      tags:
+      - Block-Controller
+      summary: Chainlens Retrieve a block by its hash or height.
+      operationId: getBlock
+      parameters:
+      - name: blockHash
+        in: path
+        description: The hash or height identifying the block.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlockModel'
+components:
+  schemas:
+    BlockRowModel:
+      required:
+      - hash
+      - number
+      - timestampISO
+      - transactionCount
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int64
+        hash:
+          type: string
+        timestampISO:
+          type: string
+        transactionCount:
+          type: integer
+          format: int32
+    LatestBlockModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockRowModel'
+    FindBlocksQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - number
+          - timestampISO
+          - transactionCount
+        filter:
+          type: string
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
+    BlockModel:
+      required:
+      - dateVerified
+      - difficulty
+      - extraData
+      - gasLimit
+      - gasUsed
+      - hash
+      - logsBloom
+      - miner
+      - number
+      - parentHash
+      - receiptRoot
+      - sha3Uncles
+      - size
+      - stateRoot
+      - timestampISO
+      - timestampVerifiedISO
+      - totalDifficulty
+      - transactionCount
+      - transactionsRoot
+      - uncles
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int64
+        hash:
+          type: string
+        parentHash:
+          type: string
+        sha3Uncles:
+          type: string
+        logsBloom:
+          type: string
+        transactionsRoot:
+          type: string
+        stateRoot:
+          type: string
+        receiptRoot:
+          type: string
+        miner:
+          type: string
+        mixHash:
+          type: string
+        difficulty:
+          type: integer
+        totalDifficulty:
+          type: integer
+        extraData:
+          type: string
+        size:
+          type: integer
+        gasLimit:
+          type: integer
+        gasUsed:
+          type: integer
+        transactionCount:
+          type: integer
+          format: int32
+        uncles:
+          type: array
+          items:
+            type: string
+        dateVerified:
+          type: integer
+          format: int64
+        timestampISO:
+          type: string
+        timestampVerifiedISO:
+          type: string
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/

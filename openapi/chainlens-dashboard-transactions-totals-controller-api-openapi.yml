@@ -1,0 +1,103 @@
+openapi: 3.0.1
+info:
+  title: Chainlens Account-Controller Dashboard-Transactions-Totals-Controller API
+  description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
+  version: master
+tags:
+- name: Dashboard-Transactions-Totals-Controller
+paths:
+  /dashboard/transactions/totals:
+    get:
+      tags:
+      - Dashboard-Transactions-Totals-Controller
+      summary: Chainlens Retrieve total number of different transactions types
+      operationId: getTotals
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DashboardTotalsModel'
+  /dashboard/transactions/totals/{period}:
+    get:
+      tags:
+      - Dashboard-Transactions-Totals-Controller
+      summary: Chainlens Retrieve total number of different transactions types
+      operationId: getTotals_1
+      parameters:
+      - name: period
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - Nanos
+          - Micros
+          - Millis
+          - Seconds
+          - Minutes
+          - Hours
+          - HalfDays
+          - Days
+          - Weeks
+          - Months
+          - Years
+          - Decades
+          - Centuries
+          - Millennia
+          - Eras
+          - Forever
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DashboardTimeseriesTotalsModel'
+components:
+  schemas:
+    DashboardTimeseriesTotalsModel:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TotalModel'
+    DashboardTotalsModel:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TotalModel'
+    TotalModel:
+      required:
+      - name
+      - total
+      type: object
+      properties:
+        name:
+          type: string
+        total:
+          type: integer
+          format: int64
+externalDocs:
+  description: Chainlens Documentation
+  url: https://docs.chainlens.com/
