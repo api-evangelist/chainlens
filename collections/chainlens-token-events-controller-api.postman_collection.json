@@ -1,0 +1,171 @@
+{
+  "item": [
+    {
+      "id": "c3f900fb-99a1-40bf-ba95-1acecf7dee5a",
+      "name": "Token-Events-Controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a94fdec8-9598-4f2c-bd71-43164e5856c1",
+          "name": "Chainlens Retrieve all token events using token address.",
+          "request": {
+            "name": "Chainlens Retrieve all token events using token address.",
+            "description": {},
+            "url": {
+              "path": [
+                "tokens",
+                ":addressHash",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "addressHash",
+                  "description": "(Required) The address hash identifying the token."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32d96872-a21a-4f79-acc5-833c3691cc50",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens",
+                    ":addressHash",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "addressHash",
+                      "description": "(Required) The address hash identifying the token."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"address\": \"string\",\n      \"addressLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"blockNumber\": 9024,\n      \"eventName\": \"string\",\n      \"from\": \"string\",\n      \"fromAddressInfo\": {\n        \"address\": \"string\",\n        \"isContract\": true,\n        \"isProxy\": false,\n        \"isVerified\": false,\n        \"name\": \"string\",\n        \"verifiedStatus\": \"Full\",\n        \"contractType\": \"nft\"\n      },\n      \"fromLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"input\": \"string\",\n      \"links\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"links\": [\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"links\": [\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"timestampISO\": \"string\",\n      \"to\": \"string\",\n      \"toAddressInfo\": {\n        \"address\": \"string\",\n        \"isContract\": true,\n        \"isProxy\": false,\n        \"isVerified\": false,\n        \"name\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"contractType\": \"contract\"\n      },\n      \"toLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"transactionHash\": \"string\"\n    },\n    {\n      \"address\": \"string\",\n      \"addressLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"blockNumber\": 1131,\n      \"eventName\": \"string\",\n      \"from\": \"string\",\n      \"fromAddressInfo\": {\n        \"address\": \"string\",\n        \"isContract\": false,\n        \"isProxy\": false,\n        \"isVerified\": true,\n        \"name\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"contractType\": \"contract\"\n      },\n      \"fromLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"input\": \"string\",\n      \"links\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"links\": [\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"links\": [\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"timestampISO\": \"string\",\n      \"to\": \"string\",\n      \"toAddressInfo\": {\n        \"address\": \"string\",\n        \"isContract\": false,\n        \"isProxy\": false,\n        \"isVerified\": true,\n        \"name\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"contractType\": \"token\"\n      },\n      \"toLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"transactionHash\": \"string\"\n    }\n  ],\n  \"paging\": {\n    \"direction\": \"DESC\",\n    \"page\": 4690,\n    \"size\": 5276,\n    \"sort\": \"string\",\n    \"totalElements\": 2044\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cd0f1d8a-1ef6-4932-9972-30a5b60e2357",
+    "name": "Chainlens Account-Controller Token-Events-Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.",
+      "type": "text/plain"
+    }
+  }
+}

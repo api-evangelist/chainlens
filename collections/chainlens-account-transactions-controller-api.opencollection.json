@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Account-Transactions-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account-Transactions-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transactions for an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/accounts/:addressHash/transactions",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The account address."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transactions for an account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

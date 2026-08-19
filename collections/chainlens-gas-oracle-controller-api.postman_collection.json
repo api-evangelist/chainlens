@@ -1,0 +1,101 @@
+{
+  "item": [
+    {
+      "id": "c5fd9e8b-4f64-4d1f-8435-5a7ebd2484a3",
+      "name": "Gas-Oracle-Controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "66d242a1-329d-402d-8004-2c416d9e7ad8",
+          "name": "Chainlens Gas price oracle.",
+          "request": {
+            "name": "Chainlens Gas price oracle.",
+            "description": {},
+            "url": {
+              "path": [
+                "gas",
+                "price"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "053a4818-7d6b-45f6-8bdb-a40f3c530f7a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gas",
+                    "price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"gasPrice\": 7302.949643075097,\n  \"high\": 6935.327147825363,\n  \"safeLow\": 797.1105449002713\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "795332f8-deec-4948-9e5e-435f90d11aae",
+    "name": "Chainlens Account-Controller Gas-Oracle-Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.",
+      "type": "text/plain"
+    }
+  }
+}

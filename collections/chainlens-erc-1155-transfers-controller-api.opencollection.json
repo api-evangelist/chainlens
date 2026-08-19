@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Erc-1155-Transfers-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Erc-1155-Transfers-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC1155 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/erc1155/transfers",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC1155 Token."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC1155 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/erc1155/transfers/:tokenId",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC1155 Token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

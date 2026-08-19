@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Metadata-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metadata/:swarmHash",
+            "params": [
+              {
+                "name": "swarmHash",
+                "value": "",
+                "type": "path",
+                "description": "The swarm hash of the metadata."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve metadata."
+        },
+        {
+          "info": {
+            "name": "Chainlens list contracts by swarmhash",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/metadata/:fileId/contracts",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "The file id of the metadata."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens list contracts by swarmhash"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

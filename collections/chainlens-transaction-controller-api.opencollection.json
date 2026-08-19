@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Transaction-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve transactions by address or block.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transactions by address or block."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

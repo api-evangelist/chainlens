@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Contract-Internal-Transactions-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contract-Internal-Transactions-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve contract internal transactions by its address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contracts/:addressHash/internal-transactions",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve contract internal transactions by its address hash."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

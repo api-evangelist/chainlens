@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Token-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Token-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve token contracts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve token contracts."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a token by its address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a token by its address hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve token contracts by tokenId.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tokens/:addressHash/:tokenId",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve token contracts by tokenId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

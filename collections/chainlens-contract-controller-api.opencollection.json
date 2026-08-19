@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Contract-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contract-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve contracts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contracts",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve contracts."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a contract by its address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/contracts/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a contract by its address hash."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

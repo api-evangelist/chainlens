@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Dashboard-Transactions-Totals-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboard-Transactions-Totals-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve total number of different transactions types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dashboard/transactions/totals"
+          },
+          "docs": "Chainlens Retrieve total number of different transactions types"
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve total number of different transactions types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dashboard/transactions/totals/:period",
+            "params": [
+              {
+                "name": "period",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve total number of different transactions types"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

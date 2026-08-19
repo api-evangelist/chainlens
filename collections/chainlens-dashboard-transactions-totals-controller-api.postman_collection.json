@@ -1,0 +1,212 @@
+{
+  "item": [
+    {
+      "id": "7c1664b0-02f9-4944-bf9a-dd8c1f2d4967",
+      "name": "Dashboard-Transactions-Totals-Controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b26cc2a8-0a90-4911-b1a9-9da022798574",
+          "name": "Chainlens Retrieve total number of different transactions types",
+          "request": {
+            "name": "Chainlens Retrieve total number of different transactions types",
+            "description": {},
+            "url": {
+              "path": [
+                "dashboard",
+                "transactions",
+                "totals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca6c10f3-6cfd-4466-bcfd-3f36bd832c20",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "transactions",
+                    "totals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"name\": \"string\",\n      \"total\": 9866\n    },\n    {\n      \"name\": \"string\",\n      \"total\": 5367\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a565ef1-31ea-4a1f-901a-4175f430a11d",
+          "name": "Chainlens Retrieve total number of different transactions types",
+          "request": {
+            "name": "Chainlens Retrieve total number of different transactions types",
+            "description": {},
+            "url": {
+              "path": [
+                "dashboard",
+                "transactions",
+                "totals",
+                ":period"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<long>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "period",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c496a01a-cbdf-4c08-b528-9ffca77b5aa1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "transactions",
+                    "totals",
+                    ":period"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "period",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"name\": \"string\",\n      \"total\": 9866\n    },\n    {\n      \"name\": \"string\",\n      \"total\": 5367\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "af1ff051-491a-4b67-ab5b-69d7ab991d82",
+    "name": "Chainlens Account-Controller Dashboard-Transactions-Totals-Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.",
+      "type": "text/plain"
+    }
+  }
+}

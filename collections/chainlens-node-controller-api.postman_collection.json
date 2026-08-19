@@ -1,0 +1,101 @@
+{
+  "item": [
+    {
+      "id": "6f74e69d-0a5f-4eac-9711-e369949d8b7e",
+      "name": "Node-Controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0881cf36-d822-4090-ab75-9521921ab78e",
+          "name": "Chainlens Node details.",
+          "request": {
+            "name": "Chainlens Node details.",
+            "description": {},
+            "url": {
+              "path": [
+                "node",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "336c748f-053b-4020-85bf-5780d81b3277",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "node",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"enode\": \"string\",\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"peerCount\": 8016,\n  \"peers\": [\n    {\n      \"address\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"address\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "aab70d28-7b26-4b52-864b-36b6c3b82f8c",
+    "name": "Chainlens Account-Controller Node-Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.",
+      "type": "text/plain"
+    }
+  }
+}

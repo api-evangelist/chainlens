@@ -1,0 +1,171 @@
+{
+  "item": [
+    {
+      "id": "6379d9ee-f449-4145-8262-9feba31df383",
+      "name": "Contract-Transactions-Controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e96c7e5f-1c57-4129-a210-20406b6432da",
+          "name": "Chainlens Retrieve contract transactions by its address hash.",
+          "request": {
+            "name": "Chainlens Retrieve contract transactions by its address hash.",
+            "description": {},
+            "url": {
+              "path": [
+                "contracts",
+                ":addressHash",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "addressHash",
+                  "description": "(Required) The address hash identifying the contract."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21ac2a04-6862-4440-9a59-2e6f4d6415b9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contracts",
+                    ":addressHash",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "addressHash",
+                      "description": "(Required) The address hash identifying the contract."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"direction\": \"Unknown\",\n      \"ethValue\": 4741.414528113326,\n      \"from\": \"string\",\n      \"fromAddressInfo\": {\n        \"address\": \"string\",\n        \"isContract\": false,\n        \"isProxy\": false,\n        \"isVerified\": false,\n        \"name\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"contractType\": \"token\"\n      },\n      \"fromLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"hash\": \"string\",\n      \"isPrivate\": false,\n      \"timestampISO\": \"string\",\n      \"to\": \"string\",\n      \"toAddressInfo\": {\n        \"address\": \"string\",\n        \"isContract\": false,\n        \"isProxy\": true,\n        \"isVerified\": false,\n        \"name\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"contractType\": \"contract\"\n      },\n      \"toLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"transactionType\": \"ContractCall\",\n      \"value\": 9135,\n      \"status\": \"string\",\n      \"revertReason\": \"string\",\n      \"functionMeta\": {\n        \"functionName\": \"string\",\n        \"params\": [\n          {\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"value\": {},\n            \"links\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"value\": {},\n            \"links\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"stateMutability\": \"string\",\n        \"type\": \"string\"\n      },\n      \"isInternalToAccount\": true\n    },\n    {\n      \"direction\": \"Unknown\",\n      \"ethValue\": 2460.7338681298797,\n      \"from\": \"string\",\n      \"fromAddressInfo\": {\n        \"address\": \"string\",\n        \"isContract\": true,\n        \"isProxy\": false,\n        \"isVerified\": true,\n        \"name\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"contractType\": \"nft\"\n      },\n      \"fromLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"hash\": \"string\",\n      \"isPrivate\": false,\n      \"timestampISO\": \"string\",\n      \"to\": \"string\",\n      \"toAddressInfo\": {\n        \"address\": \"string\",\n        \"isContract\": true,\n        \"isProxy\": true,\n        \"isVerified\": true,\n        \"name\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"contractType\": \"token\"\n      },\n      \"toLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"transactionType\": \"ContractCreation\",\n      \"value\": 439,\n      \"status\": \"string\",\n      \"revertReason\": \"string\",\n      \"functionMeta\": {\n        \"functionName\": \"string\",\n        \"params\": [\n          {\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"value\": {},\n            \"links\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"value\": {},\n            \"links\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"stateMutability\": \"string\",\n        \"type\": \"string\"\n      },\n      \"isInternalToAccount\": false\n    }\n  ],\n  \"paging\": {\n    \"direction\": \"DESC\",\n    \"page\": 5079,\n    \"size\": 8765,\n    \"sort\": \"string\",\n    \"totalElements\": 2428\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0280f443-9390-4f47-b4e5-0d27285f6372",
+    "name": "Chainlens Account-Controller Contract-Transactions-Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Dashboard-Tokens-Totals-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboard-Tokens-Totals-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve total number of different token types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dashboard/tokens/totals"
+          },
+          "docs": "Chainlens Retrieve total number of different token types"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

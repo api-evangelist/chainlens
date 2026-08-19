@@ -1,0 +1,356 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Eip-3091-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Eip-3091-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getToken_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/token/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token type."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getTokenType",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/token-type/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token type."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAddress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/address/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the address type."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getAddressType",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/address-type/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the address type."
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a transaction by its hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "{{baseUrl}}/tx/:transactionHash",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash identifying the transaction."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a transaction by its hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "OPTIONS",
+            "url": "{{baseUrl}}/block/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,101 @@
+{
+  "item": [
+    {
+      "id": "99d73d54-382f-4b3f-98fb-328144647135",
+      "name": "Dashboard-Totals-Controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dba5c7e5-0d79-450d-86a1-6ea60521363c",
+          "name": "Chainlens Retrieve total number of Contracts, Tokens and Transactions.",
+          "request": {
+            "name": "Chainlens Retrieve total number of Contracts, Tokens and Transactions.",
+            "description": {},
+            "url": {
+              "path": [
+                "dashboard",
+                "totals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a90562ae-3c15-40a3-8914-ab560cbf900f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dashboard",
+                    "totals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"name\": \"string\",\n      \"total\": 5970\n    },\n    {\n      \"name\": \"string\",\n      \"total\": 8949\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2af45cfc-498d-47ec-86b1-7bc6d7375042",
+    "name": "Chainlens Account-Controller Dashboard-Totals-Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.",
+      "type": "text/plain"
+    }
+  }
+}

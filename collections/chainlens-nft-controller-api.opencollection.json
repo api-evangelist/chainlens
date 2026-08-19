@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Nft-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Nft-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve NFTs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve NFTs."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a NFT by its address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a NFT by its address hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve NFT contracts by tokenId.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash/:tokenId",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve NFT contracts by tokenId."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve token metadata for a given token contract address and token id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash/:tokenId/metadata",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve token metadata for a given token contract address and token id."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a list of token holders by token contract address hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash/holders",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a list of token holders by token contract address hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC721 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash/erc721/transfers",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC721 Token."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve transfers of an ERC1155 Token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash/erc1155/transfers",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the token."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve transfers of an ERC1155 Token."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve all NFTs with Metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/nfts/:addressHash/collections",
+            "params": [
+              {
+                "name": "addressHash",
+                "value": "",
+                "type": "path",
+                "description": "The address hash identifying the contract."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve all NFTs with Metadata."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

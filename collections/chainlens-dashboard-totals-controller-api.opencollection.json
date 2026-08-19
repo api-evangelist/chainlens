@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Dashboard-Totals-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboard-Totals-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve total number of Contracts, Tokens and Transactions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/dashboard/totals"
+          },
+          "docs": "Chainlens Retrieve total number of Contracts, Tokens and Transactions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

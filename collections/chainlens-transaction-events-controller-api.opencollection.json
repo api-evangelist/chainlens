@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Transaction-Events-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction-Events-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve all events for this transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions/:transactionHash/events",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The transaction hash identifying the transaction that contains the events."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve all events for this transaction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

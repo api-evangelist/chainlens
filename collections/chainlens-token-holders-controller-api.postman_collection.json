@@ -1,0 +1,171 @@
+{
+  "item": [
+    {
+      "id": "66c5df5d-ca4d-4ce9-9acb-c5e754f18a31",
+      "name": "Token-Holders-Controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1e2c53f-bd78-4eef-8273-3df722e2f303",
+          "name": "Chainlens Retrieve a list of token holders by token contract address hash.",
+          "request": {
+            "name": "Chainlens Retrieve a list of token holders by token contract address hash.",
+            "description": {},
+            "url": {
+              "path": [
+                "tokens",
+                ":addressHash",
+                "holders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "addressHash",
+                  "description": "(Required) The address hash identifying the contract."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57275fda-c3ed-4a43-adce-24f9ed2e36af",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens",
+                    ":addressHash",
+                    "holders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "addressHash",
+                      "description": "(Required) The address hash identifying the contract."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"balances\": [\n        {\n          \"amount\": \"string\",\n          \"count\": \"string\",\n          \"lastUpdated\": 1209,\n          \"quantity\": 7813.976568618491,\n          \"tokenAddress\": \"string\",\n          \"tokenType\": \"ERC1967Proxy\",\n          \"holderAddress\": \"string\",\n          \"holderAddressLinks\": [\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tokenIds\": [\n            \"string\",\n            \"string\"\n          ],\n          \"symbol\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"amount\": \"string\",\n          \"count\": \"string\",\n          \"lastUpdated\": 2468,\n          \"quantity\": 5818.890245167206,\n          \"tokenAddress\": \"string\",\n          \"tokenType\": \"ERC1167Proxy\",\n          \"holderAddress\": \"string\",\n          \"holderAddressLinks\": [\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tokenIds\": [\n            \"string\",\n            \"string\"\n          ],\n          \"symbol\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"holderAddress\": \"string\",\n      \"holderAddressInfo\": {\n        \"address\": \"string\",\n        \"isContract\": false,\n        \"isProxy\": false,\n        \"isVerified\": true,\n        \"name\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"contractType\": \"nft\"\n      },\n      \"holderAddressLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ]\n    },\n    {\n      \"balances\": [\n        {\n          \"amount\": \"string\",\n          \"count\": \"string\",\n          \"lastUpdated\": 7026,\n          \"quantity\": 1822.1505547849547,\n          \"tokenAddress\": \"string\",\n          \"tokenType\": \"ERC777\",\n          \"holderAddress\": \"string\",\n          \"holderAddressLinks\": [\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tokenIds\": [\n            \"string\",\n            \"string\"\n          ],\n          \"symbol\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"amount\": \"string\",\n          \"count\": \"string\",\n          \"lastUpdated\": 4179,\n          \"quantity\": 2434.3557510234336,\n          \"tokenAddress\": \"string\",\n          \"tokenType\": \"ERC1155\",\n          \"holderAddress\": \"string\",\n          \"holderAddressLinks\": [\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"display\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"href\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rel\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"tokenIds\": [\n            \"string\",\n            \"string\"\n          ],\n          \"symbol\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"holderAddress\": \"string\",\n      \"holderAddressInfo\": {\n        \"address\": \"string\",\n        \"isContract\": true,\n        \"isProxy\": true,\n        \"isVerified\": true,\n        \"name\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"contractType\": \"contract\"\n      },\n      \"holderAddressLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"tokens\": [\n      {\n        \"address\": \"string\",\n        \"contractType\": \"string\",\n        \"lastExecutedTimestampISO\": \"string\",\n        \"transactionCount\": 4849,\n        \"verified\": false,\n        \"addressLinks\": [\n          {\n            \"display\": \"string\",\n            \"href\": \"string\",\n            \"rel\": \"string\"\n          },\n          {\n            \"display\": \"string\",\n            \"href\": \"string\",\n            \"rel\": \"string\"\n          }\n        ],\n        \"name\": \"string\",\n        \"symbol\": \"string\",\n        \"decimals\": 5020,\n        \"totalSupply\": 3997.7436536020814,\n        \"coverImage\": \"string\",\n        \"holdersCount\": 7451,\n        \"tokenCount\": 2262,\n        \"metadata\": {\n          \"attributes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"name\": \"string\",\n          \"collectionName\": \"string\",\n          \"artistAddress\": \"string\",\n          \"description\": \"string\",\n          \"image\": \"string\",\n          \"externalUrl\": \"string\",\n          \"resolvedImageUrl\": \"string\",\n          \"metadataUrl\": \"string\",\n          \"tokenId\": \"string\"\n        },\n        \"metadataUrl\": \"string\",\n        \"originalAssetLink\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"project\": {\n          \"address\": \"string\",\n          \"isActive\": true,\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"type\": \"DAPP\",\n          \"socialMedia\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"coverImage\": \"string\",\n          \"website\": \"string\"\n        },\n        \"marketData\": {\n          \"fdv\": 5424.856987351816,\n          \"market_cap\": 4960.460321530205,\n          \"market_change_24h_percent\": 8634.06710341855,\n          \"price_eth\": 9166.147343952758,\n          \"price_usd\": 6182.85370666029,\n          \"total_circulating_supply\": 3011.8773334616,\n          \"total_volume_24h\": 1357.5429357254932,\n          \"image\": \"string\"\n        }\n      },\n      {\n        \"address\": \"string\",\n        \"contractType\": \"string\",\n        \"lastExecutedTimestampISO\": \"string\",\n        \"transactionCount\": 1088,\n        \"verified\": true,\n        \"addressLinks\": [\n          {\n            \"display\": \"string\",\n            \"href\": \"string\",\n            \"rel\": \"string\"\n          },\n          {\n            \"display\": \"string\",\n            \"href\": \"string\",\n            \"rel\": \"string\"\n          }\n        ],\n        \"name\": \"string\",\n        \"symbol\": \"string\",\n        \"decimals\": 861,\n        \"totalSupply\": 557.5304272170433,\n        \"coverImage\": \"string\",\n        \"holdersCount\": 3131,\n        \"tokenCount\": 2773,\n        \"metadata\": {\n          \"attributes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"name\": \"string\",\n          \"collectionName\": \"string\",\n          \"artistAddress\": \"string\",\n          \"description\": \"string\",\n          \"image\": \"string\",\n          \"externalUrl\": \"string\",\n          \"resolvedImageUrl\": \"string\",\n          \"metadataUrl\": \"string\",\n          \"tokenId\": \"string\"\n        },\n        \"metadataUrl\": \"string\",\n        \"originalAssetLink\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"project\": {\n          \"address\": \"string\",\n          \"isActive\": true,\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"type\": \"DAPP\",\n          \"socialMedia\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"coverImage\": \"string\",\n          \"website\": \"string\"\n        },\n        \"marketData\": {\n          \"fdv\": 2586.9114641019464,\n          \"market_cap\": 9718.52643535327,\n          \"market_change_24h_percent\": 5094.274122087914,\n          \"price_eth\": 9423.459749457828,\n          \"price_usd\": 5506.802231609843,\n          \"total_circulating_supply\": 2598.3603051935243,\n          \"total_volume_24h\": 8786.010299107422,\n          \"image\": \"string\"\n        }\n      }\n    ]\n  },\n  \"paging\": {\n    \"direction\": \"DESC\",\n    \"page\": 585,\n    \"size\": 4210,\n    \"sort\": \"string\",\n    \"totalElements\": 5407\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "61dd8f3d-abc9-4e9e-a3e6-50e19cfe34b8",
+    "name": "Chainlens Account-Controller Token-Holders-Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.",
+      "type": "text/plain"
+    }
+  }
+}

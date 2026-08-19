@@ -1,0 +1,119 @@
+{
+  "item": [
+    {
+      "id": "87cab44d-22d7-41d5-819e-8aee4310e69c",
+      "name": "Contract-Bytecode-Controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "88cbf5f7-4835-4df4-bcd0-d39bf90b9c70",
+          "name": "Chainlens Retrieves bytecodes for a deployed contract.",
+          "request": {
+            "name": "Chainlens Retrieves bytecodes for a deployed contract.",
+            "description": {},
+            "url": {
+              "path": [
+                "contracts",
+                ":addressHash",
+                "bytecode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "addressHash",
+                  "description": "(Required) The address hash identifying the contract."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9772cbe-1d4f-43fa-b2ea-f415ee9355c9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contracts",
+                    ":addressHash",
+                    "bytecode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "addressHash",
+                      "description": "(Required) The address hash identifying the contract."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"creationData\": \"string\",\n  \"deployedCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bc6c3fed-83ac-4dac-a2ad-c996a417cdf4",
+    "name": "Chainlens Account-Controller Contract-Bytecode-Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.",
+      "type": "text/plain"
+    }
+  }
+}

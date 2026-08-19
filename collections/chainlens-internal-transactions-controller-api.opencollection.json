@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Internal-Transactions-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Internal-Transactions-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve all internal transactions for this transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions/:transactionHash/internal-transactions",
+            "params": [
+              {
+                "name": "transactionHash",
+                "value": "",
+                "type": "path",
+                "description": "The transaction hash identifying the transaction that contains the events."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve all internal transactions for this transaction."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve internal transactions by address.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/internal-transactions",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve internal transactions by address."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,347 @@
+{
+  "item": [
+    {
+      "id": "bea1ed72-d456-4f02-926f-81b6253cb3f8",
+      "name": "Token-Controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b34d91e-51b1-4133-9b78-16a8ffd850f5",
+          "name": "Chainlens Retrieve token contracts.",
+          "request": {
+            "name": "Chainlens Retrieve token contracts.",
+            "description": {},
+            "url": {
+              "path": [
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "tokenType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c9d5e08-c5ab-4d18-85a5-ccd32af7f6dd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tokenType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"address\": \"string\",\n      \"contractType\": \"string\",\n      \"lastExecutedTimestampISO\": \"string\",\n      \"transactionCount\": 8521,\n      \"verified\": true,\n      \"addressLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"symbol\": \"string\",\n      \"decimals\": 17,\n      \"totalSupply\": 8607.13561704762,\n      \"coverImage\": \"string\",\n      \"holdersCount\": 9642,\n      \"tokenCount\": 3352,\n      \"metadata\": {\n        \"attributes\": [\n          {\n            \"traitType\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"traitType\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"name\": \"string\",\n        \"collectionName\": \"string\",\n        \"artistAddress\": \"string\",\n        \"description\": \"string\",\n        \"image\": \"string\",\n        \"externalUrl\": \"string\",\n        \"resolvedImageUrl\": \"string\",\n        \"metadataUrl\": \"string\",\n        \"tokenId\": \"string\"\n      },\n      \"metadataUrl\": \"string\",\n      \"originalAssetLink\": \"string\",\n      \"verifiedStatus\": \"Full\",\n      \"project\": {\n        \"address\": \"string\",\n        \"isActive\": true,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": \"CONTRACT\",\n        \"socialMedia\": [\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"coverImage\": \"string\",\n        \"website\": \"string\"\n      },\n      \"marketData\": {\n        \"fdv\": 1820.8888742166073,\n        \"market_cap\": 8551.005466952576,\n        \"market_change_24h_percent\": 8149.937924726433,\n        \"price_eth\": 9386.227881383988,\n        \"price_usd\": 1672.0518732296086,\n        \"total_circulating_supply\": 2626.505655040308,\n        \"total_volume_24h\": 5582.071527381125,\n        \"image\": \"string\"\n      }\n    },\n    {\n      \"address\": \"string\",\n      \"contractType\": \"string\",\n      \"lastExecutedTimestampISO\": \"string\",\n      \"transactionCount\": 5475,\n      \"verified\": false,\n      \"addressLinks\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"name\": \"string\",\n      \"symbol\": \"string\",\n      \"decimals\": 2429,\n      \"totalSupply\": 397.428129136852,\n      \"coverImage\": \"string\",\n      \"holdersCount\": 3720,\n      \"tokenCount\": 4633,\n      \"metadata\": {\n        \"attributes\": [\n          {\n            \"traitType\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"traitType\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"name\": \"string\",\n        \"collectionName\": \"string\",\n        \"artistAddress\": \"string\",\n        \"description\": \"string\",\n        \"image\": \"string\",\n        \"externalUrl\": \"string\",\n        \"resolvedImageUrl\": \"string\",\n        \"metadataUrl\": \"string\",\n        \"tokenId\": \"string\"\n      },\n      \"metadataUrl\": \"string\",\n      \"originalAssetLink\": \"string\",\n      \"verifiedStatus\": \"Partial\",\n      \"project\": {\n        \"address\": \"string\",\n        \"isActive\": true,\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"type\": \"CONTRACT\",\n        \"socialMedia\": [\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"url\": \"string\"\n          }\n        ],\n        \"coverImage\": \"string\",\n        \"website\": \"string\"\n      },\n      \"marketData\": {\n        \"fdv\": 1579.594870003125,\n        \"market_cap\": 1362.1775890151189,\n        \"market_change_24h_percent\": 909.2929601162136,\n        \"price_eth\": 2879.830980459762,\n        \"price_usd\": 9271.526238280125,\n        \"total_circulating_supply\": 6079.17336847888,\n        \"total_volume_24h\": 4114.296990803385,\n        \"image\": \"string\"\n      }\n    }\n  ],\n  \"paging\": {\n    \"direction\": \"ASC\",\n    \"page\": 5711,\n    \"size\": 5753,\n    \"sort\": \"string\",\n    \"totalElements\": 4829\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8891231f-7d8b-47b5-9817-a78ede0b7bf7",
+          "name": "Chainlens Retrieve a token by its address hash.",
+          "request": {
+            "name": "Chainlens Retrieve a token by its address hash.",
+            "description": {},
+            "url": {
+              "path": [
+                "tokens",
+                ":addressHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "addressHash",
+                  "description": "(Required) The address hash identifying the contract."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ecc5253-3848-498d-9d1a-0a1ecbc41793",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens",
+                    ":addressHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "addressHash",
+                      "description": "(Required) The address hash identifying the contract."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"contractType\": \"string\",\n  \"lastExecutedTimestampISO\": \"string\",\n  \"transactionCount\": 6918,\n  \"verified\": true,\n  \"addressLinks\": [\n    {\n      \"display\": \"string\",\n      \"href\": \"string\",\n      \"rel\": \"string\"\n    },\n    {\n      \"display\": \"string\",\n      \"href\": \"string\",\n      \"rel\": \"string\"\n    }\n  ],\n  \"name\": \"string\",\n  \"symbol\": \"string\",\n  \"decimals\": 558,\n  \"totalSupply\": 9160.85364977008,\n  \"coverImage\": \"string\",\n  \"holdersCount\": 857,\n  \"tokenCount\": 7102,\n  \"metadata\": {\n    \"attributes\": [\n      {\n        \"traitType\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"traitType\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"name\": \"string\",\n    \"collectionName\": \"string\",\n    \"artistAddress\": \"string\",\n    \"description\": \"string\",\n    \"image\": \"string\",\n    \"externalUrl\": \"string\",\n    \"resolvedImageUrl\": \"string\",\n    \"metadataUrl\": \"string\",\n    \"tokenId\": \"string\"\n  },\n  \"metadataUrl\": \"string\",\n  \"originalAssetLink\": \"string\",\n  \"verifiedStatus\": \"Partial\",\n  \"project\": {\n    \"address\": \"string\",\n    \"isActive\": true,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"type\": \"DAPP\",\n    \"socialMedia\": [\n      {\n        \"name\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"coverImage\": \"string\",\n    \"website\": \"string\"\n  },\n  \"marketData\": {\n    \"fdv\": 8087.403622252221,\n    \"market_cap\": 472.3950825659573,\n    \"market_change_24h_percent\": 1258.5266245934179,\n    \"price_eth\": 8047.4582597652425,\n    \"price_usd\": 8896.237432156035,\n    \"total_circulating_supply\": 6061.052118562551,\n    \"total_volume_24h\": 7353.741796182723,\n    \"image\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e77fa0d0-6a2a-47dc-981e-268cfcb6e9e6",
+          "name": "Chainlens Retrieve token contracts by tokenId.",
+          "request": {
+            "name": "Chainlens Retrieve token contracts by tokenId.",
+            "description": {},
+            "url": {
+              "path": [
+                "tokens",
+                ":addressHash",
+                ":tokenId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "addressHash",
+                  "description": "(Required) The address hash identifying the contract."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tokenId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0cd77f20-9ee2-4123-a2d9-89dfe973181e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens",
+                    ":addressHash",
+                    ":tokenId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "addressHash",
+                      "description": "(Required) The address hash identifying the contract."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"contractType\": \"string\",\n  \"lastExecutedTimestampISO\": \"string\",\n  \"transactionCount\": 6918,\n  \"verified\": true,\n  \"addressLinks\": [\n    {\n      \"display\": \"string\",\n      \"href\": \"string\",\n      \"rel\": \"string\"\n    },\n    {\n      \"display\": \"string\",\n      \"href\": \"string\",\n      \"rel\": \"string\"\n    }\n  ],\n  \"name\": \"string\",\n  \"symbol\": \"string\",\n  \"decimals\": 558,\n  \"totalSupply\": 9160.85364977008,\n  \"coverImage\": \"string\",\n  \"holdersCount\": 857,\n  \"tokenCount\": 7102,\n  \"metadata\": {\n    \"attributes\": [\n      {\n        \"traitType\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"traitType\": \"string\",\n        \"value\": \"string\"\n      }\n    ],\n    \"name\": \"string\",\n    \"collectionName\": \"string\",\n    \"artistAddress\": \"string\",\n    \"description\": \"string\",\n    \"image\": \"string\",\n    \"externalUrl\": \"string\",\n    \"resolvedImageUrl\": \"string\",\n    \"metadataUrl\": \"string\",\n    \"tokenId\": \"string\"\n  },\n  \"metadataUrl\": \"string\",\n  \"originalAssetLink\": \"string\",\n  \"verifiedStatus\": \"Partial\",\n  \"project\": {\n    \"address\": \"string\",\n    \"isActive\": true,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"type\": \"DAPP\",\n    \"socialMedia\": [\n      {\n        \"name\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"coverImage\": \"string\",\n    \"website\": \"string\"\n  },\n  \"marketData\": {\n    \"fdv\": 8087.403622252221,\n    \"market_cap\": 472.3950825659573,\n    \"market_change_24h_percent\": 1258.5266245934179,\n    \"price_eth\": 8047.4582597652425,\n    \"price_usd\": 8896.237432156035,\n    \"total_circulating_supply\": 6061.052118562551,\n    \"total_volume_24h\": 7353.741796182723,\n    \"image\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "35a33a13-6579-43c2-9fbe-f0be41035d18",
+    "name": "Chainlens Account-Controller Token-Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.",
+      "type": "text/plain"
+    }
+  }
+}

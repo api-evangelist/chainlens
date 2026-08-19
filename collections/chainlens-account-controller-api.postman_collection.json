@@ -1,0 +1,236 @@
+{
+  "item": [
+    {
+      "id": "5b9aa6ed-b9de-4a39-8b34-bed3a800d5c6",
+      "name": "Account-Controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e20fb08-ca2e-48d4-8f21-9689472d2bb4",
+          "name": "Chainlens Retrieve all accounts.",
+          "request": {
+            "name": "Chainlens Retrieve all accounts.",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1847154-e492-4b74-8a34-921d526491b8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"address\": \"string\",\n      \"balance\": 6950,\n      \"balanceInDecimal\": 7207.226137739553,\n      \"ethBalance\": 9068.68858887204,\n      \"transactionCount\": 7393,\n      \"transactions\": 930,\n      \"links\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"tokenCount\": 9416,\n      \"nftCount\": 3632,\n      \"addressInfo\": {\n        \"address\": \"string\",\n        \"isContract\": false,\n        \"isProxy\": false,\n        \"isVerified\": true,\n        \"name\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"contractType\": \"token\"\n      }\n    },\n    {\n      \"address\": \"string\",\n      \"balance\": 9577,\n      \"balanceInDecimal\": 1211.4223005059998,\n      \"ethBalance\": 429.1914796679008,\n      \"transactionCount\": 3884,\n      \"transactions\": 746,\n      \"links\": [\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        },\n        {\n          \"display\": \"string\",\n          \"href\": \"string\",\n          \"rel\": \"string\"\n        }\n      ],\n      \"tokenCount\": 2012,\n      \"nftCount\": 5898,\n      \"addressInfo\": {\n        \"address\": \"string\",\n        \"isContract\": false,\n        \"isProxy\": false,\n        \"isVerified\": false,\n        \"name\": \"string\",\n        \"verifiedStatus\": \"Partial\",\n        \"contractType\": \"nft\"\n      }\n    }\n  ],\n  \"paging\": {\n    \"direction\": \"ASC\",\n    \"page\": 164,\n    \"size\": 6189,\n    \"sort\": \"string\",\n    \"totalElements\": 8794\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "411945f4-090f-4094-a5e1-517b5fbab4b7",
+          "name": "Chainlens Retrieve an account by its address hash.",
+          "request": {
+            "name": "Chainlens Retrieve an account by its address hash.",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts",
+                ":addressHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "addressHash",
+                  "description": "(Required) The address hash identifying the account."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89143e0c-5217-45ef-a756-2c5820a050a8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":addressHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "addressHash",
+                      "description": "(Required) The address hash identifying the account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"address\": \"string\",\n  \"balance\": 2649,\n  \"balanceInDecimal\": 5709.11881152324,\n  \"ethBalance\": 9080.281605435026,\n  \"transactionCount\": 2859,\n  \"transactions\": 3998,\n  \"links\": [\n    {\n      \"display\": \"string\",\n      \"href\": \"string\",\n      \"rel\": \"string\"\n    },\n    {\n      \"display\": \"string\",\n      \"href\": \"string\",\n      \"rel\": \"string\"\n    }\n  ],\n  \"tokenCount\": 7192,\n  \"nftCount\": 7684,\n  \"addressInfo\": {\n    \"address\": \"string\",\n    \"isContract\": true,\n    \"isProxy\": false,\n    \"isVerified\": false,\n    \"name\": \"string\",\n    \"verifiedStatus\": \"Partial\",\n    \"contractType\": \"token\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fc7c990c-1882-4306-959b-ec49203f334d",
+    "name": "Chainlens Account-Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.",
+      "type": "text/plain"
+    }
+  }
+}

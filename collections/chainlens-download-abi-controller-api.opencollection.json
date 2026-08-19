@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Download-Abi-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Download-Abi-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Download ABI for a verified contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/download/abi/:contractAddress",
+            "params": [
+              {
+                "name": "contractAddress",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Chainlens Download ABI for a verified contract"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Block-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Block-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve blocks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/blocks",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve blocks."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/blocks/:blockHash",
+            "params": [
+              {
+                "name": "blockHash",
+                "value": "",
+                "type": "path",
+                "description": "The hash or height identifying the block."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve a block by its hash or height."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

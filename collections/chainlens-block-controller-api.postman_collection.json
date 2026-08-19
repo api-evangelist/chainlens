@@ -1,0 +1,236 @@
+{
+  "item": [
+    {
+      "id": "31611256-6ae8-49be-bb79-387c086527fd",
+      "name": "Block-Controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50182863-70a7-457d-9da3-ef5a2ea328b1",
+          "name": "Chainlens Retrieve blocks.",
+          "request": {
+            "name": "Chainlens Retrieve blocks.",
+            "description": {},
+            "url": {
+              "path": [
+                "blocks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6954dea-1421-47c2-a3a2-6055dded0d2d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blocks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"hash\": \"string\",\n      \"number\": 2005,\n      \"timestampISO\": \"string\",\n      \"transactionCount\": 8633\n    },\n    {\n      \"hash\": \"string\",\n      \"number\": 1671,\n      \"timestampISO\": \"string\",\n      \"transactionCount\": 3526\n    }\n  ],\n  \"paging\": {\n    \"direction\": \"ASC\",\n    \"page\": 4286,\n    \"size\": 2043,\n    \"sort\": \"string\",\n    \"totalElements\": 8686\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a3f7dee-b8ad-47fb-9adf-a33d26d916e5",
+          "name": "Chainlens Retrieve a block by its hash or height.",
+          "request": {
+            "name": "Chainlens Retrieve a block by its hash or height.",
+            "description": {},
+            "url": {
+              "path": [
+                "blocks",
+                ":blockHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "blockHash",
+                  "description": "(Required) The hash or height identifying the block."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf90a350-5549-49ff-834b-bf0f39978e50",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blocks",
+                    ":blockHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "blockHash",
+                      "description": "(Required) The hash or height identifying the block."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"dateVerified\": 7435,\n  \"difficulty\": 1436,\n  \"extraData\": \"string\",\n  \"gasLimit\": 2787,\n  \"gasUsed\": 8835,\n  \"hash\": \"string\",\n  \"logsBloom\": \"string\",\n  \"miner\": \"string\",\n  \"number\": 6650,\n  \"parentHash\": \"string\",\n  \"receiptRoot\": \"string\",\n  \"sha3Uncles\": \"string\",\n  \"size\": 8476,\n  \"stateRoot\": \"string\",\n  \"timestampISO\": \"string\",\n  \"timestampVerifiedISO\": \"string\",\n  \"totalDifficulty\": 3050,\n  \"transactionCount\": 9091,\n  \"transactionsRoot\": \"string\",\n  \"uncles\": [\n    \"string\",\n    \"string\"\n  ],\n  \"mixHash\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "913c40d1-58de-4ea9-b702-df7202586607",
+    "name": "Chainlens Account-Controller Block-Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.",
+      "type": "text/plain"
+    }
+  }
+}

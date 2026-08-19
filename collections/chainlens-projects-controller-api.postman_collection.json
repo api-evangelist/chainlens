@@ -1,0 +1,101 @@
+{
+  "item": [
+    {
+      "id": "15e4faf2-b8bf-4462-8204-6a786df6cb15",
+      "name": "Projects-Controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e205de6-c6f3-43cf-baed-84fd29651575",
+          "name": "Chainlens Get a list of all recommended collections",
+          "request": {
+            "name": "Chainlens Get a list of all recommended collections",
+            "description": {},
+            "url": {
+              "path": [
+                "collections",
+                "recommended"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a461acd9-a8f7-4f16-8a55-72759367cd45",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "collections",
+                    "recommended"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"isActive\": true,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"type\": \"CONTRACT\",\n    \"socialMedia\": [\n      {\n        \"name\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"coverImage\": \"string\",\n    \"website\": \"string\"\n  },\n  {\n    \"address\": \"string\",\n    \"isActive\": false,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"type\": \"DAPP\",\n    \"socialMedia\": [\n      {\n        \"name\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"coverImage\": \"string\",\n    \"website\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3e8adbaa-40ed-46ed-94ca-bb68624399cc",
+    "name": "Chainlens Account-Controller Projects-Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.",
+      "type": "text/plain"
+    }
+  }
+}

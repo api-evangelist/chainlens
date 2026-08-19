@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Chainlens Account-Controller Search-Controller API",
+    "version": "master"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search-Controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Chainlens Retrieve blocks, transactions, accounts by hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search/",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The search query string."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve blocks, transactions, accounts by hash."
+        },
+        {
+          "info": {
+            "name": "Chainlens Retrieve blocks, transactions, accounts by hash.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The search query string."
+              }
+            ]
+          },
+          "docs": "Chainlens Retrieve blocks, transactions, accounts by hash."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
