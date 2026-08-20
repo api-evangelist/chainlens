@@ -10,6 +10,17 @@ tags:
   - DeFi
   - Ethereum
   - EVM
+  - NFT
+  - Smart Contracts
+  - Web3
+tags_raw:
+  - Analytics
+  - Blockchain
+  - Block Explorer
+  - Cryptocurrencies
+  - DeFi
+  - Ethereum
+  - EVM
   - NFTs
   - Smart Contracts
   - Web3
@@ -560,6 +571,8 @@ apis:
   humanURL: https://www.chainlens.com/
   baseURL: https://api.chainlens.com
   tags:
+  - search-controller
+  tags_raw:
   - Search-Controller
   properties:
   - type: OpenAPI
