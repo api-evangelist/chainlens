@@ -53,7 +53,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/chainlens.
 access: 3rd-Party
 created: '2024-11-07'
 modified: '2026-05-19'
-position: Consumer
+position: Consuming
 description: >-
   Chainlens, built by Web3 Labs, is a blockchain explorer and analytics platform for EVM-compatible public and private
   chains (Ethereum, Hyperledger Besu, Quorum, Polygon, Avalanche, BNB Chain, etc.) as well as Substrate-based chains. It
