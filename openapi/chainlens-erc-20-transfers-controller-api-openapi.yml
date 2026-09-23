@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller Erc-20-Transfers-Controller API
+  title: Chainlens Erc 20 Transfers Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
@@ -10,7 +10,7 @@ paths:
     get:
       tags:
       - Erc-20-Transfers-Controller
-      summary: Chainlens Retrieve transfers of an ERC20 Token.
+      summary: Chainlens Retrieve transfers of an ERC20 Token
       operationId: findERC20Transfers_1
       parameters:
       - name: addressHash
@@ -33,31 +33,6 @@ paths:
                 $ref: '#/components/schemas/LatestERC20TransfersModel'
 components:
   schemas:
-    LatestERC20TransfersModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ERC20TransactionRowModel'
-    Link:
-      required:
-      - display
-      - href
-      - rel
-      type: object
-      properties:
-        href:
-          type: string
-        rel:
-          type: string
-        display:
-          type: string
     ERC20TransactionRowModel:
       required:
       - from
@@ -94,60 +69,6 @@ components:
           type: string
         quantityRaw:
           type: number
-    AddressInfo:
-      required:
-      - address
-      - isContract
-      - isProxy
-      - isVerified
-      type: object
-      properties:
-        address:
-          type: string
-        name:
-          type: string
-        isContract:
-          type: boolean
-        isVerified:
-          type: boolean
-        isProxy:
-          type: boolean
-        verifiedStatus:
-          type: string
-          enum:
-          - Partial
-          - Full
-        contractType:
-          type: string
-          enum:
-          - contract
-          - nft
-          - token
-    PagingModel:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      - totalElements
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        sort:
-          type: string
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        totalElements:
-          type: integer
-          format: int64
     FindERC20TransfersQuery:
       required:
       - direction
@@ -177,6 +98,85 @@ components:
           - functionName
         filter:
           type: string
+    LatestERC20TransfersModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC20TransactionRowModel'
+    AddressInfo:
+      required:
+      - address
+      - isContract
+      - isProxy
+      - isVerified
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+        contractType:
+          type: string
+          enum:
+          - contract
+          - nft
+          - token
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

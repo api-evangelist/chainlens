@@ -1,16 +1,16 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller API
+  title: Chainlens Account Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
-- name: Account-Controller
+- name: Account Controller
 paths:
   /accounts:
     get:
       tags:
-      - Account-Controller
-      summary: Chainlens Retrieve all accounts.
+      - Account Controller
+      summary: Chainlens Retrieve all accounts
       operationId: getAccounts
       parameters:
       - name: query
@@ -28,8 +28,8 @@ paths:
   /accounts/{addressHash}:
     get:
       tags:
-      - Account-Controller
-      summary: Chainlens Retrieve an account by its address hash.
+      - Account Controller
+      summary: Chainlens Retrieve an account by its address hash
       operationId: getAccount_1
       parameters:
       - name: addressHash
@@ -47,19 +47,6 @@ paths:
                 $ref: '#/components/schemas/AccountModel'
 components:
   schemas:
-    Link:
-      required:
-      - display
-      - href
-      - rel
-      type: object
-      properties:
-        href:
-          type: string
-        rel:
-          type: string
-        display:
-          type: string
     FindAccountsQuery:
       required:
       - direction
@@ -121,18 +108,19 @@ components:
           - contract
           - nft
           - token
-    LatestAccountModel:
+    Link:
       required:
-      - data
-      - paging
+      - display
+      - href
+      - rel
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountModel'
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
     PagingModel:
       required:
       - direction
@@ -158,6 +146,18 @@ components:
         totalElements:
           type: integer
           format: int64
+    LatestAccountModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountModel'
     AccountModel:
       required:
       - address

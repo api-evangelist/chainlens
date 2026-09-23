@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller Node-Controller API
+  title: Chainlens Node Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
@@ -10,7 +10,7 @@ paths:
     get:
       tags:
       - Node-Controller
-      summary: Chainlens Node details.
+      summary: Chainlens Node details
       operationId: details
       responses:
         '200':

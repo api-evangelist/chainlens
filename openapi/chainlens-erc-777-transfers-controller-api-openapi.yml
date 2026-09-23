@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller Erc-777-Transfers-Controller API
+  title: Chainlens Erc 777 Transfers Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
@@ -10,7 +10,7 @@ paths:
     get:
       tags:
       - Erc-777-Transfers-Controller
-      summary: Chainlens Retrieve transfers of an ERC777 Token.
+      summary: Chainlens Retrieve transfers of an ERC777 Token
       operationId: findERC777Transfers
       parameters:
       - name: addressHash
@@ -33,19 +33,6 @@ paths:
                 $ref: '#/components/schemas/LatestERC777TransfersModel'
 components:
   schemas:
-    Link:
-      required:
-      - display
-      - href
-      - rel
-      type: object
-      properties:
-        href:
-          type: string
-        rel:
-          type: string
-        display:
-          type: string
     LatestERC777TransfersModel:
       required:
       - data
@@ -86,6 +73,55 @@ components:
           - timestampISO
           - functionName
         filter:
+          type: string
+    ERC777TransactionRowModel:
+      required:
+      - amount
+      - amountRaw
+      - from
+      - fromLinks
+      - hash
+      - timestampISO
+      - to
+      - toLinks
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        amount:
+          type: string
+        amountRaw:
+          type: number
+        timestampISO:
+          type: string
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
           type: string
     AddressInfo:
       required:
@@ -141,42 +177,6 @@ components:
         totalElements:
           type: integer
           format: int64
-    ERC777TransactionRowModel:
-      required:
-      - amount
-      - amountRaw
-      - from
-      - fromLinks
-      - hash
-      - timestampISO
-      - to
-      - toLinks
-      type: object
-      properties:
-        hash:
-          type: string
-        from:
-          type: string
-        fromLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        to:
-          type: string
-        fromAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        toAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        toLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        amount:
-          type: string
-        amountRaw:
-          type: number
-        timestampISO:
-          type: string
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

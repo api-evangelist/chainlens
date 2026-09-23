@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller Contract-Controller API
+  title: Chainlens Contract Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
@@ -10,7 +10,7 @@ paths:
     get:
       tags:
       - Contract-Controller
-      summary: Chainlens Retrieve contracts.
+      summary: Chainlens Retrieve contracts
       operationId: findContracts
       parameters:
       - name: query
@@ -29,7 +29,7 @@ paths:
     get:
       tags:
       - Contract-Controller
-      summary: Chainlens Retrieve a contract by its address hash.
+      summary: Chainlens Retrieve a contract by its address hash
       operationId: getContract
       parameters:
       - name: addressHash
@@ -47,56 +47,47 @@ paths:
                 $ref: '#/components/schemas/ContractModel'
 components:
   schemas:
-    ContractRowModel:
+    LatestContractModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContractRowModel'
+    AddressInfo:
       required:
       - address
-      - contractAddressInfo
-      - contractCreator
-      - contractCreatorInfo
-      - contractType
-      - createdTimestampISO
-      - createdTransaction
-      - lastExecutedTimestampISO
-      - lastExecutedTransaction
-      - links
-      - transactionCount
-      - verified
+      - isContract
+      - isProxy
+      - isVerified
       type: object
       properties:
         address:
           type: string
-        contractAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        contractCreator:
+        name:
           type: string
-        contractCreatorInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        createdTimestampISO:
-          type: string
-        createdTransaction:
-          type: string
-        lastExecutedTimestampISO:
-          type: string
-        lastExecutedTransaction:
-          type: string
-        transactionCount:
-          type: integer
-          format: int64
-        contractType:
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        verified:
+        isContract:
           type: boolean
-        contractName:
-          type: string
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
         verifiedStatus:
           type: string
           enum:
           - Partial
           - Full
+        contractType:
+          type: string
+          enum:
+          - contract
+          - nft
+          - token
     Link:
       required:
       - display
@@ -109,6 +100,38 @@ components:
         rel:
           type: string
         display:
+          type: string
+    FindContractsQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - created
+          - lastExecuted
+          - transactionCount
+          - contractType
+          - verified
+        filter:
           type: string
     ContractModel:
       required:
@@ -178,79 +201,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AddressInfo'
-    LatestContractModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContractRowModel'
-    AddressInfo:
-      required:
-      - address
-      - isContract
-      - isProxy
-      - isVerified
-      type: object
-      properties:
-        address:
-          type: string
-        name:
-          type: string
-        isContract:
-          type: boolean
-        isVerified:
-          type: boolean
-        isProxy:
-          type: boolean
-        verifiedStatus:
-          type: string
-          enum:
-          - Partial
-          - Full
-        contractType:
-          type: string
-          enum:
-          - contract
-          - nft
-          - token
-    FindContractsQuery:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      type: object
-      properties:
-        page:
-          minimum: 0
-          type: integer
-          format: int32
-        size:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        sort:
-          type: string
-          enum:
-          - created
-          - lastExecuted
-          - transactionCount
-          - contractType
-          - verified
-        filter:
-          type: string
     PagingModel:
       required:
       - direction
@@ -276,6 +226,56 @@ components:
         totalElements:
           type: integer
           format: int64
+    ContractRowModel:
+      required:
+      - address
+      - contractAddressInfo
+      - contractCreator
+      - contractCreatorInfo
+      - contractType
+      - createdTimestampISO
+      - createdTransaction
+      - lastExecutedTimestampISO
+      - lastExecutedTransaction
+      - links
+      - transactionCount
+      - verified
+      type: object
+      properties:
+        address:
+          type: string
+        contractAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        contractCreator:
+          type: string
+        contractCreatorInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        createdTimestampISO:
+          type: string
+        createdTransaction:
+          type: string
+        lastExecutedTimestampISO:
+          type: string
+        lastExecutedTransaction:
+          type: string
+        transactionCount:
+          type: integer
+          format: int64
+        contractType:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        verified:
+          type: boolean
+        contractName:
+          type: string
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

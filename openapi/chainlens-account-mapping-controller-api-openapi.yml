@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller Account-Mapping-Controller API
+  title: Chainlens Account Mapping Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
@@ -43,33 +43,32 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/AccountMappingModel'
+      summary: Get account
+      x-summary-source: derived
 components:
   schemas:
-    PagingModel:
+    LatestAccountMappingModel:
       required:
-      - direction
-      - page
-      - size
-      - sort
-      - totalElements
+      - data
+      - paging
       type: object
       properties:
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        sort:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountMappingModel'
+    AccountMappingModel:
+      required:
+      - address
+      - label
+      type: object
+      properties:
+        address:
           type: string
-        direction:
+        label:
           type: string
-          enum:
-          - ASC
-          - DESC
-        totalElements:
-          type: integer
-          format: int64
     FindAccountMappingQuery:
       required:
       - direction
@@ -99,28 +98,31 @@ components:
           - label
         filter:
           type: string
-    LatestAccountMappingModel:
+    PagingModel:
       required:
-      - data
-      - paging
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountMappingModel'
-    AccountMappingModel:
-      required:
-      - address
-      - label
-      type: object
-      properties:
-        address:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
           type: string
-        label:
+        direction:
           type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

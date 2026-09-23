@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller Account-Tokens-Controller API
+  title: Chainlens Account Tokens Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
@@ -10,7 +10,7 @@ paths:
     get:
       tags:
       - Account-Tokens-Controller
-      summary: Chainlens Retrieve token holdings by account.
+      summary: Chainlens Retrieve token holdings by account
       operationId: findAccountTokens
       parameters:
       - name: addressHash
@@ -35,7 +35,7 @@ paths:
     get:
       tags:
       - Account-Tokens-Controller
-      summary: Chainlens Retrieve NFT items by account.
+      summary: Chainlens Retrieve NFT items by account
       operationId: findAccountNFTs
       parameters:
       - name: addressHash
@@ -60,7 +60,7 @@ paths:
     get:
       tags:
       - Account-Tokens-Controller
-      summary: Chainlens Retrieve a non-fungible item holdings for an account.
+      summary: Chainlens Retrieve a non-fungible item holdings for an account
       operationId: findAccountCollectionItems
       parameters:
       - name: addressHash
@@ -89,18 +89,42 @@ paths:
                 $ref: '#/components/schemas/CollectionItemsModel'
 components:
   schemas:
-    Link:
+    Attribute:
       required:
-      - display
-      - href
-      - rel
+      - traitType
+      - value
       type: object
       properties:
-        href:
+        traitType:
           type: string
-        rel:
+        value:
           type: string
-        display:
+    MarketDataModel:
+      required:
+      - fdv
+      - market_cap
+      - market_change_24h_percent
+      - price_eth
+      - price_usd
+      - total_circulating_supply
+      - total_volume_24h
+      type: object
+      properties:
+        fdv:
+          type: number
+        market_cap:
+          type: number
+        total_volume_24h:
+          type: number
+        total_circulating_supply:
+          type: number
+        price_usd:
+          type: number
+        price_eth:
+          type: number
+        market_change_24h_percent:
+          type: number
+        image:
           type: string
     TokenBalancesModel:
       required:
@@ -173,33 +197,6 @@ components:
           $ref: '#/components/schemas/ProjectModel'
         marketData:
           $ref: '#/components/schemas/MarketDataModel'
-    ProjectModel:
-      required:
-      - address
-      - isActive
-      type: object
-      properties:
-        address:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - CONTRACT
-          - DAPP
-        socialMedia:
-          type: array
-          items:
-            $ref: '#/components/schemas/SocialLink'
-        isActive:
-          type: boolean
-        coverImage:
-          type: string
-        website:
-          type: string
     TokenBalancesRowModel:
       required:
       - amount
@@ -249,53 +246,6 @@ components:
         lastUpdated:
           type: integer
           format: int64
-    TokenBalancesByHolderRowModel:
-      required:
-      - balances
-      - holderAddress
-      - holderAddressInfo
-      - holderAddressLinks
-      type: object
-      properties:
-        holderAddress:
-          type: string
-        holderAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        holderAddressLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        balances:
-          type: array
-          items:
-            $ref: '#/components/schemas/TokenBalancesRowModel'
-    FindAccountTokenHoldingsQuery:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        sort:
-          type: string
-          enum:
-          - lastUpdated
-          - holderAddress
-          - amount
-        filter:
-          type: string
     CollectionItemsModel:
       required:
       - data
@@ -308,32 +258,73 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CollectionItem'
-    CollectionMetadataModel:
+    CollectionItem:
       required:
-      - attributes
+      - amount
+      - holderAddress
+      - tokenAddress
+      - tokenId
+      type: object
+      properties:
+        holderAddress:
+          type: string
+        tokenAddress:
+          type: string
+        tokenId:
+          type: string
+        collection:
+          $ref: '#/components/schemas/TokenModel'
+        amount:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/CollectionMetadataModel'
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    SocialLink:
+      required:
+      - name
+      - url
       type: object
       properties:
         name:
           type: string
-        collectionName:
-          type: string
-        artistAddress:
-          type: string
-        description:
-          type: string
-        image:
-          type: string
-        externalUrl:
-          type: string
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-        resolvedImageUrl:
-          type: string
-        metadataUrl:
-          type: string
-        tokenId:
+        url:
           type: string
     AddressInfo:
       required:
@@ -364,41 +355,60 @@ components:
           - contract
           - nft
           - token
-    SocialLink:
+    CollectionMetadataModel:
       required:
-      - name
-      - url
+      - attributes
       type: object
       properties:
         name:
           type: string
-        url:
+        collectionName:
           type: string
-    PagingModel:
+        artistAddress:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        externalUrl:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        resolvedImageUrl:
+          type: string
+        metadataUrl:
+          type: string
+        tokenId:
+          type: string
+    ProjectModel:
       required:
-      - direction
-      - page
-      - size
-      - sort
-      - totalElements
+      - address
+      - isActive
       type: object
       properties:
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        sort:
+        address:
           type: string
-        direction:
+        name:
+          type: string
+        description:
+          type: string
+        type:
           type: string
           enum:
-          - ASC
-          - DESC
-        totalElements:
-          type: integer
-          format: int64
+          - CONTRACT
+          - DAPP
+        socialMedia:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialLink'
+        isActive:
+          type: boolean
+        coverImage:
+          type: string
+        website:
+          type: string
     FindCollectionItemsHoldingsQuery:
       required:
       - direction
@@ -426,33 +436,26 @@ components:
           - amount
         filter:
           type: string
-    MarketDataModel:
+    TokenBalancesByHolderRowModel:
       required:
-      - fdv
-      - market_cap
-      - market_change_24h_percent
-      - price_eth
-      - price_usd
-      - total_circulating_supply
-      - total_volume_24h
+      - balances
+      - holderAddress
+      - holderAddressInfo
+      - holderAddressLinks
       type: object
       properties:
-        fdv:
-          type: number
-        market_cap:
-          type: number
-        total_volume_24h:
-          type: number
-        total_circulating_supply:
-          type: number
-        price_usd:
-          type: number
-        price_eth:
-          type: number
-        market_change_24h_percent:
-          type: number
-        image:
+        holderAddress:
           type: string
+        holderAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        holderAddressLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenBalancesRowModel'
     TokenBalancesMetaData:
       required:
       - tokens
@@ -462,36 +465,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TokenModel'
-    Attribute:
+    FindAccountTokenHoldingsQuery:
       required:
-      - traitType
-      - value
+      - direction
+      - page
+      - size
+      - sort
       type: object
       properties:
-        traitType:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        direction:
           type: string
-        value:
+          enum:
+          - ASC
+          - DESC
+        sort:
           type: string
-    CollectionItem:
-      required:
-      - amount
-      - holderAddress
-      - tokenAddress
-      - tokenId
-      type: object
-      properties:
-        holderAddress:
+          enum:
+          - lastUpdated
+          - holderAddress
+          - amount
+        filter:
           type: string
-        tokenAddress:
-          type: string
-        tokenId:
-          type: string
-        collection:
-          $ref: '#/components/schemas/TokenModel'
-        amount:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/CollectionMetadataModel'
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

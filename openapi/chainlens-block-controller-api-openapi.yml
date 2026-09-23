@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller Block-Controller API
+  title: Chainlens Block Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
@@ -10,7 +10,7 @@ paths:
     get:
       tags:
       - Block-Controller
-      summary: Chainlens Retrieve blocks.
+      summary: Chainlens Retrieve blocks
       operationId: findBlocks
       parameters:
       - name: query
@@ -29,7 +29,7 @@ paths:
     get:
       tags:
       - Block-Controller
-      summary: Chainlens Retrieve a block by its hash or height.
+      summary: Chainlens Retrieve a block by its hash or height
       operationId: getBlock
       parameters:
       - name: blockHash
@@ -47,66 +47,6 @@ paths:
                 $ref: '#/components/schemas/BlockModel'
 components:
   schemas:
-    BlockRowModel:
-      required:
-      - hash
-      - number
-      - timestampISO
-      - transactionCount
-      type: object
-      properties:
-        number:
-          type: integer
-          format: int64
-        hash:
-          type: string
-        timestampISO:
-          type: string
-        transactionCount:
-          type: integer
-          format: int32
-    LatestBlockModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BlockRowModel'
-    FindBlocksQuery:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      type: object
-      properties:
-        page:
-          minimum: 0
-          type: integer
-          format: int32
-        size:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        sort:
-          type: string
-          enum:
-          - number
-          - timestampISO
-          - transactionCount
-        filter:
-          type: string
     PagingModel:
       required:
       - direction
@@ -202,6 +142,66 @@ components:
         timestampISO:
           type: string
         timestampVerifiedISO:
+          type: string
+    BlockRowModel:
+      required:
+      - hash
+      - number
+      - timestampISO
+      - transactionCount
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int64
+        hash:
+          type: string
+        timestampISO:
+          type: string
+        transactionCount:
+          type: integer
+          format: int32
+    LatestBlockModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockRowModel'
+    FindBlocksQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - number
+          - timestampISO
+          - transactionCount
+        filter:
           type: string
 externalDocs:
   description: Chainlens Documentation

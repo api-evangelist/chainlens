@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller Erc-721-Transfers-Controller API
+  title: Chainlens Erc 721 Transfers Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
@@ -10,7 +10,7 @@ paths:
     get:
       tags:
       - Erc-721-Transfers-Controller
-      summary: Chainlens Retrieve transfers of an ERC721 Token.
+      summary: Chainlens Retrieve transfers of an ERC721 Token
       operationId: findERC721Transfers
       parameters:
       - name: addressHash
@@ -35,7 +35,7 @@ paths:
     get:
       tags:
       - Erc-721-Transfers-Controller
-      summary: Chainlens Retrieve transfers of an ERC721 Token.
+      summary: Chainlens Retrieve transfers of an ERC721 Token
       operationId: findERC721Transfers_1
       parameters:
       - name: addressHash
@@ -64,19 +64,6 @@ paths:
                 $ref: '#/components/schemas/LatestERC721TransfersModel'
 components:
   schemas:
-    Link:
-      required:
-      - display
-      - href
-      - rel
-      type: object
-      properties:
-        href:
-          type: string
-        rel:
-          type: string
-        display:
-          type: string
     FindERC721TransfersQuery:
       required:
       - direction
@@ -106,51 +93,6 @@ components:
           - functionName
         filter:
           type: string
-    LatestERC721TransfersModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ERC721TransactionRowModel'
-    ERC721TransactionRowModel:
-      required:
-      - from
-      - fromLinks
-      - hash
-      - timestampISO
-      - to
-      - toLinks
-      - tokenId
-      type: object
-      properties:
-        hash:
-          type: string
-        from:
-          type: string
-        fromLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        to:
-          type: string
-        toLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        tokenId:
-          type: string
-        timestampISO:
-          type: string
-        fromAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        toAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
     AddressInfo:
       required:
       - address
@@ -205,6 +147,64 @@ components:
         totalElements:
           type: integer
           format: int64
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    ERC721TransactionRowModel:
+      required:
+      - from
+      - fromLinks
+      - hash
+      - timestampISO
+      - to
+      - toLinks
+      - tokenId
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        tokenId:
+          type: string
+        timestampISO:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+    LatestERC721TransfersModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC721TransactionRowModel'
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

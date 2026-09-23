@@ -1,16 +1,16 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller Search-Controller API
+  title: Chainlens Search Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
-- name: Search-Controller
+- name: Search Controller
 paths:
   /search/:
     get:
       tags:
-      - Search-Controller
-      summary: Chainlens Retrieve blocks, transactions, accounts by hash.
+      - Search Controller
+      summary: Chainlens Retrieve blocks, transactions, accounts by hash
       operationId: search
       parameters:
       - name: query
@@ -29,8 +29,8 @@ paths:
   /search:
     get:
       tags:
-      - Search-Controller
-      summary: Chainlens Retrieve blocks, transactions, accounts by hash.
+      - Search Controller
+      summary: Chainlens Retrieve blocks, transactions, accounts by hash
       operationId: search_1
       parameters:
       - name: query
@@ -48,16 +48,6 @@ paths:
                 $ref: '#/components/schemas/ListSearchResultModel'
 components:
   schemas:
-    SearchRecommendation:
-      required:
-      - link
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-        link:
-          $ref: '#/components/schemas/Link'
     Link:
       required:
       - display
@@ -71,6 +61,16 @@ components:
           type: string
         display:
           type: string
+    SearchRecommendation:
+      required:
+      - link
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+        link:
+          $ref: '#/components/schemas/Link'
     ListSearchResultModel:
       required:
       - data

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller Rwa-Controller API
+  title: Chainlens Rwa Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
@@ -10,7 +10,7 @@ paths:
     get:
       tags:
       - Rwa-Controller
-      summary: Chainlens Retrieve ERC3643 tokens.
+      summary: Chainlens Retrieve ERC3643 tokens
       operationId: findTokens_1
       parameters:
       - name: query
@@ -29,7 +29,7 @@ paths:
     get:
       tags:
       - Rwa-Controller
-      summary: Chainlens Retrieve a ERC3643 by its address hash.
+      summary: Chainlens Retrieve a ERC3643 by its address hash
       operationId: getToken_2
       parameters:
       - name: addressHash
@@ -49,7 +49,7 @@ paths:
     get:
       tags:
       - Rwa-Controller
-      summary: Chainlens Retrieve token metadata for a given token contract address and token id.
+      summary: Chainlens Retrieve token metadata for a given token contract address and token…
       operationId: getTokenMetadata
       parameters:
       - name: addressHash
@@ -74,7 +74,7 @@ paths:
     get:
       tags:
       - Rwa-Controller
-      summary: Chainlens Retrieve a list of token holders by token contract address hash.
+      summary: Chainlens Retrieve a list of token holders by token contract address hash
       operationId: getTokenHolders_1
       parameters:
       - name: addressHash
@@ -99,7 +99,7 @@ paths:
     get:
       tags:
       - Rwa-Controller
-      summary: Chainlens Retrieve transfers of an ERC3643 Token.
+      summary: Chainlens Retrieve transfers of an ERC3643 Token
       operationId: findERC3643Transfers
       parameters:
       - name: addressHash
@@ -122,123 +122,6 @@ paths:
                 $ref: '#/components/schemas/LatestERC3643TransfersModel'
 components:
   schemas:
-    Link:
-      required:
-      - display
-      - href
-      - rel
-      type: object
-      properties:
-        href:
-          type: string
-        rel:
-          type: string
-        display:
-          type: string
-    MetadataImageLink:
-      type: object
-      properties:
-        url:
-          type: string
-    ListTokenModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TokenModel'
-    TokenBalancesByHolderRowModel:
-      required:
-      - balances
-      - holderAddress
-      - holderAddressInfo
-      - holderAddressLinks
-      type: object
-      properties:
-        holderAddress:
-          type: string
-        holderAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        holderAddressLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        balances:
-          type: array
-          items:
-            $ref: '#/components/schemas/TokenBalancesRowModel'
-    TokenBalancesMetaData:
-      required:
-      - tokens
-      type: object
-      properties:
-        tokens:
-          type: array
-          items:
-            $ref: '#/components/schemas/TokenModel'
-    ERC3643TransactionRowModel:
-      required:
-      - from
-      - fromLinks
-      - hash
-      - quantity
-      - quantityRaw
-      - timestampISO
-      - to
-      - toLinks
-      type: object
-      properties:
-        hash:
-          type: string
-        from:
-          type: string
-        fromLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        to:
-          type: string
-        fromAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        toAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        toLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        timestampISO:
-          type: string
-        quantity:
-          type: string
-        quantityRaw:
-          type: number
-    LatestERC3643TransfersModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ERC3643TransactionRowModel'
-    SocialLink:
-      required:
-      - name
-      - url
-      type: object
-      properties:
-        name:
-          type: string
-        url:
-          type: string
     MarketDataModel:
       required:
       - fdv
@@ -266,12 +149,85 @@ components:
           type: number
         image:
           type: string
-    FindERC3643TransfersQuery:
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    ListTokenModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenModel'
+    CollectionMetadataModel:
+      required:
+      - attributes
+      type: object
+      properties:
+        name:
+          type: string
+        collectionName:
+          type: string
+        artistAddress:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        externalUrl:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        resolvedImageUrl:
+          type: string
+        metadataUrl:
+          type: string
+        tokenId:
+          type: string
+    TokenBalancesByHolderRowModel:
+      required:
+      - balances
+      - holderAddress
+      - holderAddressInfo
+      - holderAddressLinks
+      type: object
+      properties:
+        holderAddress:
+          type: string
+        holderAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        holderAddressLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenBalancesRowModel'
+    FindTokensQuery:
       required:
       - direction
       - page
       - size
       - sort
+      - tokenType
       type: object
       properties:
         page:
@@ -291,39 +247,26 @@ components:
         sort:
           type: string
           enum:
-          - timestampISO
-          - functionName
+          - lastActivity
+          - transactionCount
+          - totalTokenCount
+          - holdersCount
+          - totalSupply
+          - contractType
+          - verified
         filter:
           type: string
-    FindTokenBalanceQuery:
-      required:
-      - direction
-      - page
-      - size
-      - sort
+        tokenType:
+          type: string
+          enum:
+          - NFT
+          - RWA
+          - TOKEN
+          - DEFAULT
+    MetadataImageLink:
       type: object
       properties:
-        page:
-          minimum: 0
-          type: integer
-          format: int32
-        size:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        sort:
-          type: string
-          enum:
-          - lastUpdated
-          - holderAddress
-          - amount
-        filter:
+        url:
           type: string
     TokenBalancesRowModel:
       required:
@@ -374,43 +317,6 @@ components:
         lastUpdated:
           type: integer
           format: int64
-    CollectionMetadataModel:
-      required:
-      - attributes
-      type: object
-      properties:
-        name:
-          type: string
-        collectionName:
-          type: string
-        artistAddress:
-          type: string
-        description:
-          type: string
-        image:
-          type: string
-        externalUrl:
-          type: string
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-        resolvedImageUrl:
-          type: string
-        metadataUrl:
-          type: string
-        tokenId:
-          type: string
-    Attribute:
-      required:
-      - traitType
-      - value
-      type: object
-      properties:
-        traitType:
-          type: string
-        value:
-          type: string
     TokenBalancesModel:
       required:
       - data
@@ -426,6 +332,35 @@ components:
             $ref: '#/components/schemas/TokenBalancesByHolderRowModel'
         metadata:
           $ref: '#/components/schemas/TokenBalancesMetaData'
+    FindERC3643TransfersQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - timestampISO
+          - functionName
+        filter:
+          type: string
     TokenModel:
       required:
       - address
@@ -482,32 +417,25 @@ components:
           $ref: '#/components/schemas/ProjectModel'
         marketData:
           $ref: '#/components/schemas/MarketDataModel'
-    ProjectModel:
+    SocialLink:
       required:
-      - address
-      - isActive
+      - name
+      - url
       type: object
       properties:
-        address:
-          type: string
         name:
           type: string
-        description:
+        url:
           type: string
-        type:
+    Attribute:
+      required:
+      - traitType
+      - value
+      type: object
+      properties:
+        traitType:
           type: string
-          enum:
-          - CONTRACT
-          - DAPP
-        socialMedia:
-          type: array
-          items:
-            $ref: '#/components/schemas/SocialLink'
-        isActive:
-          type: boolean
-        coverImage:
-          type: string
-        website:
+        value:
           type: string
     AddressInfo:
       required:
@@ -538,6 +466,42 @@ components:
           - contract
           - nft
           - token
+    ERC3643TransactionRowModel:
+      required:
+      - from
+      - fromLinks
+      - hash
+      - quantity
+      - quantityRaw
+      - timestampISO
+      - to
+      - toLinks
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        timestampISO:
+          type: string
+        quantity:
+          type: string
+        quantityRaw:
+          type: number
     PagingModel:
       required:
       - direction
@@ -563,13 +527,48 @@ components:
         totalElements:
           type: integer
           format: int64
-    FindTokensQuery:
+    ProjectModel:
+      required:
+      - address
+      - isActive
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - CONTRACT
+          - DAPP
+        socialMedia:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialLink'
+        isActive:
+          type: boolean
+        coverImage:
+          type: string
+        website:
+          type: string
+    TokenBalancesMetaData:
+      required:
+      - tokens
+      type: object
+      properties:
+        tokens:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenModel'
+    FindTokenBalanceQuery:
       required:
       - direction
       - page
       - size
       - sort
-      - tokenType
       type: object
       properties:
         page:
@@ -589,22 +588,23 @@ components:
         sort:
           type: string
           enum:
-          - lastActivity
-          - transactionCount
-          - totalTokenCount
-          - holdersCount
-          - totalSupply
-          - contractType
-          - verified
+          - lastUpdated
+          - holderAddress
+          - amount
         filter:
           type: string
-        tokenType:
-          type: string
-          enum:
-          - NFT
-          - RWA
-          - TOKEN
-          - DEFAULT
+    LatestERC3643TransfersModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC3643TransactionRowModel'
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

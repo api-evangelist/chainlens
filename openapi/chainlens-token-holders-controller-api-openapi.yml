@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller Token-Holders-Controller API
+  title: Chainlens Token Holders Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
@@ -10,7 +10,7 @@ paths:
     get:
       tags:
       - Token-Holders-Controller
-      summary: Chainlens Retrieve a list of token holders by token contract address hash.
+      summary: Chainlens Retrieve a list of token holders by token contract address hash
       operationId: getTokenHolders
       parameters:
       - name: addressHash
@@ -33,18 +33,15 @@ paths:
                 $ref: '#/components/schemas/TokenBalancesModel'
 components:
   schemas:
-    Link:
+    Attribute:
       required:
-      - display
-      - href
-      - rel
+      - traitType
+      - value
       type: object
       properties:
-        href:
+        traitType:
           type: string
-        rel:
-          type: string
-        display:
+        value:
           type: string
     TokenBalancesModel:
       required:
@@ -61,6 +58,33 @@ components:
             $ref: '#/components/schemas/TokenBalancesByHolderRowModel'
         metadata:
           $ref: '#/components/schemas/TokenBalancesMetaData'
+    MarketDataModel:
+      required:
+      - fdv
+      - market_cap
+      - market_change_24h_percent
+      - price_eth
+      - price_usd
+      - total_circulating_supply
+      - total_volume_24h
+      type: object
+      properties:
+        fdv:
+          type: number
+        market_cap:
+          type: number
+        total_volume_24h:
+          type: number
+        total_circulating_supply:
+          type: number
+        price_usd:
+          type: number
+        price_eth:
+          type: number
+        market_change_24h_percent:
+          type: number
+        image:
+          type: string
     TokenModel:
       required:
       - address
@@ -117,33 +141,6 @@ components:
           $ref: '#/components/schemas/ProjectModel'
         marketData:
           $ref: '#/components/schemas/MarketDataModel'
-    ProjectModel:
-      required:
-      - address
-      - isActive
-      type: object
-      properties:
-        address:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - CONTRACT
-          - DAPP
-        socialMedia:
-          type: array
-          items:
-            $ref: '#/components/schemas/SocialLink'
-        isActive:
-          type: boolean
-        coverImage:
-          type: string
-        website:
-          type: string
     TokenBalancesRowModel:
       required:
       - amount
@@ -193,112 +190,19 @@ components:
         lastUpdated:
           type: integer
           format: int64
-    FindTokenBalanceQuery:
+    Link:
       required:
-      - direction
-      - page
-      - size
-      - sort
+      - display
+      - href
+      - rel
       type: object
       properties:
-        page:
-          minimum: 0
-          type: integer
-          format: int32
-        size:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        direction:
+        href:
           type: string
-          enum:
-          - ASC
-          - DESC
-        sort:
+        rel:
           type: string
-          enum:
-          - lastUpdated
-          - holderAddress
-          - amount
-        filter:
+        display:
           type: string
-    TokenBalancesByHolderRowModel:
-      required:
-      - balances
-      - holderAddress
-      - holderAddressInfo
-      - holderAddressLinks
-      type: object
-      properties:
-        holderAddress:
-          type: string
-        holderAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        holderAddressLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        balances:
-          type: array
-          items:
-            $ref: '#/components/schemas/TokenBalancesRowModel'
-    CollectionMetadataModel:
-      required:
-      - attributes
-      type: object
-      properties:
-        name:
-          type: string
-        collectionName:
-          type: string
-        artistAddress:
-          type: string
-        description:
-          type: string
-        image:
-          type: string
-        externalUrl:
-          type: string
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-        resolvedImageUrl:
-          type: string
-        metadataUrl:
-          type: string
-        tokenId:
-          type: string
-    AddressInfo:
-      required:
-      - address
-      - isContract
-      - isProxy
-      - isVerified
-      type: object
-      properties:
-        address:
-          type: string
-        name:
-          type: string
-        isContract:
-          type: boolean
-        isVerified:
-          type: boolean
-        isProxy:
-          type: boolean
-        verifiedStatus:
-          type: string
-          enum:
-          - Partial
-          - Full
-        contractType:
-          type: string
-          enum:
-          - contract
-          - nft
-          - token
     SocialLink:
       required:
       - name
@@ -334,33 +238,109 @@ components:
         totalElements:
           type: integer
           format: int64
-    MarketDataModel:
+    AddressInfo:
       required:
-      - fdv
-      - market_cap
-      - market_change_24h_percent
-      - price_eth
-      - price_usd
-      - total_circulating_supply
-      - total_volume_24h
+      - address
+      - isContract
+      - isProxy
+      - isVerified
       type: object
       properties:
-        fdv:
-          type: number
-        market_cap:
-          type: number
-        total_volume_24h:
-          type: number
-        total_circulating_supply:
-          type: number
-        price_usd:
-          type: number
-        price_eth:
-          type: number
-        market_change_24h_percent:
-          type: number
+        address:
+          type: string
+        name:
+          type: string
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+        contractType:
+          type: string
+          enum:
+          - contract
+          - nft
+          - token
+    ProjectModel:
+      required:
+      - address
+      - isActive
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - CONTRACT
+          - DAPP
+        socialMedia:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialLink'
+        isActive:
+          type: boolean
+        coverImage:
+          type: string
+        website:
+          type: string
+    CollectionMetadataModel:
+      required:
+      - attributes
+      type: object
+      properties:
+        name:
+          type: string
+        collectionName:
+          type: string
+        artistAddress:
+          type: string
+        description:
+          type: string
         image:
           type: string
+        externalUrl:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        resolvedImageUrl:
+          type: string
+        metadataUrl:
+          type: string
+        tokenId:
+          type: string
+    TokenBalancesByHolderRowModel:
+      required:
+      - balances
+      - holderAddress
+      - holderAddressInfo
+      - holderAddressLinks
+      type: object
+      properties:
+        holderAddress:
+          type: string
+        holderAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        holderAddressLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenBalancesRowModel'
     TokenBalancesMetaData:
       required:
       - tokens
@@ -370,15 +350,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TokenModel'
-    Attribute:
+    FindTokenBalanceQuery:
       required:
-      - traitType
-      - value
+      - direction
+      - page
+      - size
+      - sort
       type: object
       properties:
-        traitType:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
           type: string
-        value:
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - lastUpdated
+          - holderAddress
+          - amount
+        filter:
           type: string
 externalDocs:
   description: Chainlens Documentation

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Chainlens Account-Controller Dashboard-Transactions-Totals-Controller API
+  title: Chainlens Dashboard Transactions Totals Controller API
   description: Chainlens provides a robust and intuitive platform combining user-friendly exploration with powerful analytics and advanced features. Whether monitoring real-time blockchain transactions, verifying smart contracts, or tracking NFTs, Chainlens ensures you have all the necessary tools at your fingertips.
   version: master
 tags:
@@ -69,6 +69,17 @@ paths:
                 $ref: '#/components/schemas/DashboardTimeseriesTotalsModel'
 components:
   schemas:
+    TotalModel:
+      required:
+      - name
+      - total
+      type: object
+      properties:
+        name:
+          type: string
+        total:
+          type: integer
+          format: int64
     DashboardTimeseriesTotalsModel:
       required:
       - data
@@ -87,17 +98,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TotalModel'
-    TotalModel:
-      required:
-      - name
-      - total
-      type: object
-      properties:
-        name:
-          type: string
-        total:
-          type: integer
-          format: int64
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/
