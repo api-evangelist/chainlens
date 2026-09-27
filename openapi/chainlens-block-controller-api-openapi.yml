@@ -47,31 +47,36 @@ paths:
                 $ref: '#/components/schemas/BlockModel'
 components:
   schemas:
-    PagingModel:
+    FindBlocksQuery:
       required:
       - direction
       - page
       - size
       - sort
-      - totalElements
       type: object
       properties:
         page:
+          minimum: 0
           type: integer
           format: int32
         size:
+          maximum: 100
+          minimum: 1
           type: integer
           format: int32
-        sort:
-          type: string
         direction:
           type: string
           enum:
           - ASC
           - DESC
-        totalElements:
-          type: integer
-          format: int64
+        sort:
+          type: string
+          enum:
+          - number
+          - timestampISO
+          - transactionCount
+        filter:
+          type: string
     BlockModel:
       required:
       - dateVerified
@@ -143,6 +148,31 @@ components:
           type: string
         timestampVerifiedISO:
           type: string
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
     BlockRowModel:
       required:
       - hash
@@ -173,36 +203,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BlockRowModel'
-    FindBlocksQuery:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      type: object
-      properties:
-        page:
-          minimum: 0
-          type: integer
-          format: int32
-        size:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        sort:
-          type: string
-          enum:
-          - number
-          - timestampISO
-          - transactionCount
-        filter:
-          type: string
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

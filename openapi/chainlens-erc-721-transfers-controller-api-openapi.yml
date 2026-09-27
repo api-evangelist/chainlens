@@ -64,6 +64,31 @@ paths:
                 $ref: '#/components/schemas/LatestERC721TransfersModel'
 components:
   schemas:
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    LatestERC721TransfersModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC721TransactionRowModel'
     FindERC721TransfersQuery:
       required:
       - direction
@@ -93,6 +118,39 @@ components:
           - functionName
         filter:
           type: string
+    ERC721TransactionRowModel:
+      required:
+      - from
+      - fromLinks
+      - hash
+      - timestampISO
+      - to
+      - toLinks
+      - tokenId
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        tokenId:
+          type: string
+        timestampISO:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
     AddressInfo:
       required:
       - address
@@ -147,64 +205,6 @@ components:
         totalElements:
           type: integer
           format: int64
-    Link:
-      required:
-      - display
-      - href
-      - rel
-      type: object
-      properties:
-        href:
-          type: string
-        rel:
-          type: string
-        display:
-          type: string
-    ERC721TransactionRowModel:
-      required:
-      - from
-      - fromLinks
-      - hash
-      - timestampISO
-      - to
-      - toLinks
-      - tokenId
-      type: object
-      properties:
-        hash:
-          type: string
-        from:
-          type: string
-        fromLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        to:
-          type: string
-        toLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        tokenId:
-          type: string
-        timestampISO:
-          type: string
-        fromAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        toAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-    LatestERC721TransfersModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ERC721TransactionRowModel'
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

@@ -21,6 +21,15 @@ paths:
                 $ref: '#/components/schemas/DashboardTotalsModel'
 components:
   schemas:
+    DashboardTotalsModel:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TotalModel'
     TotalModel:
       required:
       - name
@@ -32,15 +41,6 @@ components:
         total:
           type: integer
           format: int64
-    DashboardTotalsModel:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TotalModel'
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

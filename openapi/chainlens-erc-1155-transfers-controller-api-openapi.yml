@@ -64,42 +64,31 @@ paths:
                 $ref: '#/components/schemas/LatestERC1155TransfersModel'
 components:
   schemas:
-    ERC1155TransactionRowModel:
+    Link:
       required:
-      - amount
-      - from
-      - fromLinks
-      - hash
-      - timestampISO
-      - to
-      - toLinks
-      - tokenId
+      - display
+      - href
+      - rel
       type: object
       properties:
-        hash:
+        href:
           type: string
-        from:
+        rel:
           type: string
-        fromLinks:
+        display:
+          type: string
+    LatestERC1155TransfersModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
           type: array
           items:
-            $ref: '#/components/schemas/Link'
-        to:
-          type: string
-        fromAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        toAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        toLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        tokenId:
-          type: string
-        amount:
-          type: string
-        timestampISO:
-          type: string
+            $ref: '#/components/schemas/ERC1155TransactionRowModel'
     FindERC1155TransfersQuery:
       required:
       - direction
@@ -183,31 +172,42 @@ components:
         totalElements:
           type: integer
           format: int64
-    Link:
+    ERC1155TransactionRowModel:
       required:
-      - display
-      - href
-      - rel
+      - amount
+      - from
+      - fromLinks
+      - hash
+      - timestampISO
+      - to
+      - toLinks
+      - tokenId
       type: object
       properties:
-        href:
+        hash:
           type: string
-        rel:
+        from:
           type: string
-        display:
-          type: string
-    LatestERC1155TransfersModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
+        fromLinks:
           type: array
           items:
-            $ref: '#/components/schemas/ERC1155TransactionRowModel'
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        tokenId:
+          type: string
+        amount:
+          type: string
+        timestampISO:
+          type: string
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

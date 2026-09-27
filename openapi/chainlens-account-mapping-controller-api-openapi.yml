@@ -47,6 +47,41 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
+    AccountMappingModel:
+      required:
+      - address
+      - label
+      type: object
+      properties:
+        address:
+          type: string
+        label:
+          type: string
     LatestAccountMappingModel:
       required:
       - data
@@ -59,16 +94,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AccountMappingModel'
-    AccountMappingModel:
-      required:
-      - address
-      - label
-      type: object
-      properties:
-        address:
-          type: string
-        label:
-          type: string
     FindAccountMappingQuery:
       required:
       - direction
@@ -98,31 +123,6 @@ components:
           - label
         filter:
           type: string
-    PagingModel:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      - totalElements
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        sort:
-          type: string
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        totalElements:
-          type: integer
-          format: int64
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

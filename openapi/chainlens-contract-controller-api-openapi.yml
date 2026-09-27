@@ -47,47 +47,6 @@ paths:
                 $ref: '#/components/schemas/ContractModel'
 components:
   schemas:
-    LatestContractModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContractRowModel'
-    AddressInfo:
-      required:
-      - address
-      - isContract
-      - isProxy
-      - isVerified
-      type: object
-      properties:
-        address:
-          type: string
-        name:
-          type: string
-        isContract:
-          type: boolean
-        isVerified:
-          type: boolean
-        isProxy:
-          type: boolean
-        verifiedStatus:
-          type: string
-          enum:
-          - Partial
-          - Full
-        contractType:
-          type: string
-          enum:
-          - contract
-          - nft
-          - token
     Link:
       required:
       - display
@@ -101,38 +60,56 @@ components:
           type: string
         display:
           type: string
-    FindContractsQuery:
+    ContractRowModel:
       required:
-      - direction
-      - page
-      - size
-      - sort
+      - address
+      - contractAddressInfo
+      - contractCreator
+      - contractCreatorInfo
+      - contractType
+      - createdTimestampISO
+      - createdTransaction
+      - lastExecutedTimestampISO
+      - lastExecutedTransaction
+      - links
+      - transactionCount
+      - verified
       type: object
       properties:
-        page:
-          minimum: 0
+        address:
+          type: string
+        contractAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        contractCreator:
+          type: string
+        contractCreatorInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        createdTimestampISO:
+          type: string
+        createdTransaction:
+          type: string
+        lastExecutedTimestampISO:
+          type: string
+        lastExecutedTransaction:
+          type: string
+        transactionCount:
           type: integer
-          format: int32
-        size:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        direction:
+          format: int64
+        contractType:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        verified:
+          type: boolean
+        contractName:
+          type: string
+        verifiedStatus:
           type: string
           enum:
-          - ASC
-          - DESC
-        sort:
-          type: string
-          enum:
-          - created
-          - lastExecuted
-          - transactionCount
-          - contractType
-          - verified
-        filter:
-          type: string
+          - Partial
+          - Full
     ContractModel:
       required:
       - balance
@@ -201,6 +178,67 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AddressInfo'
+    AddressInfo:
+      required:
+      - address
+      - isContract
+      - isProxy
+      - isVerified
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+        contractType:
+          type: string
+          enum:
+          - contract
+          - nft
+          - token
+    FindContractsQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - created
+          - lastExecuted
+          - transactionCount
+          - contractType
+          - verified
+        filter:
+          type: string
     PagingModel:
       required:
       - direction
@@ -226,56 +264,18 @@ components:
         totalElements:
           type: integer
           format: int64
-    ContractRowModel:
+    LatestContractModel:
       required:
-      - address
-      - contractAddressInfo
-      - contractCreator
-      - contractCreatorInfo
-      - contractType
-      - createdTimestampISO
-      - createdTransaction
-      - lastExecutedTimestampISO
-      - lastExecutedTransaction
-      - links
-      - transactionCount
-      - verified
+      - data
+      - paging
       type: object
       properties:
-        address:
-          type: string
-        contractAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        contractCreator:
-          type: string
-        contractCreatorInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        createdTimestampISO:
-          type: string
-        createdTransaction:
-          type: string
-        lastExecutedTimestampISO:
-          type: string
-        lastExecutedTransaction:
-          type: string
-        transactionCount:
-          type: integer
-          format: int64
-        contractType:
-          type: string
-        links:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
           type: array
           items:
-            $ref: '#/components/schemas/Link'
-        verified:
-          type: boolean
-        contractName:
-          type: string
-        verifiedStatus:
-          type: string
-          enum:
-          - Partial
-          - Full
+            $ref: '#/components/schemas/ContractRowModel'
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

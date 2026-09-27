@@ -33,46 +33,18 @@ paths:
                 $ref: '#/components/schemas/LatestERC223TransfersModel'
 components:
   schemas:
-    LatestERC223TransfersModel:
+    Link:
       required:
-      - data
-      - paging
+      - display
+      - href
+      - rel
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ERC223TransactionRowModel'
-    FindERC223TransfersQuery:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      type: object
-      properties:
-        page:
-          minimum: 0
-          type: integer
-          format: int32
-        size:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        direction:
+        href:
           type: string
-          enum:
-          - ASC
-          - DESC
-        sort:
+        rel:
           type: string
-          enum:
-          - timestampISO
-          - functionName
-        filter:
+        display:
           type: string
     AddressInfo:
       required:
@@ -103,6 +75,35 @@ components:
           - contract
           - nft
           - token
+    FindERC223TransfersQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - timestampISO
+          - functionName
+        filter:
+          type: string
     PagingModel:
       required:
       - direction
@@ -128,19 +129,18 @@ components:
         totalElements:
           type: integer
           format: int64
-    Link:
+    LatestERC223TransfersModel:
       required:
-      - display
-      - href
-      - rel
+      - data
+      - paging
       type: object
       properties:
-        href:
-          type: string
-        rel:
-          type: string
-        display:
-          type: string
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC223TransactionRowModel'
     ERC223TransactionRowModel:
       required:
       - from
