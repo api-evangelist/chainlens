@@ -64,31 +64,6 @@ paths:
                 $ref: '#/components/schemas/LatestERC1155TransfersModel'
 components:
   schemas:
-    Link:
-      required:
-      - display
-      - href
-      - rel
-      type: object
-      properties:
-        href:
-          type: string
-        rel:
-          type: string
-        display:
-          type: string
-    LatestERC1155TransfersModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ERC1155TransactionRowModel'
     FindERC1155TransfersQuery:
       required:
       - direction
@@ -118,6 +93,43 @@ components:
           - functionName
         filter:
           type: string
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
+    LatestERC1155TransfersModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC1155TransactionRowModel'
     AddressInfo:
       required:
       - address
@@ -147,31 +159,19 @@ components:
           - contract
           - nft
           - token
-    PagingModel:
+    Link:
       required:
-      - direction
-      - page
-      - size
-      - sort
-      - totalElements
+      - display
+      - href
+      - rel
       type: object
       properties:
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        sort:
+        href:
           type: string
-        direction:
+        rel:
           type: string
-          enum:
-          - ASC
-          - DESC
-        totalElements:
-          type: integer
-          format: int64
+        display:
+          type: string
     ERC1155TransactionRowModel:
       required:
       - amount

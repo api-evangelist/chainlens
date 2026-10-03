@@ -47,6 +47,18 @@ paths:
                 $ref: '#/components/schemas/BlockModel'
 components:
   schemas:
+    LatestBlockModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlockRowModel'
     FindBlocksQuery:
       required:
       - direction
@@ -77,6 +89,49 @@ components:
           - transactionCount
         filter:
           type: string
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
+    BlockRowModel:
+      required:
+      - hash
+      - number
+      - timestampISO
+      - transactionCount
+      type: object
+      properties:
+        number:
+          type: integer
+          format: int64
+        hash:
+          type: string
+        timestampISO:
+          type: string
+        transactionCount:
+          type: integer
+          format: int32
     BlockModel:
       required:
       - dateVerified
@@ -148,61 +203,6 @@ components:
           type: string
         timestampVerifiedISO:
           type: string
-    PagingModel:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      - totalElements
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        sort:
-          type: string
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        totalElements:
-          type: integer
-          format: int64
-    BlockRowModel:
-      required:
-      - hash
-      - number
-      - timestampISO
-      - transactionCount
-      type: object
-      properties:
-        number:
-          type: integer
-          format: int64
-        hash:
-          type: string
-        timestampISO:
-          type: string
-        transactionCount:
-          type: integer
-          format: int32
-    LatestBlockModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BlockRowModel'
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

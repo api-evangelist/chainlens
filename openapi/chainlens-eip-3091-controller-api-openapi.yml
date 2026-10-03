@@ -360,19 +360,156 @@ paths:
                 $ref: '#/components/schemas/BlockModel'
 components:
   schemas:
-    Link:
+    AddressResponse:
       required:
-      - display
-      - href
-      - rel
+      - addressType
       type: object
       properties:
-        href:
+        addressType:
           type: string
-        rel:
+          enum:
+          - EOA
+          - CONTRACT
+          - TOKEN
+          - NFT
+    SocialLink:
+      required:
+      - name
+      - url
+      type: object
+      properties:
+        name:
           type: string
-        display:
+        url:
           type: string
+    Attribute:
+      required:
+      - traitType
+      - value
+      type: object
+      properties:
+        traitType:
+          type: string
+        value:
+          type: string
+    CollectionMetadataModel:
+      required:
+      - attributes
+      type: object
+      properties:
+        name:
+          type: string
+        collectionName:
+          type: string
+        artistAddress:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        externalUrl:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        resolvedImageUrl:
+          type: string
+        metadataUrl:
+          type: string
+        tokenId:
+          type: string
+    FunctionParameterModel:
+      required:
+      - name
+      - type
+      - value
+      type: object
+      properties:
+        value:
+          type: object
+        name:
+          type: string
+        type:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ProjectModel:
+      required:
+      - address
+      - isActive
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - CONTRACT
+          - DAPP
+        socialMedia:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialLink'
+        isActive:
+          type: boolean
+        coverImage:
+          type: string
+        website:
+          type: string
+    FunctionMeta:
+      required:
+      - functionName
+      - params
+      - stateMutability
+      - type
+      type: object
+      properties:
+        functionName:
+          type: string
+        stateMutability:
+          type: string
+        type:
+          type: string
+        params:
+          type: array
+          items:
+            $ref: '#/components/schemas/FunctionParameterModel'
+    AddressInfo:
+      required:
+      - address
+      - isContract
+      - isProxy
+      - isVerified
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+        contractType:
+          type: string
+          enum:
+          - contract
+          - nft
+          - token
     TransactionModel:
       required:
       - blockHash
@@ -472,129 +609,133 @@ components:
           $ref: '#/components/schemas/AddressInfo'
         toAddressInfo:
           $ref: '#/components/schemas/AddressInfo'
-    AddressResponse:
-      required:
-      - addressType
+    Log:
       type: object
       properties:
-        addressType:
+        removed:
+          type: boolean
+        logIndex:
+          type: integer
+        transactionIndex:
+          type: integer
+        transactionHash:
           type: string
-          enum:
-          - EOA
-          - CONTRACT
-          - TOKEN
-          - NFT
-    FunctionMeta:
-      required:
-      - functionName
-      - params
-      - stateMutability
-      - type
-      type: object
-      properties:
-        functionName:
+        blockHash:
           type: string
-        stateMutability:
+        blockNumber:
+          type: integer
+        address:
+          type: string
+        data:
           type: string
         type:
           type: string
-        params:
+        topics:
           type: array
           items:
-            $ref: '#/components/schemas/FunctionParameterModel'
-    Attribute:
+            type: string
+        logIndexRaw:
+          type: string
+        transactionIndexRaw:
+          type: string
+        blockNumberRaw:
+          type: string
+    Link:
       required:
-      - traitType
-      - value
+      - display
+      - href
+      - rel
       type: object
       properties:
-        traitType:
+        href:
           type: string
-        value:
+        rel:
           type: string
-    CollectionMetadataModel:
-      required:
-      - attributes
-      type: object
-      properties:
-        name:
+        display:
           type: string
-        collectionName:
-          type: string
-        artistAddress:
-          type: string
-        description:
-          type: string
-        image:
-          type: string
-        externalUrl:
-          type: string
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-        resolvedImageUrl:
-          type: string
-        metadataUrl:
-          type: string
-        tokenId:
-          type: string
-    AddressInfo:
+    TokenModel:
       required:
       - address
-      - isContract
-      - isProxy
-      - isVerified
+      - contractType
+      - lastExecutedTimestampISO
+      - transactionCount
+      - verified
       type: object
       properties:
         address:
           type: string
+        addressLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
         name:
           type: string
-        isContract:
-          type: boolean
-        isVerified:
-          type: boolean
-        isProxy:
+        symbol:
+          type: string
+        decimals:
+          type: integer
+          format: int32
+        totalSupply:
+          type: number
+        contractType:
+          type: string
+        transactionCount:
+          type: integer
+          format: int64
+        lastExecutedTimestampISO:
+          type: string
+        coverImage:
+          type: string
+        holdersCount:
+          type: integer
+          format: int64
+        tokenCount:
+          type: integer
+          format: int64
+        metadata:
+          $ref: '#/components/schemas/CollectionMetadataModel'
+        metadataUrl:
+          type: string
+        originalAssetLink:
+          type: string
+        verified:
           type: boolean
         verifiedStatus:
           type: string
           enum:
           - Partial
           - Full
-        contractType:
-          type: string
-          enum:
-          - contract
-          - nft
-          - token
-    SocialLink:
+        project:
+          $ref: '#/components/schemas/ProjectModel'
+        marketData:
+          $ref: '#/components/schemas/MarketDataModel'
+    MarketDataModel:
       required:
-      - name
-      - url
+      - fdv
+      - market_cap
+      - market_change_24h_percent
+      - price_eth
+      - price_usd
+      - total_circulating_supply
+      - total_volume_24h
       type: object
       properties:
-        name:
+        fdv:
+          type: number
+        market_cap:
+          type: number
+        total_volume_24h:
+          type: number
+        total_circulating_supply:
+          type: number
+        price_usd:
+          type: number
+        price_eth:
+          type: number
+        market_change_24h_percent:
+          type: number
+        image:
           type: string
-        url:
-          type: string
-    FunctionParameterModel:
-      required:
-      - name
-      - type
-      - value
-      type: object
-      properties:
-        value:
-          type: object
-        name:
-          type: string
-        type:
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     BlockModel:
       required:
       - dateVerified
@@ -665,147 +806,6 @@ components:
         timestampISO:
           type: string
         timestampVerifiedISO:
-          type: string
-    TokenModel:
-      required:
-      - address
-      - contractType
-      - lastExecutedTimestampISO
-      - transactionCount
-      - verified
-      type: object
-      properties:
-        address:
-          type: string
-        addressLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        name:
-          type: string
-        symbol:
-          type: string
-        decimals:
-          type: integer
-          format: int32
-        totalSupply:
-          type: number
-        contractType:
-          type: string
-        transactionCount:
-          type: integer
-          format: int64
-        lastExecutedTimestampISO:
-          type: string
-        coverImage:
-          type: string
-        holdersCount:
-          type: integer
-          format: int64
-        tokenCount:
-          type: integer
-          format: int64
-        metadata:
-          $ref: '#/components/schemas/CollectionMetadataModel'
-        metadataUrl:
-          type: string
-        originalAssetLink:
-          type: string
-        verified:
-          type: boolean
-        verifiedStatus:
-          type: string
-          enum:
-          - Partial
-          - Full
-        project:
-          $ref: '#/components/schemas/ProjectModel'
-        marketData:
-          $ref: '#/components/schemas/MarketDataModel'
-    Log:
-      type: object
-      properties:
-        removed:
-          type: boolean
-        logIndex:
-          type: integer
-        transactionIndex:
-          type: integer
-        transactionHash:
-          type: string
-        blockHash:
-          type: string
-        blockNumber:
-          type: integer
-        address:
-          type: string
-        data:
-          type: string
-        type:
-          type: string
-        topics:
-          type: array
-          items:
-            type: string
-        logIndexRaw:
-          type: string
-        transactionIndexRaw:
-          type: string
-        blockNumberRaw:
-          type: string
-    ProjectModel:
-      required:
-      - address
-      - isActive
-      type: object
-      properties:
-        address:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - CONTRACT
-          - DAPP
-        socialMedia:
-          type: array
-          items:
-            $ref: '#/components/schemas/SocialLink'
-        isActive:
-          type: boolean
-        coverImage:
-          type: string
-        website:
-          type: string
-    MarketDataModel:
-      required:
-      - fdv
-      - market_cap
-      - market_change_24h_percent
-      - price_eth
-      - price_usd
-      - total_circulating_supply
-      - total_volume_24h
-      type: object
-      properties:
-        fdv:
-          type: number
-        market_cap:
-          type: number
-        total_volume_24h:
-          type: number
-        total_circulating_supply:
-          type: number
-        price_usd:
-          type: number
-        price_eth:
-          type: number
-        market_change_24h_percent:
-          type: number
-        image:
           type: string
 externalDocs:
   description: Chainlens Documentation

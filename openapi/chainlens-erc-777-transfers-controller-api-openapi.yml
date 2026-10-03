@@ -33,48 +33,42 @@ paths:
                 $ref: '#/components/schemas/LatestERC777TransfersModel'
 components:
   schemas:
-    Link:
+    ERC777TransactionRowModel:
       required:
-      - display
-      - href
-      - rel
+      - amount
+      - amountRaw
+      - from
+      - fromLinks
+      - hash
+      - timestampISO
+      - to
+      - toLinks
       type: object
       properties:
-        href:
+        hash:
           type: string
-        rel:
+        from:
           type: string
-        display:
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
           type: string
-    AddressInfo:
-      required:
-      - address
-      - isContract
-      - isProxy
-      - isVerified
-      type: object
-      properties:
-        address:
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        amount:
           type: string
-        name:
+        amountRaw:
+          type: number
+        timestampISO:
           type: string
-        isContract:
-          type: boolean
-        isVerified:
-          type: boolean
-        isProxy:
-          type: boolean
-        verifiedStatus:
-          type: string
-          enum:
-          - Partial
-          - Full
-        contractType:
-          type: string
-          enum:
-          - contract
-          - nft
-          - token
     FindERC777TransfersQuery:
       required:
       - direction
@@ -129,42 +123,35 @@ components:
         totalElements:
           type: integer
           format: int64
-    ERC777TransactionRowModel:
+    AddressInfo:
       required:
-      - amount
-      - amountRaw
-      - from
-      - fromLinks
-      - hash
-      - timestampISO
-      - to
-      - toLinks
+      - address
+      - isContract
+      - isProxy
+      - isVerified
       type: object
       properties:
-        hash:
+        address:
           type: string
-        from:
+        name:
           type: string
-        fromLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        to:
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
           type: string
-        fromAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        toAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        toLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        amount:
+          enum:
+          - Partial
+          - Full
+        contractType:
           type: string
-        amountRaw:
-          type: number
-        timestampISO:
-          type: string
+          enum:
+          - contract
+          - nft
+          - token
     LatestERC777TransfersModel:
       required:
       - data
@@ -177,6 +164,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ERC777TransactionRowModel'
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

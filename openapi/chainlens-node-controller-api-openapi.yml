@@ -21,19 +21,6 @@ paths:
                 $ref: '#/components/schemas/NodeInfoModel'
 components:
   schemas:
-    PeersModel:
-      required:
-      - address
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        address:
-          type: string
     NodeInfoModel:
       required:
       - address
@@ -59,6 +46,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PeersModel'
+    PeersModel:
+      required:
+      - address
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

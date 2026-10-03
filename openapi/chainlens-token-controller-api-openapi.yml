@@ -72,19 +72,6 @@ paths:
                 $ref: '#/components/schemas/TokenModel'
 components:
   schemas:
-    Link:
-      required:
-      - display
-      - href
-      - rel
-      type: object
-      properties:
-        href:
-          type: string
-        rel:
-          type: string
-        display:
-          type: string
     FindTokensQuery:
       required:
       - direction
@@ -127,6 +114,16 @@ components:
           - RWA
           - TOKEN
           - DEFAULT
+    SocialLink:
+      required:
+      - name
+      - url
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
     Attribute:
       required:
       - traitType
@@ -137,18 +134,6 @@ components:
           type: string
         value:
           type: string
-    ListTokenModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TokenModel'
     CollectionMetadataModel:
       required:
       - attributes
@@ -176,15 +161,32 @@ components:
           type: string
         tokenId:
           type: string
-    SocialLink:
+    ProjectModel:
       required:
-      - name
-      - url
+      - address
+      - isActive
       type: object
       properties:
+        address:
+          type: string
         name:
           type: string
-        url:
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - CONTRACT
+          - DAPP
+        socialMedia:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialLink'
+        isActive:
+          type: boolean
+        coverImage:
+          type: string
+        website:
           type: string
     PagingModel:
       required:
@@ -211,6 +213,18 @@ components:
         totalElements:
           type: integer
           format: int64
+    ListTokenModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenModel'
     TokenModel:
       required:
       - address
@@ -267,32 +281,18 @@ components:
           $ref: '#/components/schemas/ProjectModel'
         marketData:
           $ref: '#/components/schemas/MarketDataModel'
-    ProjectModel:
+    Link:
       required:
-      - address
-      - isActive
+      - display
+      - href
+      - rel
       type: object
       properties:
-        address:
+        href:
           type: string
-        name:
+        rel:
           type: string
-        description:
-          type: string
-        type:
-          type: string
-          enum:
-          - CONTRACT
-          - DAPP
-        socialMedia:
-          type: array
-          items:
-            $ref: '#/components/schemas/SocialLink'
-        isActive:
-          type: boolean
-        coverImage:
-          type: string
-        website:
+        display:
           type: string
     MarketDataModel:
       required:

@@ -47,18 +47,49 @@ paths:
                 $ref: '#/components/schemas/ContractModel'
 components:
   schemas:
-    Link:
+    LatestContractModel:
       required:
-      - display
-      - href
-      - rel
+      - data
+      - paging
       type: object
       properties:
-        href:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContractRowModel'
+    FindContractsQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
           type: string
-        rel:
+          enum:
+          - ASC
+          - DESC
+        sort:
           type: string
-        display:
+          enum:
+          - created
+          - lastExecuted
+          - transactionCount
+          - contractType
+          - verified
+        filter:
           type: string
     ContractRowModel:
       required:
@@ -110,6 +141,31 @@ components:
           enum:
           - Partial
           - Full
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
     ContractModel:
       required:
       - balance
@@ -207,75 +263,19 @@ components:
           - contract
           - nft
           - token
-    FindContractsQuery:
+    Link:
       required:
-      - direction
-      - page
-      - size
-      - sort
+      - display
+      - href
+      - rel
       type: object
       properties:
-        page:
-          minimum: 0
-          type: integer
-          format: int32
-        size:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        direction:
+        href:
           type: string
-          enum:
-          - ASC
-          - DESC
-        sort:
+        rel:
           type: string
-          enum:
-          - created
-          - lastExecuted
-          - transactionCount
-          - contractType
-          - verified
-        filter:
+        display:
           type: string
-    PagingModel:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      - totalElements
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        sort:
-          type: string
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        totalElements:
-          type: integer
-          format: int64
-    LatestContractModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContractRowModel'
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/
