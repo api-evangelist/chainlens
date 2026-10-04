@@ -69,15 +69,6 @@ paths:
                 $ref: '#/components/schemas/DashboardTimeseriesTotalsModel'
 components:
   schemas:
-    DashboardTotalsModel:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TotalModel'
     TotalModel:
       required:
       - name
@@ -90,6 +81,15 @@ components:
           type: integer
           format: int64
     DashboardTimeseriesTotalsModel:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TotalModel'
+    DashboardTotalsModel:
       required:
       - data
       type: object

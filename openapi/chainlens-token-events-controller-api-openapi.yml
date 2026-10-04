@@ -33,6 +33,107 @@ paths:
                 $ref: '#/components/schemas/EventsModel'
 components:
   schemas:
+    EventParameters:
+      required:
+      - name
+      - type
+      - value
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        type:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
+    TransactionEventsQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - timestampISO
+          - eventName
+          - logIndex
+          - transactionIndex
+          - paramName
+          - paramValue
+          - paramType
+        filter:
+          type: string
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    EventsModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionEventModel'
     TransactionEventModel:
       required:
       - address
@@ -93,48 +194,6 @@ components:
             $ref: '#/components/schemas/Link'
         input:
           type: string
-    PagingModel:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      - totalElements
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        sort:
-          type: string
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        totalElements:
-          type: integer
-          format: int64
-    EventParameters:
-      required:
-      - name
-      - type
-      - value
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-        type:
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     AddressInfo:
       required:
       - address
@@ -164,65 +223,6 @@ components:
           - contract
           - nft
           - token
-    Link:
-      required:
-      - display
-      - href
-      - rel
-      type: object
-      properties:
-        href:
-          type: string
-        rel:
-          type: string
-        display:
-          type: string
-    TransactionEventsQuery:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      type: object
-      properties:
-        page:
-          minimum: 0
-          type: integer
-          format: int32
-        size:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        sort:
-          type: string
-          enum:
-          - timestampISO
-          - eventName
-          - logIndex
-          - transactionIndex
-          - paramName
-          - paramValue
-          - paramType
-        filter:
-          type: string
-    EventsModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionEventModel'
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

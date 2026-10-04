@@ -23,16 +23,6 @@ paths:
                   $ref: '#/components/schemas/ProjectModel'
 components:
   schemas:
-    SocialLink:
-      required:
-      - name
-      - url
-      type: object
-      properties:
-        name:
-          type: string
-        url:
-          type: string
     ProjectModel:
       required:
       - address
@@ -59,6 +49,16 @@ components:
         coverImage:
           type: string
         website:
+          type: string
+    SocialLink:
+      required:
+      - name
+      - url
+      type: object
+      properties:
+        name:
+          type: string
+        url:
           type: string
 externalDocs:
   description: Chainlens Documentation

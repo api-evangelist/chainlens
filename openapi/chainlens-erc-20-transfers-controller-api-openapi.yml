@@ -33,54 +33,6 @@ paths:
                 $ref: '#/components/schemas/LatestERC20TransfersModel'
 components:
   schemas:
-    LatestERC20TransfersModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ERC20TransactionRowModel'
-    ERC20TransactionRowModel:
-      required:
-      - from
-      - fromLinks
-      - hash
-      - quantity
-      - quantityRaw
-      - timestampISO
-      - to
-      - toLinks
-      type: object
-      properties:
-        hash:
-          type: string
-        from:
-          type: string
-        fromLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        to:
-          type: string
-        fromAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        toAddressInfo:
-          $ref: '#/components/schemas/AddressInfo'
-        toLinks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-        timestampISO:
-          type: string
-        quantity:
-          type: string
-        quantityRaw:
-          type: number
     PagingModel:
       required:
       - direction
@@ -106,35 +58,18 @@ components:
         totalElements:
           type: integer
           format: int64
-    AddressInfo:
+    LatestERC20TransfersModel:
       required:
-      - address
-      - isContract
-      - isProxy
-      - isVerified
+      - data
+      - paging
       type: object
       properties:
-        address:
-          type: string
-        name:
-          type: string
-        isContract:
-          type: boolean
-        isVerified:
-          type: boolean
-        isProxy:
-          type: boolean
-        verifiedStatus:
-          type: string
-          enum:
-          - Partial
-          - Full
-        contractType:
-          type: string
-          enum:
-          - contract
-          - nft
-          - token
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ERC20TransactionRowModel'
     Link:
       required:
       - display
@@ -177,6 +112,71 @@ components:
           - functionName
         filter:
           type: string
+    ERC20TransactionRowModel:
+      required:
+      - from
+      - fromLinks
+      - hash
+      - quantity
+      - quantityRaw
+      - timestampISO
+      - to
+      - toLinks
+      type: object
+      properties:
+        hash:
+          type: string
+        from:
+          type: string
+        fromLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        to:
+          type: string
+        fromAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toAddressInfo:
+          $ref: '#/components/schemas/AddressInfo'
+        toLinks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        timestampISO:
+          type: string
+        quantity:
+          type: string
+        quantityRaw:
+          type: number
+    AddressInfo:
+      required:
+      - address
+      - isContract
+      - isProxy
+      - isVerified
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+        contractType:
+          type: string
+          enum:
+          - contract
+          - nft
+          - token
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

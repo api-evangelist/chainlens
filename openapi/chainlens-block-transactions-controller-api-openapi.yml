@@ -33,153 +33,6 @@ paths:
                 $ref: '#/components/schemas/LatestTransactionModel'
 components:
   schemas:
-    FindTransactionsQuery:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      type: object
-      properties:
-        page:
-          minimum: 0
-          type: integer
-          format: int32
-        size:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        sort:
-          type: string
-          enum:
-          - blockNumber
-          - timestampISO
-          - transactionType
-          - functionName
-          - direction
-          - ethValue
-        filter:
-          type: string
-    Link:
-      required:
-      - display
-      - href
-      - rel
-      type: object
-      properties:
-        href:
-          type: string
-        rel:
-          type: string
-        display:
-          type: string
-    LatestTransactionModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionRowModel'
-    FunctionParameterModel:
-      required:
-      - name
-      - type
-      - value
-      type: object
-      properties:
-        value:
-          type: object
-        name:
-          type: string
-        type:
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    PagingModel:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      - totalElements
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int32
-        sort:
-          type: string
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        totalElements:
-          type: integer
-          format: int64
-    FunctionMeta:
-      required:
-      - functionName
-      - params
-      - stateMutability
-      - type
-      type: object
-      properties:
-        functionName:
-          type: string
-        stateMutability:
-          type: string
-        type:
-          type: string
-        params:
-          type: array
-          items:
-            $ref: '#/components/schemas/FunctionParameterModel'
-    AddressInfo:
-      required:
-      - address
-      - isContract
-      - isProxy
-      - isVerified
-      type: object
-      properties:
-        address:
-          type: string
-        name:
-          type: string
-        isContract:
-          type: boolean
-        isVerified:
-          type: boolean
-        isProxy:
-          type: boolean
-        verifiedStatus:
-          type: string
-          enum:
-          - Partial
-          - Full
-        contractType:
-          type: string
-          enum:
-          - contract
-          - nft
-          - token
     TransactionRowModel:
       required:
       - direction
@@ -244,6 +97,153 @@ components:
           - Unknown
         isInternalToAccount:
           type: boolean
+    FunctionParameterModel:
+      required:
+      - name
+      - type
+      - value
+      type: object
+      properties:
+        value:
+          type: object
+        name:
+          type: string
+        type:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    FindTransactionsQuery:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - blockNumber
+          - timestampISO
+          - transactionType
+          - functionName
+          - direction
+          - ethValue
+        filter:
+          type: string
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
+    LatestTransactionModel:
+      required:
+      - data
+      - paging
+      type: object
+      properties:
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionRowModel'
+    FunctionMeta:
+      required:
+      - functionName
+      - params
+      - stateMutability
+      - type
+      type: object
+      properties:
+        functionName:
+          type: string
+        stateMutability:
+          type: string
+        type:
+          type: string
+        params:
+          type: array
+          items:
+            $ref: '#/components/schemas/FunctionParameterModel'
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    AddressInfo:
+      required:
+      - address
+      - isContract
+      - isProxy
+      - isVerified
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        isContract:
+          type: boolean
+        isVerified:
+          type: boolean
+        isProxy:
+          type: boolean
+        verifiedStatus:
+          type: string
+          enum:
+          - Partial
+          - Full
+        contractType:
+          type: string
+          enum:
+          - contract
+          - nft
+          - token
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

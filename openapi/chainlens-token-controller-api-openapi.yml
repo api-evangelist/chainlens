@@ -72,58 +72,18 @@ paths:
                 $ref: '#/components/schemas/TokenModel'
 components:
   schemas:
-    FindTokensQuery:
+    ListTokenModel:
       required:
-      - direction
-      - page
-      - size
-      - sort
-      - tokenType
+      - data
+      - paging
       type: object
       properties:
-        page:
-          minimum: 0
-          type: integer
-          format: int32
-        size:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        sort:
-          type: string
-          enum:
-          - lastActivity
-          - transactionCount
-          - totalTokenCount
-          - holdersCount
-          - totalSupply
-          - contractType
-          - verified
-        filter:
-          type: string
-        tokenType:
-          type: string
-          enum:
-          - NFT
-          - RWA
-          - TOKEN
-          - DEFAULT
-    SocialLink:
-      required:
-      - name
-      - url
-      type: object
-      properties:
-        name:
-          type: string
-        url:
-          type: string
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenModel'
     Attribute:
       required:
       - traitType
@@ -133,33 +93,6 @@ components:
         traitType:
           type: string
         value:
-          type: string
-    CollectionMetadataModel:
-      required:
-      - attributes
-      type: object
-      properties:
-        name:
-          type: string
-        collectionName:
-          type: string
-        artistAddress:
-          type: string
-        description:
-          type: string
-        image:
-          type: string
-        externalUrl:
-          type: string
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-        resolvedImageUrl:
-          type: string
-        metadataUrl:
-          type: string
-        tokenId:
           type: string
     ProjectModel:
       required:
@@ -213,18 +146,33 @@ components:
         totalElements:
           type: integer
           format: int64
-    ListTokenModel:
+    MarketDataModel:
       required:
-      - data
-      - paging
+      - fdv
+      - market_cap
+      - market_change_24h_percent
+      - price_eth
+      - price_usd
+      - total_circulating_supply
+      - total_volume_24h
       type: object
       properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TokenModel'
+        fdv:
+          type: number
+        market_cap:
+          type: number
+        total_volume_24h:
+          type: number
+        total_circulating_supply:
+          type: number
+        price_usd:
+          type: number
+        price_eth:
+          type: number
+        market_change_24h_percent:
+          type: number
+        image:
+          type: string
     TokenModel:
       required:
       - address
@@ -294,32 +242,84 @@ components:
           type: string
         display:
           type: string
-    MarketDataModel:
+    FindTokensQuery:
       required:
-      - fdv
-      - market_cap
-      - market_change_24h_percent
-      - price_eth
-      - price_usd
-      - total_circulating_supply
-      - total_volume_24h
+      - direction
+      - page
+      - size
+      - sort
+      - tokenType
       type: object
       properties:
-        fdv:
-          type: number
-        market_cap:
-          type: number
-        total_volume_24h:
-          type: number
-        total_circulating_supply:
-          type: number
-        price_usd:
-          type: number
-        price_eth:
-          type: number
-        market_change_24h_percent:
-          type: number
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        sort:
+          type: string
+          enum:
+          - lastActivity
+          - transactionCount
+          - totalTokenCount
+          - holdersCount
+          - totalSupply
+          - contractType
+          - verified
+        filter:
+          type: string
+        tokenType:
+          type: string
+          enum:
+          - NFT
+          - RWA
+          - TOKEN
+          - DEFAULT
+    SocialLink:
+      required:
+      - name
+      - url
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+    CollectionMetadataModel:
+      required:
+      - attributes
+      type: object
+      properties:
+        name:
+          type: string
+        collectionName:
+          type: string
+        artistAddress:
+          type: string
+        description:
+          type: string
         image:
+          type: string
+        externalUrl:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        resolvedImageUrl:
+          type: string
+        metadataUrl:
+          type: string
+        tokenId:
           type: string
 externalDocs:
   description: Chainlens Documentation
