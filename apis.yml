@@ -706,6 +706,10 @@ apis:
   - type: Specification
     url: https://eips.ethereum.org/EIPS/eip-3091
 common:
+  - type: RateLimits
+    url: rate-limits/chainlens-rate-limits.yml
+  - type: FinOps
+    url: finops/chainlens-finops.yml
   - type: AgenticAccess
     url: agentic-access/chainlens-agentic-access.yml
   - type: DomainSecurity
