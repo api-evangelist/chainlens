@@ -47,6 +47,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    AccountMappingModel:
+      required:
+      - address
+      - label
+      type: object
+      properties:
+        address:
+          type: string
+        label:
+          type: string
     FindAccountMappingQuery:
       required:
       - direction
@@ -75,16 +85,6 @@ components:
           - address
           - label
         filter:
-          type: string
-    AccountMappingModel:
-      required:
-      - address
-      - label
-      type: object
-      properties:
-        address:
-          type: string
-        label:
           type: string
     PagingModel:
       required:

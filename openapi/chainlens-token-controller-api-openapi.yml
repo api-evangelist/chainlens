@@ -72,28 +72,6 @@ paths:
                 $ref: '#/components/schemas/TokenModel'
 components:
   schemas:
-    ListTokenModel:
-      required:
-      - data
-      - paging
-      type: object
-      properties:
-        paging:
-          $ref: '#/components/schemas/PagingModel'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TokenModel'
-    Attribute:
-      required:
-      - traitType
-      - value
-      type: object
-      properties:
-        traitType:
-          type: string
-        value:
-          type: string
     ProjectModel:
       required:
       - address
@@ -121,58 +99,83 @@ components:
           type: string
         website:
           type: string
-    PagingModel:
+    SocialLink:
+      required:
+      - name
+      - url
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+    Link:
+      required:
+      - display
+      - href
+      - rel
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        display:
+          type: string
+    FindTokensQuery:
       required:
       - direction
       - page
       - size
       - sort
-      - totalElements
+      - tokenType
       type: object
       properties:
         page:
+          minimum: 0
           type: integer
           format: int32
         size:
+          maximum: 100
+          minimum: 1
           type: integer
           format: int32
-        sort:
-          type: string
         direction:
           type: string
           enum:
           - ASC
           - DESC
-        totalElements:
-          type: integer
-          format: int64
-    MarketDataModel:
+        sort:
+          type: string
+          enum:
+          - lastActivity
+          - transactionCount
+          - totalTokenCount
+          - holdersCount
+          - totalSupply
+          - contractType
+          - verified
+        filter:
+          type: string
+        tokenType:
+          type: string
+          enum:
+          - NFT
+          - RWA
+          - TOKEN
+          - DEFAULT
+    ListTokenModel:
       required:
-      - fdv
-      - market_cap
-      - market_change_24h_percent
-      - price_eth
-      - price_usd
-      - total_circulating_supply
-      - total_volume_24h
+      - data
+      - paging
       type: object
       properties:
-        fdv:
-          type: number
-        market_cap:
-          type: number
-        total_volume_24h:
-          type: number
-        total_circulating_supply:
-          type: number
-        price_usd:
-          type: number
-        price_eth:
-          type: number
-        market_change_24h_percent:
-          type: number
-        image:
-          type: string
+        paging:
+          $ref: '#/components/schemas/PagingModel'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TokenModel'
     TokenModel:
       required:
       - address
@@ -229,70 +232,15 @@ components:
           $ref: '#/components/schemas/ProjectModel'
         marketData:
           $ref: '#/components/schemas/MarketDataModel'
-    Link:
+    Attribute:
       required:
-      - display
-      - href
-      - rel
+      - traitType
+      - value
       type: object
       properties:
-        href:
+        traitType:
           type: string
-        rel:
-          type: string
-        display:
-          type: string
-    FindTokensQuery:
-      required:
-      - direction
-      - page
-      - size
-      - sort
-      - tokenType
-      type: object
-      properties:
-        page:
-          minimum: 0
-          type: integer
-          format: int32
-        size:
-          maximum: 100
-          minimum: 1
-          type: integer
-          format: int32
-        direction:
-          type: string
-          enum:
-          - ASC
-          - DESC
-        sort:
-          type: string
-          enum:
-          - lastActivity
-          - transactionCount
-          - totalTokenCount
-          - holdersCount
-          - totalSupply
-          - contractType
-          - verified
-        filter:
-          type: string
-        tokenType:
-          type: string
-          enum:
-          - NFT
-          - RWA
-          - TOKEN
-          - DEFAULT
-    SocialLink:
-      required:
-      - name
-      - url
-      type: object
-      properties:
-        name:
-          type: string
-        url:
+        value:
           type: string
     CollectionMetadataModel:
       required:
@@ -321,6 +269,58 @@ components:
           type: string
         tokenId:
           type: string
+    MarketDataModel:
+      required:
+      - fdv
+      - market_cap
+      - market_change_24h_percent
+      - price_eth
+      - price_usd
+      - total_circulating_supply
+      - total_volume_24h
+      type: object
+      properties:
+        fdv:
+          type: number
+        market_cap:
+          type: number
+        total_volume_24h:
+          type: number
+        total_circulating_supply:
+          type: number
+        price_usd:
+          type: number
+        price_eth:
+          type: number
+        market_change_24h_percent:
+          type: number
+        image:
+          type: string
+    PagingModel:
+      required:
+      - direction
+      - page
+      - size
+      - sort
+      - totalElements
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: string
+        direction:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        totalElements:
+          type: integer
+          format: int64
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/

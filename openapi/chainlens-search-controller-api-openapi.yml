@@ -48,6 +48,25 @@ paths:
                 $ref: '#/components/schemas/ListSearchResultModel'
 components:
   schemas:
+    ListSearchResultModel:
+      required:
+      - data
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchRecommendation'
+    SearchRecommendation:
+      required:
+      - link
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+        link:
+          $ref: '#/components/schemas/Link'
     Link:
       required:
       - display
@@ -61,25 +80,6 @@ components:
           type: string
         display:
           type: string
-    SearchRecommendation:
-      required:
-      - link
-      - type
-      type: object
-      properties:
-        type:
-          type: string
-        link:
-          $ref: '#/components/schemas/Link'
-    ListSearchResultModel:
-      required:
-      - data
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchRecommendation'
 externalDocs:
   description: Chainlens Documentation
   url: https://docs.chainlens.com/
