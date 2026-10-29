@@ -1,4 +1,4 @@
-# Chainlens (chainlens)
+# Chainlens
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,83 +66,179 @@
 
 Chainlens, built by Web3 Labs, is a blockchain explorer and analytics platform for EVM-compatible public and private chains (Ethereum, Hyperledger Besu, Quorum, Polygon, Avalanche, BNB Chain, etc.) as well as Substrate-based chains. It combines a user-friendly block explorer with powerful REST APIs for real-time transaction monitoring, smart contract verification, token and NFT tracking (ERC-20, ERC-721, ERC-1155), and integration of on-chain data with existing analytics and reporting pipelines. The API follows the EIP-3091 block explorer route conventions and is offered both as SaaS and self-hosted.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/chainlens/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/chainlens/refs/heads/main/apis.yml)
+**Areas:** Analytics · Blockchain · Block Explorer · Cryptocurrencies · DeFi · Ethereum · EVM · NFT · Smart Contracts · Web3
 
-## Scope
+## Chainlens on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Chainlens is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/chainlens/](https://apis.io/providers/chainlens/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (38)
 
-- Analytics
-- Blockchain
-- Block Explorer
-- Cryptocurrencies
-- DeFi
-- Ethereum
-- EVM
-- NFTs
-- Smart Contracts
-- Web3
+- [Chainlens Account-Controller API](https://apis.io/apis/chainlens/chainlens-account-controller-api/) — The Account-Controller API from Chainlens — 2 operation(s) for account-controller.
+- [Chainlens Account-Mapping-Controller API](https://apis.io/apis/chainlens/chainlens-account-mapping-controller-api/) — The Account-Mapping-Controller API from Chainlens — 2 operation(s) for account-mapping-controller.
+- [Chainlens Account-Tokens-Controller API](https://apis.io/apis/chainlens/chainlens-account-tokens-controller-api/) — The Account-Tokens-Controller API from Chainlens — 3 operation(s) for account-tokens-controller.
+- [Chainlens Account-Transactions-Controller API](https://apis.io/apis/chainlens/chainlens-account-transactions-controller-api/) — The Account-Transactions-Controller API from Chainlens — 1 operation(s) for account-transactions-controller.
+- [Chainlens Block-Controller API](https://apis.io/apis/chainlens/chainlens-block-controller-api/) — The Block-Controller API from Chainlens — 2 operation(s) for block-controller.
+- [Chainlens Block-Transactions-Controller API](https://apis.io/apis/chainlens/chainlens-block-transactions-controller-api/) — The Block-Transactions-Controller API from Chainlens — 1 operation(s) for block-transactions-controller.
+- [Chainlens Configuration-Controller API](https://apis.io/apis/chainlens/chainlens-configuration-controller-api/) — The Configuration-Controller API from Chainlens — 1 operation(s) for configuration-controller.
+- [Chainlens Contract-Bytecode-Controller API](https://apis.io/apis/chainlens/chainlens-contract-bytecode-controller-api/) — The Contract-Bytecode-Controller API from Chainlens — 1 operation(s) for contract-bytecode-controller.
+- [Chainlens Contract-Controller API](https://apis.io/apis/chainlens/chainlens-contract-controller-api/) — The Contract-Controller API from Chainlens — 2 operation(s) for contract-controller.
+- [Chainlens Contract-Events-Controller API](https://apis.io/apis/chainlens/chainlens-contract-events-controller-api/) — The Contract-Events-Controller API from Chainlens — 1 operation(s) for contract-events-controller.
+- [Chainlens Contract-Internal-Transactions-Controller API](https://apis.io/apis/chainlens/chainlens-contract-internal-transactions-controller-api/) — The Contract-Internal-Transactions-Controller API from Chainlens — 1 operation(s) for contract-internal-transactions-controller.
+- [Chainlens Contract-Transactions-Controller API](https://apis.io/apis/chainlens/chainlens-contract-transactions-controller-api/) — The Contract-Transactions-Controller API from Chainlens — 1 operation(s) for contract-transactions-controller.
+- [Chainlens Dashboard-Tokens-Totals-Controller API](https://apis.io/apis/chainlens/chainlens-dashboard-tokens-totals-controller-api/) — The Dashboard-Tokens-Totals-Controller API from Chainlens — 1 operation(s) for dashboard-tokens-totals-controller.
+- [Chainlens Dashboard-Totals-Controller API](https://apis.io/apis/chainlens/chainlens-dashboard-totals-controller-api/) — The Dashboard-Totals-Controller API from Chainlens — 1 operation(s) for dashboard-totals-controller.
+- [Chainlens Dashboard-Transactions-Totals-Controller API](https://apis.io/apis/chainlens/chainlens-dashboard-transactions-totals-controller-api/) — The Dashboard-Transactions-Totals-Controller API from Chainlens — 2 operation(s) for dashboard-transactions-totals-controller.
+- [Chainlens Download-Abi-Controller API](https://apis.io/apis/chainlens/chainlens-download-abi-controller-api/) — The Download-Abi-Controller API from Chainlens — 1 operation(s) for download-abi-controller.
+- [Chainlens Eip-3091-Controller API](https://apis.io/apis/chainlens/chainlens-eip-3091-controller-api/) — The Eip-3091-Controller API from Chainlens — 6 operation(s) for eip-3091-controller.
+- [Chainlens Erc-1155-Transfers-Controller API](https://apis.io/apis/chainlens/chainlens-erc-1155-transfers-controller-api/) — The Erc-1155-Transfers-Controller API from Chainlens — 2 operation(s) for erc-1155-transfers-controller.
+- [Chainlens Erc-20-Transfers-Controller API](https://apis.io/apis/chainlens/chainlens-erc-20-transfers-controller-api/) — The Erc-20-Transfers-Controller API from Chainlens — 1 operation(s) for erc-20-transfers-controller.
+- [Chainlens Erc-223-Transfers-Controller API](https://apis.io/apis/chainlens/chainlens-erc-223-transfers-controller-api/) — The Erc-223-Transfers-Controller API from Chainlens — 1 operation(s) for erc-223-transfers-controller.
+- [Chainlens Erc-721-Transfers-Controller API](https://apis.io/apis/chainlens/chainlens-erc-721-transfers-controller-api/) — The Erc-721-Transfers-Controller API from Chainlens — 2 operation(s) for erc-721-transfers-controller.
+- [Chainlens Erc-777-Transfers-Controller API](https://apis.io/apis/chainlens/chainlens-erc-777-transfers-controller-api/) — The Erc-777-Transfers-Controller API from Chainlens — 1 operation(s) for erc-777-transfers-controller.
+- [Chainlens Events-Controller API](https://apis.io/apis/chainlens/chainlens-events-controller-api/) — The Events-Controller API from Chainlens — 1 operation(s) for events-controller.
+- [Chainlens Gas-Oracle-Controller API](https://apis.io/apis/chainlens/chainlens-gas-oracle-controller-api/) — The Gas-Oracle-Controller API from Chainlens — 1 operation(s) for gas-oracle-controller.
+- [Chainlens Internal-Transactions-Controller API](https://apis.io/apis/chainlens/chainlens-internal-transactions-controller-api/) — The Internal-Transactions-Controller API from Chainlens — 2 operation(s) for internal-transactions-controller.
+- [Chainlens Media-Type-Controller API](https://apis.io/apis/chainlens/chainlens-media-type-controller-api/) — The Media-Type-Controller API from Chainlens — 1 operation(s) for media-type-controller.
+- [Chainlens Metadata-Controller API](https://apis.io/apis/chainlens/chainlens-metadata-controller-api/) — The Metadata-Controller API from Chainlens — 2 operation(s) for metadata-controller.
+- [Chainlens Nft-Controller API](https://apis.io/apis/chainlens/chainlens-nft-controller-api/) — The Nft-Controller API from Chainlens — 8 operation(s) for nft-controller.
+- [Chainlens Node-Controller API](https://apis.io/apis/chainlens/chainlens-node-controller-api/) — The Node-Controller API from Chainlens — 1 operation(s) for node-controller.
+- [Chainlens Projects-Controller API](https://apis.io/apis/chainlens/chainlens-projects-controller-api/) — The Projects-Controller API from Chainlens — 1 operation(s) for projects-controller.
+- [Chainlens Rwa-Controller API](https://apis.io/apis/chainlens/chainlens-rwa-controller-api/) — The Rwa-Controller API from Chainlens — 5 operation(s) for rwa-controller.
+- [Chainlens Search-Controller API](https://apis.io/apis/chainlens/chainlens-search-controller-api/) — The Search-Controller API from Chainlens — 2 operation(s) for search-controller.
+- [Chainlens Token-Controller API](https://apis.io/apis/chainlens/chainlens-token-controller-api/) — The Token-Controller API from Chainlens — 3 operation(s) for token-controller.
+- [Chainlens Token-Events-Controller API](https://apis.io/apis/chainlens/chainlens-token-events-controller-api/) — The Token-Events-Controller API from Chainlens — 1 operation(s) for token-events-controller.
+- [Chainlens Token-Holders-Controller API](https://apis.io/apis/chainlens/chainlens-token-holders-controller-api/) — The Token-Holders-Controller API from Chainlens — 1 operation(s) for token-holders-controller.
+- [Chainlens Token-Transactions-Controller API](https://apis.io/apis/chainlens/chainlens-token-transactions-controller-api/) — The Token-Transactions-Controller API from Chainlens — 1 operation(s) for token-transactions-controller.
+- [Chainlens Transaction-Controller API](https://apis.io/apis/chainlens/chainlens-transaction-controller-api/) — The Transaction-Controller API from Chainlens — 2 operation(s) for transaction-controller.
+- [Chainlens Transaction-Events-Controller API](https://apis.io/apis/chainlens/chainlens-transaction-events-controller-api/) — The Transaction-Events-Controller API from Chainlens — 1 operation(s) for transaction-events-controller.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-11-07
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Chainlens Blockchain Explorer API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Chainlens REST API exposes block explorer data for EVM chains including transactions, internal transactions, events, blocks, addresses, tokens, NFTs, and smart contract metadata. Endpoints follow OpenAPI 3 conventions and the EIP-3091 block explorer route standard, supporting real-time on-chain analytics, wallet inspection, contract verification look-up, and reporting pipelines.
+- [Chainlens Agentic Access](https://apis.io/agentic-access/chainlens/chainlens-agentic-access/)
 
-- **Human URL:** [https://www.chainlens.com/](https://www.chainlens.com/)
-- **Base URL:** `https://api.chainlens.com`
+#### Collections (39)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Blockchain
-- Block Explorer
-- EIP-3091
-- Events
-- NFTs
-- Smart Contracts
-- Tokens
-- Transactions
+- [Chainlens](https://apis.io/collections/chainlens/open-chainlens/)
+- [Chainlens Account-Controller API](https://apis.io/collections/chainlens/open-chainlens-account-controller-api/)
+- [Chainlens Account-Controller Account-Mapping-Controller API](https://apis.io/collections/chainlens/open-chainlens-account-mapping-controller-api/)
+- [Chainlens Account-Controller Account-Tokens-Controller API](https://apis.io/collections/chainlens/open-chainlens-account-tokens-controller-api/)
+- [Chainlens Account-Controller Account-Transactions-Controller API](https://apis.io/collections/chainlens/open-chainlens-account-transactions-controller-api/)
+- [Chainlens Account-Controller Block-Controller API](https://apis.io/collections/chainlens/open-chainlens-block-controller-api/)
+- [Chainlens Account-Controller Block-Transactions-Controller API](https://apis.io/collections/chainlens/open-chainlens-block-transactions-controller-api/)
+- [Chainlens Account-Controller Configuration-Controller API](https://apis.io/collections/chainlens/open-chainlens-configuration-controller-api/)
+- [Chainlens Account-Controller Contract-Bytecode-Controller API](https://apis.io/collections/chainlens/open-chainlens-contract-bytecode-controller-api/)
+- [Chainlens Account-Controller Contract-Controller API](https://apis.io/collections/chainlens/open-chainlens-contract-controller-api/)
+- [Chainlens Account-Controller Contract-Events-Controller API](https://apis.io/collections/chainlens/open-chainlens-contract-events-controller-api/)
+- [Chainlens Account-Controller Contract-Internal-Transactions-Controller API](https://apis.io/collections/chainlens/open-chainlens-contract-internal-transactions-controller-api/)
+- [Chainlens Account-Controller Contract-Transactions-Controller API](https://apis.io/collections/chainlens/open-chainlens-contract-transactions-controller-api/)
+- [Chainlens Account-Controller Dashboard-Tokens-Totals-Controller API](https://apis.io/collections/chainlens/open-chainlens-dashboard-tokens-totals-controller-api/)
+- [Chainlens Account-Controller Dashboard-Totals-Controller API](https://apis.io/collections/chainlens/open-chainlens-dashboard-totals-controller-api/)
+- [Chainlens Account-Controller Dashboard-Transactions-Totals-Controller API](https://apis.io/collections/chainlens/open-chainlens-dashboard-transactions-totals-controller-api/)
+- [Chainlens Account-Controller Download-Abi-Controller API](https://apis.io/collections/chainlens/open-chainlens-download-abi-controller-api/)
+- [Chainlens Account-Controller Eip-3091-Controller API](https://apis.io/collections/chainlens/open-chainlens-eip-3091-controller-api/)
+- [Chainlens Account-Controller Erc-1155-Transfers-Controller API](https://apis.io/collections/chainlens/open-chainlens-erc-1155-transfers-controller-api/)
+- [Chainlens Account-Controller Erc-20-Transfers-Controller API](https://apis.io/collections/chainlens/open-chainlens-erc-20-transfers-controller-api/)
+- [Chainlens Account-Controller Erc-223-Transfers-Controller API](https://apis.io/collections/chainlens/open-chainlens-erc-223-transfers-controller-api/)
+- [Chainlens Account-Controller Erc-721-Transfers-Controller API](https://apis.io/collections/chainlens/open-chainlens-erc-721-transfers-controller-api/)
+- [Chainlens Account-Controller Erc-777-Transfers-Controller API](https://apis.io/collections/chainlens/open-chainlens-erc-777-transfers-controller-api/)
+- [Chainlens Account-Controller Events-Controller API](https://apis.io/collections/chainlens/open-chainlens-events-controller-api/)
+- [Chainlens Account-Controller Gas-Oracle-Controller API](https://apis.io/collections/chainlens/open-chainlens-gas-oracle-controller-api/)
+- …and 14 more published on APIs.io
 
-#### Properties
+#### Security (1)
 
-- [Documentation](https://docs.chainlens.com/)
-- [Overview](https://www.chainlens.com/features/blockchain-api)
-- [OpenAPI](openapi/chainlens-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/chainlens.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/chainlens.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Specification](https://eips.ethereum.org/EIPS/eip-3091)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Chainlens Domain Security](https://apis.io/security/chainlens/chainlens-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Chainlens Plans Pricing](https://apis.io/plans/chainlens/chainlens-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Chainlens Rate Limits](https://apis.io/rate-limits/chainlens/chainlens-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Chainlens Finops](https://apis.io/finops/chainlens/chainlens-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.chainlens.com/)
 - [Documentation](https://docs.chainlens.com/)
-- [Getting Started](https://www.chainlens.com/documentation-categories/getting-started)
-- [Sign Up](https://www.chainlens.com/free-sign-up)
+- [Getting started](https://www.chainlens.com/documentation-categories/getting-started)
 - [Pricing](https://www.chainlens.com/plans)
 - [Blog](https://www.chainlens.com/blog)
-- [Git Hub](https://github.com/web3labs/chainlens-free)
-- [Parent Company](https://www.web3labs.com/)
-- [Contact](https://www.chainlens.com/contact)
-- [Terms of Service](https://www.chainlens.com/terms)
-- [Privacy Policy](https://www.chainlens.com/privacy-policy)
-- [LinkedIn](https://www.linkedin.com/company/web3labs/)
-- [X (Twitter)](https://x.com/web3labs)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Plans](undefined)
-- [L L Ms Txt](https://docs.chainlens.com/llms.txt)
+- [Terms of service](https://www.chainlens.com/terms)
+- [Privacy policy](https://www.chainlens.com/privacy-policy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 33.7 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 28.9 |
+
+**Agent readiness 15.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 5.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/chainlens/](https://apis.io/providers/chainlens/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Chainlens: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/chainlens/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
